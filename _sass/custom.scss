@@ -19,3 +19,23 @@ footer {
         }
     }
 }
+
+.button {
+    padding: .5em 1em;
+    border: 1px solid silver;
+    line-height: 1em;
+    text-decoration: none;
+
+    @media #{$micro} {
+        display: block;
+    }
+    @media #{$small} {
+        display: inline-block;
+    }
+
+    &:hover {
+        background-color: #eee;
+    }
+}
+
+
