@@ -1,5 +1,5 @@
 ---
-redirect_from: /blog
+redirect_from: "/blog/"
 layout: home
 excerpt: "There is no silver bullet"
 image:
