@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: 'GoogleMaps: How to get InfoWindow in viewport'
 date: '2012-12-05 18:57:39 +0100'

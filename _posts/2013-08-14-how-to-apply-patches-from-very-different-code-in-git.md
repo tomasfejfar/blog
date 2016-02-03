@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: How to apply patches from very different code in git
 date: '2013-08-14 18:35:55 +0200'

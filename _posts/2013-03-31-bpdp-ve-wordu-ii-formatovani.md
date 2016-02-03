@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: 'BP/DP ve Wordu: II. Formátování'
 date: '2013-03-31 19:38:35 +0200'

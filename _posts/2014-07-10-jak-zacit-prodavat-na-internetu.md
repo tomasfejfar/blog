@@ -2,6 +2,7 @@
 redirect_from: "/266-jak-zacit-prodavat-na-internetu/"
 layout: post
 status: publish
+comments: true
 published: true
 title: 'Jak začít prodávat na internetu? '
 date: '2014-07-10 00:23:36 +0200'

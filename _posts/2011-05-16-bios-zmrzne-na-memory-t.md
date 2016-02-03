@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: BIOS zmrzne na "Memory T"
 date: '2011-05-16 01:48:43 +0200'

@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: 'Eclipse: Otevírání Workspace z kontextového menu'
 date: '2011-05-25 01:36:07 +0200'

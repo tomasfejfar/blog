@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: Pullrequest on top of other pullrequest and squashing before merge
 date: '2015-07-03 16:14:40 +0200'

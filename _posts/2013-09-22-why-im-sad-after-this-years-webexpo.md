@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: Why I'm sad after this year's WebExpo
 date: '2013-09-22 22:30:30 +0200'

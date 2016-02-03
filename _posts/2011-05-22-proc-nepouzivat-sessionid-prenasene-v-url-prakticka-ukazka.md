@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: Proč nepoužívat sessionId přenášené v URL? (praktická ukázka)
 date: '2011-05-22 01:33:10 +0200'

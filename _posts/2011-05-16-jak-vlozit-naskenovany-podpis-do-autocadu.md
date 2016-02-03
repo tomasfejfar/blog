@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: Jak vložit naskenovaný podpis do AutoCADu
 date: '2011-05-16 01:32:18 +0200'

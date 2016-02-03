@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: Zend Screencast – Zend Tool
 date: '2011-05-16 01:30:49 +0200'

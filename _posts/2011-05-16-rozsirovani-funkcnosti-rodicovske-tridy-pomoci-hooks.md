@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: Rozšiřování funkčnosti rodičovské třídy pomocí hooks
 date: '2011-05-16 01:34:49 +0200'

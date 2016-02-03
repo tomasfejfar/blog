@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: Tibet v Brně
 date: '2011-05-16 01:49:11 +0200'

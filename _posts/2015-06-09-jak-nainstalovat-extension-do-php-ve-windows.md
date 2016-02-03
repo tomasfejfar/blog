@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: Jak nainstalovat extension do PHP ve Windows
 date: '2015-06-09 10:24:54 +0200'

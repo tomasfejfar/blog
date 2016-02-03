@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: How to contribute to ZF2
 date: '2012-12-13 22:01:03 +0100'

@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: Zabezpečené stahování souborů
 date: '2011-05-05 18:00:11 +0200'

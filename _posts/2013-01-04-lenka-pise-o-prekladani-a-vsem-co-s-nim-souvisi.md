@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: Lenka píše o překládání a všem co s ním souvisí
 date: '2013-01-04 01:48:46 +0100'

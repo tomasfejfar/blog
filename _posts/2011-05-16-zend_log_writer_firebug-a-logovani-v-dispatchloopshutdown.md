@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: Zend_Log_Writer_Firebug a logování v dispatchLoopShutdown()
 date: '2011-05-16 02:12:39 +0200'

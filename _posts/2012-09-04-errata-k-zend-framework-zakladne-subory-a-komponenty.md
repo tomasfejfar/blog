@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: 'Errata k "Zend framework: základné súbory a komponenty"'
 date: '2012-09-04 00:06:23 +0200'

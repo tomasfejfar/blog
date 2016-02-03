@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: 3x3 kroky k lepší prezentaci na Facebooku
 date: '2011-05-19 01:28:57 +0200'

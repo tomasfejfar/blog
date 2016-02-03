@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: Ad ACTA, piráti, filmy, hudba, etc.
 excerpt: "Když se zamyslím nad situací ohledně mediálních korporací a autorského zákona,

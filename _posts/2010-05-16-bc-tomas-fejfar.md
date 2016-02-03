@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: Bc. Tomáš Fejfar
 date: '2010-05-16 01:36:14 +0200'

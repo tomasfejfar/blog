@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: Jak si uvařit PuErh z koláče pro jednoho čajovníka
 date: '2011-05-20 01:31:01 +0200'

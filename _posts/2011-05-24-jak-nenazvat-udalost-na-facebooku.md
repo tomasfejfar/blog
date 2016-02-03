@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: Jak nenazvat událost na Facebooku
 date: '2011-05-24 01:36:06 +0200'

@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: Lenovo R400 – zkušenosti po pár měsících
 date: '2011-05-16 02:24:27 +0200'

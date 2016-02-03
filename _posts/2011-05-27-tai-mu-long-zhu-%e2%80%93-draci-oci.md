@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: Tai Mu Long Zhu – Dračí oči
 date: '2011-05-27 01:36:12 +0200'

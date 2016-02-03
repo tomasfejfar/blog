@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: Samsung F1 HD103UJ ukazuje velikost jen 32MB (resp. 31MB)
 date: '2011-05-16 01:30:18 +0200'

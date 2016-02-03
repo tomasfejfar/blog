@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: Migration from R400 to X220
 date: '2013-06-21 14:35:25 +0200'

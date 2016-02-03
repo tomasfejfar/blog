@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: Přemigroval jsem blog na Jekyll
 date: '2016-01-31 00:00:00 +0200'

@@ -1,6 +1,7 @@
 ---
 layout: post
 status: publish
+comments: true
 published: true
 title: Webexpo 2012 - retrospektiva
 excerpt: Letošní, opět lehce rozporuplné Webexpo je za námi. Jaké bylo?
