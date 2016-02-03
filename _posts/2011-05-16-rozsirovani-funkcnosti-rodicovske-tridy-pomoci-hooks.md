@@ -3,14 +3,6 @@ layout: post
 status: publish
 published: true
 title: Rozšiřování funkčnosti rodičovské třídy pomocí hooks
-author:
-  display_name: tomas.fejfar
-  login: tomas.fejfar
-  email: tomas.fejfar@gmail.com
-author_login: tomas.fejfar
-author_email: tomas.fejfar@gmail.com
-wordpress_id: 37
-wordpress_url: http://blog.tomasfejfar.cz/?p=37
 date: '2011-05-16 01:34:49 +0200'
 date_gmt: '2011-05-15 23:34:49 +0200'
 categories:
@@ -34,7 +26,7 @@ Rodičovský controller má v sobě většinu funkcionality. Takže třeba  pro 
 ## Řešení
 
 
-Do chvíle, než mě <a href="http://replay.web.archive.org/20090324072520/http://www.martinhujer.cz/">Martin Hujer</a> upozornil na to, že se na tohle dají hezky použít <strong>hooks</strong>! <img src="http://replay.web.archive.org/20090324072520im_/http://blog.red-pill.cz/wp-includes/images/smilies/icon_smile.gif" alt=":)" /> Ne že bych je neznal už dřív. V ZendFrameworku je používám dnes a denně  např. ve FrontController pluginech (dispatchLoopShutdown, preDispatch,  …). Ale vůbec mi nedošlo, že bych je mohl použít.
+Do chvíle, než mě <a href="http://www.martinhujer.cz/">Martin Hujer</a> upozornil na to, že se na tohle dají hezky použít <strong>hooks</strong>! <img src="http://blog.red-pill.cz/wp-includes/images/smilies/icon_smile.gif" alt=":)" /> Ne že bych je neznal už dřív. V ZendFrameworku je používám dnes a denně  např. ve FrontController pluginech (dispatchLoopShutdown, preDispatch,  …). Ale vůbec mi nedošlo, že bych je mohl použít.
 
 
 ## Coto, toto?

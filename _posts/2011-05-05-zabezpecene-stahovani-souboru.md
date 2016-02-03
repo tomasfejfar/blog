@@ -3,15 +3,6 @@ layout: post
 status: publish
 published: true
 title: Zabezpečené stahování souborů
-author:
-  display_name: tomas.fejfar
-  login: tomas.fejfar
-  email: tomas.fejfar@gmail.com
-  url: ''
-author_login: tomas.fejfar
-author_email: tomas.fejfar@gmail.com
-wordpress_id: 4
-wordpress_url: http://blog.tomasfejfar.cz/?p=4
 date: '2011-05-05 18:00:11 +0200'
 date_gmt: '2011-05-05 18:00:11 +0200'
 categories:
@@ -34,7 +25,7 @@ readfile($filepath);
 ```
 
 
-Jenže na většině hostingů narazíte tady na nastavení [--memory_limit](http://replay.web.archive.org/20070505074248/http://cz2.php.net/manual/cs/ini.core.php#ini.memory-limit). Proto se musí použít drobný work-around:
+Jenže na většině hostingů narazíte tady na nastavení [--memory_limit](http://cz2.php.net/manual/cs/ini.core.php#ini.memory-limit). Proto se musí použít drobný work-around:
 
 ```php
 <?php
@@ -63,7 +54,7 @@ function readfile_chunked($filename, $retbytes = true)
 }
 
 ```
-Tenhle kód je k dispozici v <a href="http://replay.web.archive.org/20070505074248/http://cz2.php.net/readfile">diskuzi o readfile() na PHP.net</a> Jenže stále není vyhráno, protože stále může potenciální útočník zjistit název souboru a přistoupit k němu přímo. Tomu opět zamezíme poměrně jednoduchým nastavením.
+Tenhle kód je k dispozici v <a href="http://cz2.php.net/readfile">diskuzi o readfile() na PHP.net</a> Jenže stále není vyhráno, protože stále může potenciální útočník zjistit název souboru a přistoupit k němu přímo. Tomu opět zamezíme poměrně jednoduchým nastavením.
 
 
 Vytvoříme `.htaccess`, který dáme do složky s downloady.

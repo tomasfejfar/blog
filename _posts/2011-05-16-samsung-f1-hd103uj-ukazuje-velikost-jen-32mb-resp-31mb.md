@@ -3,14 +3,6 @@ layout: post
 status: publish
 published: true
 title: Samsung F1 HD103UJ ukazuje velikost jen 32MB (resp. 31MB)
-author:
-    display_name: tomas.fejfar
-    login: tomas.fejfar
-    email: tomas.fejfar@gmail.com
-author_login: tomas.fejfar
-author_email: tomas.fejfar@gmail.com
-wordpress_id: 57
-wordpress_url: http://blog.tomasfejfar.cz/?p=57
 date: '2011-05-16 01:30:18 +0200'
 ---
 <p>

@@ -3,15 +3,6 @@ layout: post
 status: publish
 published: true
 title: How to apply patches from very different code in git
-author:
-  display_name: tomas.fejfar
-  login: tomas.fejfar
-  email: tomas.fejfar@gmail.com
-  url: ''
-author_login: tomas.fejfar
-author_email: tomas.fejfar@gmail.com
-wordpress_id: 193
-wordpress_url: http://blog.tomasfejfar.cz/?p=193
 date: '2013-08-14 18:35:55 +0200'
 date_gmt: '2013-08-14 16:35:55 +0200'
 categories:
@@ -24,13 +15,17 @@ tags:
 <p>Out codebase has some archaic code, that was rewritten during one refactoring or other. But there is usually some cool feature that was not in the main branch, but in one of the archaic ones. When you need to use it in the new version - you can't merge it (in our case it's in completely different pre-git repo). So you create a patch. And you try to use it in git using</p>
 <pre>$ git apply cool-feature.patch</pre>
 <p>but you get something like</p>
-<pre>error: patch failed: data/www/models/Basket/Session.php:278
+<pre>error: patch failed: data/www/models/Basket/Session.php:278
+
 error: data/www/models/Basket/Session.php: patch does not apply</pre>
 <p>Well, that sucks! It's 21st century, I won't copy/paste it by hand! I WON'T!</p>
 <p>But fear not, as there is a way to apply at least some of the mess and keep the rest elsewhere to fix it manually. It's a reject parameter. For me something like the next code worked the best:</p>
-<pre>$ git apply --reject --whitespace=fix cool-feature.patch
-Applying patch data/www/models/Basket/Session.php with 1 reject...
-Rejected hunk #1.
+<pre>$ git apply --reject --whitespace=fix cool-feature.patch
+
+Applying patch data/www/models/Basket/Session.php with 1 reject...
+
+Rejected hunk #1.
+
 Hunk #2 applied cleanly.</pre>
 <p>That's great, but what about the rejected hunks, you say? They are stored in *.rej files for you to apply them manually.</p>
 <p>I hope I saved you some googling and stress :P</p>

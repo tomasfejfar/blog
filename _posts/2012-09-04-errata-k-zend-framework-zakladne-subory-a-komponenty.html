@@ -3,15 +3,6 @@ layout: post
 status: publish
 published: true
 title: 'Errata k "Zend framework: základné súbory a komponenty"'
-author:
-  display_name: tomas.fejfar
-  login: tomas.fejfar
-  email: tomas.fejfar@gmail.com
-  url: ''
-author_login: tomas.fejfar
-author_email: tomas.fejfar@gmail.com
-wordpress_id: 120
-wordpress_url: http://blog.tomasfejfar.cz/?p=120
 date: '2012-09-04 00:06:23 +0200'
 date_gmt: '2012-09-03 22:06:23 +0200'
 categories:
@@ -29,29 +20,48 @@ tags:
 <p>Jednotlivá nastavení od sebe mohou navzájem dědit a díky tomu není nutné vypisovat všechno 4x, ale stačí všechno napsat do <em>production</em> a do ostatních psát jen odlišné hodnoty.</p>
 <p>Hodnota APPLICATION_ENV je určena nastavením stejnojmenné proměnné prostředí v .htaccess. Jedná se o jednoduchou direktivu, která určitě není neprůstřelná (proto není v ofic. ZF), ale pro naše potřeby stačí<br />
 <code></code></p>
-<pre>    public static function isLocalhost()
-    {
-        if (Config::isIIS()) {
-            return $_SERVER['LOCAL_ADDR'] == '127.0.0.1';
-        }
-        return $_SERVER['SERVER_ADDR'] == '127.0.0.1';
-    }
-
-    public static function isIIS()
-    {
-        if (isset($_SERVER['SERVER_SOFTWARE']) &amp;&amp; substr($_SERVER['SERVER_SOFTWARE'], 0, 14) == 'Microsoft-IIS/') {
-            return true;
-        }
-        return false;
+<pre>    public static function isLocalhost()
+
+    {
+
+        if (Config::isIIS()) {
+
+            return $_SERVER['LOCAL_ADDR'] == '127.0.0.1';
+
+        }
+
+        return $_SERVER['SERVER_ADDR'] == '127.0.0.1';
+
+    }
+
+
+
+    public static function isIIS()
+
+    {
+
+        if (isset($_SERVER['SERVER_SOFTWARE']) &amp;&amp; substr($_SERVER['SERVER_SOFTWARE'], 0, 14) == 'Microsoft-IIS/') {
+
+            return true;
+
+        }
+
+        return false;
+
     }</pre>
 <h2>Bootstrap.php</h2>
 <p>Rozhodně nesouhlasím s tím, že by někdo používal kombinaci nastavení v index.php a Bootstrapu. Nedává to smysl. Bootstraping pomocí Zend_Application představuje značný overhead. Ten je daní za flexibilní možnosti boostrapování.</p>
 <p><em>Zend_Application</em> používá sadu takzvaných <em>Resources</em>, což jsou jednotlivé součásti aplikace, které mohou být znovu použity a jednoduše nastaveny pomocí <em>application.ini</em>. Typickým zástupcem je například <em>Zend_Application_Resource_Db</em>, což je vlastně třída bootstrapující připojení k databázi. Díky tomu stačí do application.ini přidat</p>
-<pre>resources.db.adapter = "pdo_mysql"
-resources.db.params.host = "localhost"
-resources.db.params.username = "webuser"
-resources.db.params.password = "XXXXXXX"
-resources.db.params.dbname = "test"
+<pre>resources.db.adapter = "pdo_mysql"
+
+resources.db.params.host = "localhost"
+
+resources.db.params.username = "webuser"
+
+resources.db.params.password = "XXXXXXX"
+
+resources.db.params.dbname = "test"
+
 resources.db.isDefaultTableAdapter = true</pre>
 <p>Od té chvíle máte automaticky nastavené připojení k databázi, aniž byste napsali jedinou řádku výkonného PHP kódu. Navíc editaci ini souboru zvládne i průměrně zručný sysadmin, narozdíl od zkoumání PHP. Není to nic světoborného. Něco podobného umí určitě i nette, cakephp nebo codeigniter. Velká výhoda v tomto případě spočívá ale v tom, že <em>Resource</em> si můžete tvořit sami. Můžete si tedy např. udělat resource na připojení k twitteru, nějakému API, nastavení cachování. Záleží na vás. Tyto resource pak můžete používat jako drop-in napříč projekty.</p>
 <p>Pokud je pro vás prioritní rychlost a znovupoužitelné resources nepoužijete, není důvod Zend_Application používat. Můžete snadno všechny komponenty instancovat ručně v index.php <a href="http://framework.zend.com/manual/en/zend.db.adapter.html#zend.db.adapter.connecting.factory-config" target="_blank">klidně i pomocí nastavení zapsaného v ini souboru</a>. Na Shopiu Zend_Application z důvodů rychlosti nepoužíváme a máme vlastní třídu na boostrapování aplikace. Osobně fakt, že je si možné framework přizpůsobit mým potřebám, vnímám jako jednu z hlavních výhod ZF.</p>
@@ -61,10 +71,14 @@ resources.db.isDefaultTableAdapter = true</pre>
 <p>Naprosto nechápu proč autor uvádí metodu <em>_unsetInstance</em>. <em>Zend_Registry</em> je singleton. A tím pádem má i metody <em>setInstance</em> a <em>unsetInstance</em>. Ale naprosto nechápu, proč je to potřeba uvádět, nota bene, když není uvedeno milion důležitějších věcí.</p>
 <h2>Zend_Log</h2>
 <p>Když už je na začátku uvedené použití Zend_Application, tak by bylo fajn ukázat, že i log se inicializuje pomocí resource:</p>
-<pre>resources.log.stream.writerName = "Stream"
-resources.log.stream.writerParams.stream = APPLICATION_PATH "/../data/logs/application.log"
-resources.log.stream.writerParams.mode = "a"
-resources.log.stream.filterName = "Priority"
+<pre>resources.log.stream.writerName = "Stream"
+
+resources.log.stream.writerParams.stream = APPLICATION_PATH "/../data/logs/application.log"
+
+resources.log.stream.writerParams.mode = "a"
+
+resources.log.stream.filterName = "Priority"
+
 resources.log.stream.filterParams.priority = 4</pre>
 <p>Jen pro úplnost zmíním, že <em>Zend_Log_Writer_Null</em> nezapisuje do <em>/dev/null</em>. On prostě nezapisuje nikam - tam kde by měl zapisovat, nedělá nic. Je určen k tomu, když máte třeba nějaký speciální log nějaké komponenty a chcete aby najednou nelogovala. Místo abyste mazali všechny volání logu v kódu nebo úplně vypli logování, jen přehodíte konkrétní writer na Null ;)</p>
 <h2>Závěr</h2>
