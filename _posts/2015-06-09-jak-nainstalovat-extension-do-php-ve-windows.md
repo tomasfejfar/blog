@@ -54,7 +54,7 @@ install failed
 
 
 
-Protože se preferovaný postup nezdařil je čas na workaround. Pokud vyvíjíte na windows tak je <a href="http://windows.php.net">windows.php.net</a> váš nejlepší kamarád. Najdete tam (mimo jiné) <a href="http://windows.php.net/downloads/pecl/releases/">extensiony z PECLu zbuildnuté pro jednotlivé verze PHP</a> a jejich x86 a x64 verze. Správnou verzi zjistíte tak, že si zavoláte <code>phpinfo()</code> (resp. <code>php -i</code> v CLI) a najdete si <code>PHP Extension Build =&gt; API20121212,TS,VC11</code>. Z toho je vidět, že chcete verzi VC11, TS. Dále z <code>Architecture =&gt; x86</code> je patrné, že chcete x86 verzi. Pro mé PHP 5.5 je to tedy <code>php_ssh2-0.12-5.5-ts-vc11-x86.zip</code> (<code>nazev-verze-verzePHP-threadSafety-compiler-architecture.zip</code>)
+Protože se preferovaný postup nezdařil je čas na workaround. Pokud vyvíjíte na windows tak je <a href="http://windows.php.net">windows.php.net</a> váš nejlepší kamarád. Najdete tam (mimo jiné) <a href="http://windows.php.net/downloads/pecl/releases/">extensiony z PECLu zbuildnuté pro jednotlivé verze PHP</a> a jejich x86 a x64 verze. Správnou verzi zjistíte tak, že si zavoláte <code>phpinfo()</code> (resp. <code>php -i</code> v CLI) a najdete si `PHP Extension Build => API20121212,TS,VC11`. Z toho je vidět, že chcete verzi VC11, TS. Dále z <code>Architecture =&gt; x86</code> je patrné, že chcete x86 verzi. Pro mé PHP 5.5 je to tedy <code>php_ssh2-0.12-5.5-ts-vc11-x86.zip</code> (<code>nazev-verze-verzePHP-threadSafety-compiler-architecture.zip</code>)
 
 
 

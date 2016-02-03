@@ -38,7 +38,7 @@ Hodnota APPLICATION_ENV je určena nastavením stejnojmenné proměnné prostře
 
     public static function isIIS()
     {
-        if (isset($_SERVER['SERVER_SOFTWARE']) &amp;&amp; substr($_SERVER['SERVER_SOFTWARE'], 0, 14) == 'Microsoft-IIS/') {
+        if (isset($_SERVER['SERVER_SOFTWARE']) && substr($_SERVER['SERVER_SOFTWARE'], 0, 14) == 'Microsoft-IIS/') {
             return true;
         }
         return false;
