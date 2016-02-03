@@ -1,12 +1,7 @@
-
-
-
-
-guard 'jekyll' do
-  ignore ^/_site
-  watch /.*/
+guard 'livereload' do
+  watch(%r(_site/.+))
 end
 
-guard 'livereload' do
-  watch(%r{_site/.+})
+guard 'jekyll' do
+  watch(%r(^(?!_site).*))
 end
