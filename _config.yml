@@ -3,6 +3,7 @@
 title:            Silver Bullet
 locale:           en_US
 url:
+public_url: http://blog.tomasfejfar.cz
 
 
 # Jekyll configuration
