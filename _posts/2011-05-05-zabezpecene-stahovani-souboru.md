@@ -25,7 +25,6 @@ header("Content-Disposition: attachment; filename=$file");
 readfile($filepath);
 ```
 
-
 Jenže na většině hostingů narazíte tady na nastavení [--memory_limit](http://cz2.php.net/manual/cs/ini.core.php#ini.memory-limit). Proto se musí použít drobný work-around:
 
 ```php
@@ -57,7 +56,6 @@ function readfile_chunked($filename, $retbytes = true)
 ```
 Tenhle kód je k dispozici v <a href="http://cz2.php.net/readfile">diskuzi o readfile() na PHP.net</a> Jenže stále není vyhráno, protože stále může potenciální útočník zjistit název souboru a přistoupit k němu přímo. Tomu opět zamezíme poměrně jednoduchým nastavením.
 
-
 Vytvoříme `.htaccess`, který dáme do složky s downloady.
 
 ```
@@ -67,7 +65,6 @@ Deny from All
 </Files>
 ```
 
-
 ```
 <Files ~ "\.php$">
 Order Deny,Allow
@@ -75,7 +72,6 @@ Allow from all
 </Files>
 ```
 To zaručí, že pro všechny soubory bude odmítnut přístup (**Error 403 – Forbidden**), kromě těch s koncovkou `.php`. A je to. Ochránili jsme složku proti jakémukoli pokusu o získání jejího obsahu. Kromě přístupu přes FTP, samozřejmně.
-
 
 **EDIT – BEZPEČNOSTNÍ DÍRA:** Se skriptu jsem našel bezpečnostní díru. A to, že skriuptem se dají získat i soubory \*.php z danného adresáře. To je třeba ošetřit podmínkou.
 

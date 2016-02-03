@@ -14,34 +14,21 @@ tags:
 - zend framework
 ---
 
-
 K napsání tohoto příspěvku mě inspirovala práce na jednom  projektu v Zend Frameworku, který je opravdu dobře napsaný z hlediska  dědičnosti atp. Někdo bude mít možná pocit, že tu znovuobjevuji kolo,  ale někomu to třeba pomůže. Pokud vás zajímá co jsou to <strong>hooks</strong>, tak čtěte dále.
-
 
 ## Problém
 
-
 Rodičovský controller má v sobě většinu funkcionality. Takže třeba  pro update stačí načíst data, do proměnné controlleru dát form a zavolat  <em>parent::update()</em>. Všechno šlape jako hodinky do chvíle, než je  potřeba nějak rozšířit funkcionalitu nad možnosti parent controlleru.  Např. přidat nějakou složitou validaci dat, přidat nějaký ruhý form,  atp. V tu chvíli se na první pohled zdá, že jediná šance je zkopírovat  kód parent controlleru a udělat v něm potřebné úpravy. A docela dlouho  sem to takhle (prasecky) dělal.
-
 
 ## Řešení
 
-
 Do chvíle, než mě <a href="http://www.martinhujer.cz/">Martin Hujer</a> upozornil na to, že se na tohle dají hezky použít <strong>hooks</strong>! <img src="http://blog.red-pill.cz/wp-includes/images/smilies/icon_smile.gif" alt=":)" /> Ne že bych je neznal už dřív. V ZendFrameworku je používám dnes a denně  např. ve FrontController pluginech (dispatchLoopShutdown, preDispatch,  …). Ale vůbec mi nedošlo, že bych je mohl použít.
-
 
 ## Coto, toto?
 
-
 Cože to ty hooks jsou? Pro neznalé: Hooks jsou procedury, které  nalepíte někam doprostřed kódu a ve zděděné třídě do nich pak napíšete  co potřebujete, aniž byste museli měnit rodičovskou třídu. Pochopitelné?  Moc ne, že.
 
-
-
-
 Příklad pomůže.
-
-
-
 
 <strong>Původní zdrojový kód</strong>
 
@@ -59,9 +46,7 @@ function updateAction()
 
 ```
 
-
 <strong>Zdrojový kód s hooks</strong>
-
 
 ```php
 <?php

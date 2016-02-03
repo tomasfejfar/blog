@@ -61,7 +61,6 @@ gem 'guard-livereload'
 
 Ve složce s projektem vytvořte `Guardfile`
 
-
 ```ruby
 guard 'jekyll' do
   # watch anything but '_site' folder
