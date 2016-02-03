@@ -33,7 +33,7 @@
     {% include _author-bio.html %}
   </div>
   <div id="index">
-    <h3><a href="{{ site.url}}/posts/">{{ site.title }}</a><span class="subtitle">{{ page.excerpt | strip_html }}</span></h3>
+    <h3>{{ site.title }}<span class="subtitle">{{ page.excerpt | strip_html }}</span></h3>
     {% for post in site.posts limit:5 %}
     <article>
       {% if post.link %}
