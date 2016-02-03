@@ -1,5 +1,21 @@
+$dim-color: silver;
+$smaller-size: .5em;
+
 .subtitle {
-    color: silver;
+    color: $dim-color;
     display: block;
-    font-size: .5em;
+    font-size: $smaller-size;
+}
+
+footer {
+    color: $dim-color;
+    text-align: center;
+}
+
+.top-navigation li a {
+    &:hover, &:active {
+        @media #{$medium} {
+            color: gray;
+        }
+    }
 }
