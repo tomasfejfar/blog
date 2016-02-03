@@ -169,6 +169,7 @@ DEPENDENCIES
   guard
   guard-jekyll
   guard-livereload
+  jekyll-redirect-from
   jekyll-sitemap
   wdm (>= 0.1.0)
 
