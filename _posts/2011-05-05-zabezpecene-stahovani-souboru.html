@@ -1,0 +1,77 @@
+---
+layout: post
+status: publish
+published: true
+title: Zabezpečené stahování souborů
+author:
+  display_name: tomas.fejfar
+  login: tomas.fejfar
+  email: tomas.fejfar@gmail.com
+  url: ''
+author_login: tomas.fejfar
+author_email: tomas.fejfar@gmail.com
+wordpress_id: 4
+wordpress_url: http://blog.tomasfejfar.cz/?p=4
+date: '2011-05-05 18:00:11 +0200'
+date_gmt: '2011-05-05 18:00:11 +0200'
+categories:
+- Uncategorized
+tags:
+- php
+- tipy
+---
+<p>Jistě jste se už setkali s problémem, že potřebujete zajistit, aby se nikdo nedostal k souborum v určite složce na webu. Ale někdy mu přístup chcete povolit. Šancí je, ošetřit přístup k souborům pomocí PHP. Standartne:<br />
+<code lang="php">$file = basename($file);<br />
+$filepath = "$download_folder/$file";<br />
+// tady nějaký test, jestli je u ivatel opravněn<br />
+header("Content-type: application/x-octet-stream");<br />
+header("Content-Disposition: attachment; filename=$file");<br />
+readfile($filepath);</code></p>
+<p>Jenže na většině hostingů narazíte tady na nastavení <a href="http://replay.web.archive.org/20070505074248/http://cz2.php.net/manual/cs/ini.core.php#ini.memory-limit">--memory_limit</a>. Proto se musí použít drobný work-around:<br />
+<code lang="php">function readfile_chunked($filename,$retbytes=true) {<br />
+$chunksize = 1*(1024*1024); // how many bytes per chunk<br />
+$buffer = '';<br />
+$cnt =0;<br />
+// $handle = fopen($filename, 'rb');<br />
+$handle = fopen($filename, 'rb');<br />
+if ($handle === false) {<br />
+return false;<br />
+}<br />
+while (!feof($handle)) {<br />
+$buffer = fread($handle, $chunksize);<br />
+echo $buffer;<br />
+ob_flush();<br />
+flush();<br />
+if ($retbytes) {<br />
+$cnt += strlen($buffer);<br />
+}<br />
+}<br />
+$status = fclose($handle);<br />
+if ($retbytes &amp;&amp; $status) {<br />
+return $cnt; // return num. bytes delivered like readfile() does.<br />
+}<br />
+return $status;<br />
+}</code><br />
+Tenhle kód je k dispozici v <a href="http://replay.web.archive.org/20070505074248/http://cz2.php.net/readfile">diskuzi o readfile() na PHP.net</a> Jenže stále není vyhráno, protože stále může potenciální útočník zjistit nýzev souboru a přistoupit k němu přímo. Tomu opět zamezíme poměrně jednoduchým nastavením.</p>
+<p>Vytvoříme .htaccess, který dáme do složky s downloady.<br />
+<code>&lt;Files *&gt;<br />
+Order Deny,Allow<br />
+Deny from All<br />
+&lt;/Files&gt;</code></p>
+<p><code> </code></p>
+<p><code>&lt;Files ~ "\.php$"&gt;<br />
+Order Deny,Allow<br />
+Allow from all<br />
+&lt;/Files&gt;</code><br />
+To zaručí, že pro všechny soubory bude odmítnut přístup (<strong>Error 403 – Forbidden</strong>), kromě těch s koncovkou „.php“. A je to. Ochránili jsme složku proti jakémukoli pokusu o získání jejího obsahu. Kromě přístupu přes FTP, samozřejmně.</p>
+<p><strong>EDIT – BEZPEČNOSTNÍ DÍRA: </strong>Se skriptu jsem našel bezpečnostní díru. A to, že skriuptem se dají získat i soubory *.php z danného adresáře. To je třeba ošetřit podmínkou.<br />
+<code lang="php">if(strpos($file, '.php')){<br />
+die('Pokus o zneu ití');<br />
+}</code><br />
+<strong>EDIT2 – Nefunkčnost v IE: </strong>Zjistil jsem, že skript nefunguje ze záhadného důvodu v IE. Je třeba do hlavičky poslat ještě:<br />
+<code lang="php">header("Pragma: public");<br />
+header("Expires: 0");<br />
+header("Cache-Control: must-revalidate, post-check=0, pre-check=0");<br />
+header("Cache-Control: private",false);<br />
+header("Content-Transfer-Encoding: binary");;<br />
+header("Content-type: image/jpg"); // zde konkretni MIME-typ, ne stream.</code></p>

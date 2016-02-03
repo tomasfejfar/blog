@@ -1,0 +1,50 @@
+---
+layout: post
+status: publish
+published: true
+title: Zend_Log_Writer_Firebug a logování v dispatchLoopShutdown()
+author:
+  display_name: tomas.fejfar
+  login: tomas.fejfar
+  email: tomas.fejfar@gmail.com
+  url: ''
+author_login: tomas.fejfar
+author_email: tomas.fejfar@gmail.com
+wordpress_id: 16
+wordpress_url: http://blog.tomasfejfar.cz/?p=16
+date: '2011-05-16 02:12:39 +0200'
+date_gmt: '2011-05-16 00:12:39 +0200'
+categories:
+- Uncategorized
+tags:
+- php
+- tipy
+- problem
+- zend framework
+---
+<p>Pro jeden svůj projekt jsem chtěl logovat data z DB profileru. Udělal jsem si plugin s hookem na dispatchLoopShut­down() a do něj dopsal logovací funkci. Jenže jaké bylo moje překvapení, když to nefungovalo. Zkoumal jsem to dosti dlouho a nemohl jsem najít chybu.</p>
+<p>
+Nakonec jsem zjistil, že je problém v tom, že tenhle writer k samotnému zápisu používá Wildfire komponentu, která potřebuje k své práci controller plugin a data odesílá v dispatchLoop­Shutdown(). Oprava je poměrně jednoduchá – stačí plugin ručně přidat do Front Controlleru dříve než náš plugin. (Ne, že by to dávalo smysl – ale je to řešení) </p>
+<p><code lang="php">$channel = Zend_Wildfire_Channel_HttpHeaders::getInstance();<br />
+$controller->registerPlugin(new USE_Controller_Plugin_Utilities());<br />
+$controller->registerPlugin($channel);</code></p>
+<p>Jen pro úplnost doplním kód na logování profileru</p>
+<p><code  lang="php">//setup loggeru / writeru - např. v bootstrapu$writer = new Zend_Log_Writer_Firebug();<br />
+$writer->setPriorityStyle(8, 'TABLE');<br />
+$logger = new Zend_Log($writer);<br />
+$logger->addPriority('TABLE', 8);</p>
+<p>//My_Controller_Plugin_ProfillerDump::dispatchLoopShutdown()<br />
+$db = Zend_Db_Table::getDefaultAdapter();<br />
+$profiler = $db->getProfiler();<br />
+$data = array();<br />
+$i = 1;</p>
+<p>$data[] = array('ID', 'Query', 'Time (ms)');<br />
+foreach ($profiler->getQueryProfiles() as $query) {<br />
+  $time  = round(($query->getElapsedSecs()*1000),1);<br />
+  $query = $query->getQuery();<br />
+  $data[] = array($i, $query, $time);<br />
+  $i++;<br />
+}<br />
+$table = array('Profiller',$data);<br />
+$logger->table($table);</code></p>
+<p>Doufám, že jsem vám ušetřil jednu bezesnou noc :) </p>

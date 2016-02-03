@@ -1,0 +1,35 @@
+---
+layout: post
+status: publish
+published: true
+title: Nefunkční partials v ZF po upgradu na 1.7.5
+author:
+  display_name: tomas.fejfar
+  login: tomas.fejfar
+  email: tomas.fejfar@gmail.com
+  url: ''
+author_login: tomas.fejfar
+author_email: tomas.fejfar@gmail.com
+wordpress_id: 33
+wordpress_url: http://blog.tomasfejfar.cz/?p=33
+date: '2011-05-16 01:35:44 +0200'
+date_gmt: '2011-05-15 23:35:44 +0200'
+categories:
+- Uncategorized
+tags:
+- php
+- tipy
+- problem
+- zend framework
+---
+<blockquote>
+<p>“Requested scripts may not include parent directory traversal (”../”, “..\” notation)”</p>
+</blockquote>
+<p>Tahle práva mě dnes překvapila při ladění shopu. Používal jsem na  jednom serveru spoustu věcí na ZENDu, tak jsem si nechal dát ZF do  include_path, abych nemusel pokaždé tahat FTPčkem těch10MB (nemam shell  access). A ejhle, oni mi upgradovali na 1.7.5 a co se nestalo <img src="http://replay.web.archive.org/20090323022915im_/http://blog.red-pill.cz/wp-includes/images/smilies/icon_smile.gif" alt=":)" /></p>
+<p>Tahle chyba nastává, když vkládáte view s cestou např.: “../partials/muj-partial.phtml” <img src="http://replay.web.archive.org/20090323022915im_/http://blog.red-pill.cz/wp-includes/images/smilies/icon_smile.gif" alt=":)" /></p>
+<p>Řešení naštěstí existuje</p>
+<blockquote><p>$view-&gt;setLfiProtection(false);</p>
+</blockquote>
+<p>Po chvíli zlobení a nadávání jsem vygooglil tento článek:<br />
+<a href="http://replay.web.archive.org/20090323022915/http://weierophinney.net/matthew/archives/206-Zend-Framework-1.7.5-Released-Important-Note-Regarding-Zend_View.html">Zend Framework 1.7.5 Released - Important Note Regarding Zend_View</a><br />
+<a href="http://replay.web.archive.org/20090323022915/http://framework.zend.com/manual/en/zend.view.migration.html">53.6.1. Migrating from versions prior to 1.7.5</a> v manuálu Zend Frameworku</p>
