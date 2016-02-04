@@ -73,9 +73,19 @@ guard 'livereload' do
 end
 ```
 
-Pak stačí do prohlížeče nainstalovat [livereload extensionu](http://livereload.com/extensions/), spustit `bundle exec jekyll serve` a vedle `bundle exec guard`.
+Pak stačí do prohlížeče nainstalovat [livereload extension](http://livereload.com/extensions/) a spustit `bundle exec guard`.
   
-Mimochodem - na internetu najdete návody, které používají `ignore /_site/`. Ve výsledku se mi to však minimálně na Windows nepodařilo spolehlivě zprovoznit. Výše zmíněný kód mi naopak funguje naprosto spolehlivě.  
+Mimochodem - na internetu najdete návody, které používají `ignore /_site/`. Ve výsledku se mi to však minimálně na Windows nepodařilo spolehlivě zprovoznit. Výše zmíněný kód mi naopak funguje naprosto spolehlivě.
+  
+## Zprovoznění Github Pages
+  
+Posledním krokem je nahrání na Github Pages. Založíte si repository pod názvem subdomény pod kterou chcete blog provozovat. V mém případě [tomasfejfar/blog](https://github.com/tomasfejfar/blog) a pushnete do branche `gh-pages`. Tím se vám vytvoří url `username.github.io/repository-name`. Pokud chcete provozovat doménu třetího řádu jako to mám já, musíte vytvořit soubor `CNAME` a do něj dát název subdomény. Pak zbývá jen nasměrovat DNS. U mě například takto: 
+
+```
+blog.tomasfejfar.cz.                    CNAME	tomasfejfar.github.io.
+```
+
+That's it! Jen pozor na to, že Github nepovoluje žádné speciální pluginy, kromě těch, které se vám nainstalovali s bundlem. U šablon se tedy dívejte, jestli jsou kompatibilní s Github Pages. 
 
 [^1]: [Unclosed rouge highlighting #4432](https://github.com/jekyll/jekyll/issues/4432)
 [^2]: [Compability with Jekyll 3? #99](https://github.com/poole/poole/issues/99)
