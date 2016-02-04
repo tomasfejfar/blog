@@ -79,13 +79,17 @@ Mimochodem - na internetu najdete návody, které používají `ignore /_site/`.
   
 ## Zprovoznění Github Pages
   
-Posledním krokem je nahrání na Github Pages. Založíte si repository pod názvem subdomény pod kterou chcete blog provozovat. V mém případě [tomasfejfar/blog](https://github.com/tomasfejfar/blog) a pushnete do branche `gh-pages`. Tím se vám vytvoří url `username.github.io/repository-name`. Pokud chcete provozovat doménu třetího řádu jako to mám já, musíte vytvořit soubor `CNAME` a do něj dát název subdomény. Pak zbývá jen nasměrovat DNS. U mě například takto: 
+Posledním krokem je nahrání na Github Pages. Založíte si repository s názvem subdomény pod kterou chcete blog provozovat. V mém případě [tomasfejfar/blog](https://github.com/tomasfejfar/blog) a pushnete do branche `gh-pages`. Tím se vám vytvoří url `username.github.io/repository-name`. Pokud chcete provozovat doménu třetího řádu jako to mám já, musíte vytvořit soubor `CNAME`[^4] a do něj dát název subdomény. Pak zbývá jen nasměrovat DNS. U mě například takto: 
 
 ```
 blog.tomasfejfar.cz.                    CNAME	tomasfejfar.github.io.
 ```
 
-That's it! Jen pozor na to, že Github nepovoluje žádné speciální pluginy, kromě těch, které se vám nainstalovali s bundlem. U šablon se tedy dívejte, jestli jsou kompatibilní s Github Pages. 
+A je hotovo. Pokud vám něco nefunguje, tak se podívejte do dokumentace[^3]. 
+
+Jen pozor na to, že Github nepovoluje žádné speciální pluginy, kromě těch, které se vám nainstalovali s bundlem. U šablon se tedy dívejte, jestli jsou kompatibilní s Github Pages. 
 
 [^1]: [Unclosed rouge highlighting #4432](https://github.com/jekyll/jekyll/issues/4432)
 [^2]: [Compability with Jekyll 3? #99](https://github.com/poole/poole/issues/99)
+[^3]: [Setting up a custom domain with GitHub Pages](https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/)
+[^4]: [CNAME](https://github.com/tomasfejfar/blog/blob/gh-pages/CNAME)
