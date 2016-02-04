@@ -32,7 +32,11 @@ gem 'github-pages'
 
 ### Template
 
-Pro Jekyll jsou šablony vlastně jen několik souborů a s nimi související `_config.yml`. Já jsem si vybral template [minimal mistakes](http://mmistakes.github.io/minimal-mistakes/). Stačilo stahnout zazipovanou verzi z githubu, překopírovat do složky a upravit pár věcí v `_config.yml`. Přidat do `exclude` složku `.idea` (jestli jste četli [můj seriál o PhpStormu na Zdrojáku](https://www.zdrojak.cz/?s=Jak+b%C3%BDt+produktivn%C3%AD+v+PHPStormu&submit=Hledat), tak víte, že v něm píšu všechno). 
+Pro Jekyll jsou šablony vlastně jen několik souborů a s nimi související `_config.yml`. Já jsem si vybral template [minimal mistakes](http://mmistakes.github.io/minimal-mistakes/). Stačilo stahnout zazipovanou verzi z githubu, překopírovat do složky a upravit pár věcí v `_config.yml`. Například přidat do `exclude` složku `.idea` (jestli jste četli [můj seriál o PhpStormu na Zdrojáku](https://www.zdrojak.cz/?s=Jak+b%C3%BDt+produktivn%C3%AD+v+PHPStormu&submit=Hledat), tak víte, že v něm píšu všechno - i tenhle blogpost).
+  
+### Servírování
+ 
+V Jekyllu můžete web buď vygenerovat pomocí `bundle exec jekyll build` (případně s přepínačem `--watch` průběžně) nebo si můžete nechat přímo udělat server na kterém si můžete web prohlédnout pomocí `bundle exec jekyll serve`. Co si vyberete je na vás. Ale bez serveru možná budete muset vyplnit parametr `url` v `_config.yml`, jinak nebudou sedět absolutní cesty. 
 
 ## Problémy na které jsem narazil
 
@@ -72,14 +76,16 @@ guard 'livereload' do
   watch(%r(_site/.+))
 end
 ```
-
-Pak stačí do prohlížeče nainstalovat [livereload extension](http://livereload.com/extensions/) a spustit `bundle exec guard`.
   
 Mimochodem - na internetu najdete návody, které používají `ignore /_site/`. Ve výsledku se mi to však minimálně na Windows nepodařilo spolehlivě zprovoznit. Výše zmíněný kód mi naopak funguje naprosto spolehlivě.
+
+Do prohlížeče si nainstalujte [livereload extension](http://livereload.com/extensions/) a spusťte `bundle exec guard`. Pro livereload je myslím lepší oddělit zobrazování souborů od generování. Já jsem na to využil integrovaný PHP server pomocí `php -S localhost:8080` a web tedy lokálně prohlížím na [http://localhost:8080/](http://localhost:8080/).
   
 ## Zprovoznění Github Pages
   
-Posledním krokem je nahrání na Github Pages. Založíte si repository s názvem subdomény pod kterou chcete blog provozovat. V mém případě [tomasfejfar/blog](https://github.com/tomasfejfar/blog) a pushnete do branche `gh-pages`. Tím se vám vytvoří url `username.github.io/repository-name`. Pokud chcete provozovat doménu třetího řádu jako to mám já, musíte vytvořit soubor `CNAME`[^4] a do něj dát název subdomény. Pak zbývá jen nasměrovat DNS. U mě například takto: 
+Posledním krokem je nahrání na Github Pages. Založíte si repository s názvem subdomény pod kterou chcete blog provozovat. V mém případě [tomasfejfar/blog](https://github.com/tomasfejfar/blog) a pushnete do branche `gh-pages`. **Necommitujte vygenerovanou složku `_site`!** To udělají Github Pages za vás. Ideálně si ji přidejte do `.gitignore`. 
+
+Pushnutím se vám vytvoří url `username.github.io/repository-name`. Pokud chcete provozovat doménu třetího řádu jako to mám já, musíte vytvořit soubor `CNAME`[^4] a do něj dát název subdomény. Pak zbývá jen nasměrovat DNS. U mě například takto: 
 
 ```
 blog.tomasfejfar.cz.                    CNAME	tomasfejfar.github.io.
