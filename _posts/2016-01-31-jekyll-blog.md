@@ -13,13 +13,13 @@ excerpt: Jak se mi dařilo a na jaké problémy jsem narazil při statickém gen
 
 Blog jsem měl vždycky na [wordpressu](http://www.wordpress.org). Ale s tím je tak trochu potíž. Člověk se musí starat o to, jestli blog běží, jestli mu upgrade nerozbil nějaké pluginy, atd. Když se mi teď nějak poškodila instalace, tak jsem se rozhodl, že takhle už ne. Blog mám na prezentování myšlenek, ne na to, abych se o něj staral. A po tom, co mi zavřeli [Postero.us](http://www.posterous.com/) jsem poučen, že ani SaaS řešení není *to pravé ořechové*.  
 
-Jako logická volba se tedy jeví využít statický generátor stránek. Ty typicky fungují tak, že si v gitu verzujete pár textových souborů a konfiguráků a potom z nich pomocí nějakého nástroje vygenerujete kompletní strukturu statických HTML souborů, CSS, JS a obrázků. Možná ještě někdo z vás pamatuje dobu, kdy se takhle (tj. bez PHP, ASP a dalších) stránky psali (největší znalci budou pamatovat `cgi-bin` v URL).  
+Jako logická volba se tedy jeví využít statický generátor stránek. Ty typicky fungují tak, že si v gitu verzujete pár textových souborů a potom z nich pomocí nějakého nástroje vygenerujete kompletní strukturu statických HTML souborů, CSS, JS a obrázků. Možná ještě někdo z vás pamatuje dobu, kdy se takhle (tj. bez PHP, ASP a dalších) stránky psali (největší znalci budou pamatovat když se pak objevila novinka - `cgi-bin` v URL a dynamicky generované stránky).  
 
 Na poli statických generátorů stránek je toho hodně na výběr. Tolik, že dokonce existuje i [přehled statických generátorů](https://www.staticgen.com/). Já jsem v prvním sledu hned zredukoval kandidáty na [Jekyll](https://jekyllrb.com/), [Hexo](https://hexo.io/) a [Huga](http://gohugo.io/). Tři systémy, poměrně kompatibilní a každý z nich na jiné platformě. **Jekyll** je napsaný v Ruby, **Hexo** v node.js a **Hugo** v Go. V praxi se ukázalo, že jsou systémy velmi podobné a do velké míry kompatibilní. Nebudu vás příliš napínat - nakonec jsem zprovoznil blog na Jekyllu. Za hlavní výhody považuji množství pluginů, obří komunitu a v neposlední řadě také to, že je to řešení, které pohání [Github Pages](https://pages.github.com/). A tam blog plánuji hostovat. 
  
 ## Jekyll
 
-Pro zprovoznění Jekyllu budete chtě-nechtě muset nainstalovat Ruby. Stáhněte si tedy [Rubyinstaller](http://rubyinstaller.org/). A když už na tom webu budete, tak si stáhněte i *DevKit*, který budete stejně potřebovat. Buildují se s jeho pomocí gemy s nějakou nativní extensionou.  
+Pro zprovoznění Jekyllu budete chtě-nechtě muset nainstalovat Ruby. Stáhněte si tedy [Rubyinstaller](http://rubyinstaller.org/). A když už na tom webu budete, tak si stáhněte i *DevKit*, který budete stejně potřebovat. Buildují se s jeho pomocí gemy s nějakým nativním rozšířením.  
 
 Pokud budete chtít začít co nejrychleji, tak se jako nejrozumnější možnost jeví použít [gh-pages gem](https://rubygems.org/gems/github-pages/). Ve složce, kde chcete začít vytvoříte soubor `Gemfile` a do něj:
 
@@ -28,13 +28,11 @@ source 'https://rubygems.org'
 gem 'github-pages'
 ```
 
-`Gemfile` je něco jako `composer.json` v PHP světě. Je to prostě seznam závislostí. O jejich instalací se stará `bundler`. Ten je třeba nainstalovat `gem install bundler`. Pak ve složce s Gemfilem zavoláte `bundle install` a za chvíli máte připravené prostředí. 
-  
-Do samotné složky se vám nic nezkopíruje a zůstane v ní jen Gemfile. 
+`Gemfile` je něco jako `composer.json` v PHP světě. Je to prostě seznam závislostí. O jejich instalací se stará `bundler`. Ten je třeba nainstalovat `gem install bundler`. Pak ve složce s projektem zavoláte `bundle install` a za chvíli máte připravené prostředí. Do samotné složky se vám nic nezkopíruje a zůstane v ní jen Gemfile. 
 
 ### Template
 
-Pro Jekyll jsou templaty vlastně jen několik souborů a s nimi související `_config.yml`. Já jsem si vybral template [minimal mistakes](http://mmistakes.github.io/minimal-mistakes/). Stačilo stahnout zazipovanou verzi z githubu, překopírovat do složky a upravit pár věcí v `_config.yml`. Přidat do `exclude` složku `.idea` (protože jestli jste četli [můj seriál o PhpStormu na Zdrojáku](https://www.zdrojak.cz/?s=Jak+b%C3%BDt+produktivn%C3%AD+v+PHPStormu&submit=Hledat), tak víte, že v něm píšu všechno). 
+Pro Jekyll jsou šablony vlastně jen několik souborů a s nimi související `_config.yml`. Já jsem si vybral template [minimal mistakes](http://mmistakes.github.io/minimal-mistakes/). Stačilo stahnout zazipovanou verzi z githubu, překopírovat do složky a upravit pár věcí v `_config.yml`. Přidat do `exclude` složku `.idea` (jestli jste četli [můj seriál o PhpStormu na Zdrojáku](https://www.zdrojak.cz/?s=Jak+b%C3%BDt+produktivn%C3%AD+v+PHPStormu&submit=Hledat), tak víte, že v něm píšu všechno). 
 
 ## Problémy na které jsem narazil
 
@@ -53,7 +51,7 @@ Ale pokud ho spustím skrz bundler `bundle exec jekyll serve`, tak to v pohodě 
 
 ## Livereload
 
-Výhodou nejrozšířenějšího řešení je, že najdete návody na prakticky jakýkoli scénář. Napadlo mě, že by bylo hezké mít udělaný livereload - protože build trvá mezi 0.5 až 2s. Tak se často stane, že musím reloadnout 2x, protože to stihnu dřív než se to dokončí. Nastavení je úplně jednoduché a nutno podotknout, že by fungovalo i na jakýkoli jiný projekt. Do `Gemfile` přidejte
+Výhodou nejrozšířenějšího řešení je, že najdete návody na prakticky jakýkoli scénář. Napadlo mě, že by bylo hezké mít udělaný livereload - protože build trvá mezi 0.5 až 2s. Tak se často stane, že musím obnovit 2x, protože to stihnu dřív než se to dokončí. Nastavení je úplně jednoduché a nutno podotknout, že by fungovalo i na jakýkoli jiný projekt. Do `Gemfile` přidejte
 
 ```ruby
 gem 'guard'
@@ -77,7 +75,7 @@ end
 
 Pak stačí do prohlížeče nainstalovat [livereload extensionu](http://livereload.com/extensions/), spustit `bundle exec jekyll serve` a vedle `bundle exec guard`.
   
-Mimochodem - na internetu najdete návody, které používají `ignore /_site/`. Ve výsledku se mi to však minimálně na Windows nepodařilo spolehlivě rozfungovat. Výše zmíněný kód mi naopak funguje naprosto spolehlivě.  
+Mimochodem - na internetu najdete návody, které používají `ignore /_site/`. Ve výsledku se mi to však minimálně na Windows nepodařilo spolehlivě zprovoznit. Výše zmíněný kód mi naopak funguje naprosto spolehlivě.  
 
 [^1]: [Unclosed rouge highlighting #4432](https://github.com/jekyll/jekyll/issues/4432)
 [^2]: [Compability with Jekyll 3? #99](https://github.com/poole/poole/issues/99)
