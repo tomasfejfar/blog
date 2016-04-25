@@ -38,6 +38,17 @@ footer {
     }
 }
 
-.image-wrap img {
+.image-wrap {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 10em;
     max-height: 180px;
+    img {
+        visibility: hidden;
+        max-height: 180px;
+    }
+    &:after {
+        display: none;
+    }
 }
