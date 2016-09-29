@@ -55,7 +55,7 @@ Další krok je vybrat si, kam chcete pull-request poslat. Abych ukazoval postup
 
 ## Vidličkujeme aneb *hardcore forking action*
 
-Prvním krokem je si udělat vlastní fork - tedy kopii repozitáře, do které můžete posílat nové commity. Otevřeme si [repozitář na githubu](https://github.com/TomasVotruba/tomasvotruba.cz) a klikneme na tlačítko `Fork`. 
+Prvním krokem je si udělat vlastní fork - tedy kopii repozitáře, do které můžete posílat nové commity. Otevřeme si [repozitář na Githubu](https://github.com/TomasVotruba/tomasvotruba.cz) a klikneme na tlačítko `Fork`. 
  
  ![Fork](/images/posts/hacktober/1-fork.png)
 
@@ -69,4 +69,45 @@ Za pár sekund máme fork připravený a můžeme si ho stahnout pomocí `git cl
 
 Při dělání pull-requestu je dobré myslet na to, že autor bude muset kód pochopit. Bude tedy fajn, pokud si dáte záležet na správném pojmenování (a to se týká všeho - větve v gitu, proměnných, commitů, ...). Stejně tak se snažte dodržovat konvence v projektu zavedené, ať s tím má autor co nejméně práce. Pokud má projekt testy, tak je spusťte a zkontroluje, pro novou funkcionalitu je přidejte.
   
-Já jsem si udělal branch `korektura-opensource-2` 
+Já jsem si udělal branch `korektura-opensource-2`. A commit jsem pojmenoval `Improved wording  of "How to write open-source 2"`. Mělo by z toho být jasné, co jsem upravil i bez koukání do kódu. Pokud je úprava složitější, tak se vyplatí se v commit message rozepsat, jako to udělal [Martin, když opravoval Windows bug v Symfony](https://github.com/sensiolabs/SensioDistributionBundle/commit/37b56f6f4d25d5924082f24eff55743fa1f73d0a).
+
+## Konečně pull-request
+
+První věc, kterou musíte udělat je pushnout svojí branch na Github. 
+
+![Připraveno na Githubu](/images/posts/hacktober/4-commit-ready.png)
+
+Pokud vytváříte pull-request hned po tom, co jste pushnuli, tak se vám ve vašem forku objeví rovnou tlačítko na pull-request. 
+
+![Tlačítko na pull-request](/images/posts/hacktober/8-pr-step1.png)
+
+[Tlačítko se mi objevilo, přeskočit ruční vytváření](#pr-ready)
+
+Pak si otevřete původní (!) projekt na Githubu, tedy ne váš fork! A přejděte na záložku `Pull Requests` a tam je tlačítko `New Pull Request`. 
+ 
+![Pull-request](/images/posts/hacktober/5-pr-step1.png) 
+
+Objeví se stránka na které zdánlivě nejde nic udělat a je třeba přepnout `compare across forks`. 
+
+![Přepnutí na porovnání forků](/images/posts/hacktober/6-pr-step2.png)
+
+A zde již můžete vybrat váš fork. 
+
+![Výběr forku](/images/posts/hacktober/7-pr-step3.png)
+
+A také vaši branch. 
+
+![Výběr branche](/images/posts/hacktober/9-pr-step4.png)
+
+Potom se hned objeví zelené tlačítko `Create pull request`. Až ho stisknete, objeví se formulář na zadání pull-requestu. 
+ 
+![Formulár na PR](/images/posts/hacktober/11-pr-step5.png)
+
+<a name="pr-ready"></a>Název pullrequestu se automaticky předvyplní z commitu. Stejně ho ale raději zkontroluje a případně upravte tak, aby dával smysl.  Zkontrolujte si také, jestli sedí názvy branchí z kterých a do kterých chcete pull-request udělat. A nezapomeňte zkontrolovat, jestli jsou v přehledu pouze commity, které tam očekáváte. Pokud je všechno v pořádku, můžete PR vytvořit. 
+ 
+![Pull-request připraven](/images/posts/hacktober/12-pr-step6.png)
+
+A pak nezbývá než čekat a případně reagovat na dotazy autora, které k pull-requestu může mít. Speciálně, pokud se jedná o novou feature nebo složitý problém. 
+
+Můžete na sebe být pyšní! Přispěli jste svoji troškou do celosvětového opensource mlýna. A i když se vám třeba nezadaří a autor váš pull-request nepřijme, tak nevěšte hlavu. Neznamená to, že to byl špatný nápad nebo že posílání pull-requestů nemá cenu. Jen třeba 
+
