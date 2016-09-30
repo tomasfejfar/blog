@@ -81,7 +81,7 @@ Pokud vytváříte pull-request hned po tom, co jste pushnuli, tak se vám ve va
 
 ![Tlačítko na pull-request](/images/posts/hacktober/8-pr-step1.png)
 
-[Tlačítko se mi objevilo, přeskočit ruční vytváření](#pr-ready)
+<a href="#pr-ready" class="btn">Tlačítko se mi objevilo, přeskočit ruční vytváření</a>
 
 Pak si otevřete původní (!) projekt na Githubu, tedy ne váš fork! A přejděte na záložku `Pull Requests` a tam je tlačítko `New Pull Request`. 
  
@@ -107,7 +107,9 @@ Potom se hned objeví zelené tlačítko `Create pull request`. Až ho stisknete
  
 ![Pull-request připraven](/images/posts/hacktober/12-pr-step6.png)
 
-A pak nezbývá než čekat a případně reagovat na dotazy autora, které k pull-requestu může mít. Speciálně, pokud se jedná o novou feature nebo složitý problém. 
+A pak nezbývá než čekat a případně reagovat na dotazy autora, které k pull-requestu může mít. Speciálně, pokud se jedná o novou feature nebo složitý problém. S Tomášem jsme ještě některé části doladili a já jsem přidal další commit. Teď už je mnou upravená verze článku přímo na webu. 
 
-Můžete na sebe být pyšní! Přispěli jste svoji troškou do celosvětového opensource mlýna. A i když se vám třeba nezadaří a autor váš pull-request nepřijme, tak nevěšte hlavu. Neznamená to, že to byl špatný nápad nebo že posílání pull-requestů nemá cenu. Jen třeba 
+![Pull-request mergnut](/images/posts/hacktober/13-pr-finished.png)
+
+Jestli jste s vaším pull-requestem dospěli až sem, tak můžete na sebe být pyšní! Přispěli jste svoji troškou do celosvětového opensource mlýna. A i když se vám třeba nezadaří a autor váš pull-request nepřijme, tak nevěšte hlavu. Neznamená to, že to byl špatný nápad nebo že posílání pull-requestů nemá cenu. Jen třeba 
 
