@@ -19,13 +19,13 @@ Udělat pullrequest není nic složitého. Zvládnete to během pár minut.
 
 Pullrequest je způsob, jak v gitu poslat jinému vývojáři nějaké své změny. V základu vlastně říká: 
 
-> *"Podívej, mám tady v repozitáři **http://github.com/ja/projekt** nějaké úpravy. Začal jsem stavět na tvojí práci ve **v1.0.0** a commity přidával do větve **moje-upravy**. Jestli chceš, tak si ty úpravy stahni a zahrň je do svojí větve."*
+> *"Podívej, mám tady v repozitáři **http://github.com/ja/projekt** nějaké úpravy. Začal jsem stavět na tvojí práci ve **v1.0.0** a commity přidával do větve **moje-upravy**. Jestli chceš, tak si ty úpravy stáhni a zahrň je do svojí větve."*
 
 Vývojáři většinou pod pojmem pullrequest rozumí [to, co najdete na Githubu](https://github.com/symfony/symfony/pull/20061), ale samotná funkcionalita pullrequestů je [dostupná i přímo v gitu](https://git-scm.com/docs/git-request-pull). 
  
 # Proč dělat pullrequesty? 
 
-Pokud jste autorem opensource projektu, tak máte celkem velkou zodpovědnost. Na jedné straně musíte neustále přidávat nové vlastnosti, aby lidi projekt neopustili, ale na druhé straně musíte všechno udržovat funkční a nic nerozbít. V takové chvíli uvítáte jakoukoli pomoc. Jako uživatelé opensource by se nám často hodilo, aby knihovna uměla to nebo ono. Ale nemůžeme chtít po autorovi, aby strávil bezesné noci programováním jen proto, že se nám zachtělo. A tady přichází ke slovu pullrequesty. Můžeme mu kód připravit a jen mu dát vědět, kde je. Na něm už je jen ho zapracovat a vydat novou verzi. 
+Pokud jste autorem opensource projektu, tak máte celkem velkou zodpovědnost. Na jedné straně musíte neustále přidávat nové vlastnosti, aby lidi projekt neopustili, ale na druhé straně musíte všechno udržovat funkční a nic nerozbít. V takové chvíli uvítáte jakoukoli pomoc. Jako uživateli opensource by se nám často hodilo, aby knihovna uměla to nebo ono. Ale nemůžeme chtít po autorovi, aby strávil bezesné noci programováním jen proto, že se nám zachtělo nové featury. A tady přichází ke slovu pullrequesty. Můžeme mu kód připravit a jen mu dát vědět, kde je. Na něm už je jen ho zapracovat a vydat novou verzi. 
 
 # Na co dělat pullrequesty?
 
@@ -45,7 +45,7 @@ Pullrequesty v podobě, jak jsem je popsal (tedy bez nějaké předchozí domluv
 * přepsat část projektu z bashe do javascriptu
 * předělat framework na PSR-7
 
-Ne, že by se takovéto změny nedaly v pullrequestu udělat. Jsou nevhodné spíš proto, že by jim *měla předcházet větší diskuse*. To, jestli váš pullrequest autor přijme, je jen na něm. A byla by škoda nechat tolik práce na něčem, co se následně nepoužije. U větších věcí bývá lepší [nejprve úpravu navrhnou v rámci issue](https://github.com/sensiolabs/SensioDistributionBundle/issues/223). 
+Ne, že by se takovéto změny nedaly v pullrequestu udělat. Jsou nevhodné spíš proto, že by jim *měla předcházet větší diskuse*. To, jestli váš pullrequest autor přijme, je jen na něm. A byla by škoda nechat tolik práce na něčem, co se následně nepoužije. U větších věcí bývá lepší [nejprve úpravu navrhnout v rámci issue](https://github.com/sensiolabs/SensioDistributionBundle/issues/223). 
 
 Už víme o pullrequestech všechno důležité, tak pojďme nějaký udělat. 
  
@@ -57,7 +57,7 @@ Dále si vyberte, do kterého projektu chcete pullrequest poslat. Abych ukazoval
 
 ## Vidličkujeme aneb *hardcore forking action*
 
-Prvním krokem je si udělat vlastní fork - tedy kopii repozitáře, do které můžete posílat nové commity. Otevřeme si [repozitář na Githubu](https://github.com/TomasVotruba/tomasvotruba.cz) a klikneme na tlačítko `Fork`. 
+Prvním krokem je si udělat vlastní fork - tedy kopii repozitáře, do které můžete posílat nové commity. Otevřeme si [repozitář na Githubu](https://github.com/TomasVotruba/tomasvotruba.cz) a klikneme na tlačítko *Fork*. 
  
  ![Fork](/images/posts/hacktober/1-fork.png)
 
@@ -65,13 +65,13 @@ Pokud jste registrovaní v nějakých organizacích, tak ještě musíte vybrat,
 
 ![Výběr profilu](/images/posts/hacktober/2-profile-selection.png)
 
-Za pár sekund máme fork připravený a můžeme si ho stáhnout pomocí `git clone` do počítače. 
+Za pár sekund máme fork připravený a můžeme si ho stáhnout pomocí [`git clone`](https://git-scm.com/book/cs/v1/Z%C3%A1klady-pr%C3%A1ce-se-syst%C3%A9mem-Git-Pr%C3%A1ce-se-vzd%C3%A1len%C3%BDmi-repozit%C3%A1%C5%99i) do počítače. 
 
 ## Připravujeme kód
 
 Při dělání pullrequestu je dobré myslet na to, že autor bude muset kód pochopit. Bude tedy fajn, pokud si dáte záležet na **správném pojmenování** (a to se týká všeho - větve v gitu, proměnných, commitů, ...). Stejně tak se snažte **dodržovat konvence zavedené v projektu**, ať s tím má autor co nejméně práce. Pokud má projekt testy, tak je spusťte a zkontrolujte, pro novou funkcionalitu je přidejte.
   
-Já jsem si udělal branch `korektura-opensource-2`. A commit jsem pojmenoval `Improved wording  of "How to write open-source 2"`. Mělo by z toho být jasné, co jsem upravil i bez koukání do kódu. Pokud je úprava složitější, tak se vyplatí se v commit message rozepsat, jako to udělal [Martin, když opravoval Windows bug v Symfony](https://github.com/sensiolabs/SensioDistributionBundle/commit/37b56f6f4d25d5924082f24eff55743fa1f73d0a).
+Já jsem si udělal branch `korektura-opensource-2`. A commit jsem pojmenoval `Improved wording  of "How to write open-source 2"`. Mělo by z toho být jasné, co jsem upravil i bez koukání do kódu. Pokud je úprava složitější, tak se vyplatí se v commit message rozepsat, jako to udělal [Martin, když opravoval Windows bug v Symfony](https://github.com/sensiolabs/SensioDistributionBundle/pull/244/commits/4118cbbb5be29772d0fe828be1ad3520080ee67f).
 
 ## Konečně pullrequest
 
@@ -85,11 +85,11 @@ Pokud vytváříte pullrequest hned po tom, co jste pushnuli, tak se vám ve va�
 
 <a href="#pr-ready" class="btn">Tlačítko se mi objevilo, přeskočit ruční vytváření</a>
 
-Pokud se vám tlačítko neobjevilo, tak si otevřete původní (!) projekt na Githubu, tedy ne svůj fork! A přejděte na záložku `Pull Requests` a tam je tlačítko `New Pull Request`. 
+Pokud se vám tlačítko neobjevilo, tak si otevřete původní (!) projekt na Githubu, tedy ne svůj fork! A přejděte na záložku *Pull Requests* a tam je tlačítko *New Pull Request*. 
  
 ![Pullrequest](/images/posts/hacktober/5-pr-step1.png) 
 
-Objeví se stránka, na které zdánlivě nejde nic udělat a je třeba přepnout `compare across forks`. 
+Objeví se stránka, na které zdánlivě nejde nic udělat a je třeba přepnout *compare across forks*. 
 
 ![Přepnutí na porovnání forků](/images/posts/hacktober/6-pr-step2.png)
 
@@ -101,7 +101,7 @@ A také vaši branch.
 
 ![Výběr branche](/images/posts/hacktober/9-pr-step4.png)
 
-Potom se hned objeví zelené tlačítko `Create pull request`. Až ho stisknete, objeví se formulář na zadání pullrequestu. 
+Potom se hned objeví zelené tlačítko *Create pull request*. Až ho stisknete, objeví se formulář na zadání pullrequestu. 
  
 ![Formulár na PR](/images/posts/hacktober/11-pr-step5.png)
 
