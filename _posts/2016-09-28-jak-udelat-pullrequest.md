@@ -4,7 +4,7 @@ status: publish
 comments: true
 published: true
 title: Jak poslat pullrequest do opensource projektu? 
-date: '2016-04-24 00:00:00 +0200'
+date: '2016-09-30 00:00:00 +0200'
 tags: ['opensource', 'hacktober', 'github', 'git']
 excerpt: Blíží se Hacktober Fest 2016. Poradím vám, jak udělat váš první pullrequest.  
 ---
