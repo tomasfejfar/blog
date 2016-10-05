@@ -39,9 +39,11 @@ npm i --save-dev react-addons-test-utils
 npm i --save-dev react-dom
 ```
 
-Enzyme nám nabízí tři způsoby práce s komponentou.
+## Tři způsoby práce
 
-## shallow (neboli "mělký")
+Enzyme nám nabízí tři způsoby práce s komponentou z nichž každý má výhody i nevýhody. 
+
+### shallow (neboli "mělký")
 
 ```js
 import { shallow } from 'enzyme';
@@ -107,6 +109,8 @@ Bylo by fajn nemít jednotlivé úkoly jen jako položky seznamu, ale jako samos
 ```
 ```js
 // src/components/TodoList.jsx
+import TodoItem from './TodoItem';
+// ...
         return <TodoItem key={item.key} name={item.name} />;
 ```
 ```js
@@ -124,7 +128,7 @@ export default TodoItem;
 
 Tada, testy procházejí :)
 
-## Full DOM rendering
+### Integrační testy s renderováním DOMu (mount)
 
 Druhou variantou jak pracovat s komponentami je plné renderování vč. lifecycle event (např. `componentDidMount`). Přidáme si tedy nový test, kterým chování vyzkoušíme. Používá se metoda `mount`, kterou je třeba doimportovat. 
 
@@ -165,9 +169,10 @@ global.navigator = {
 };
 ```
 
-Ten posléze musíme načítat při spouštění testů. Uděláme to úpravou příkazu:
+Ten posléze musíme načítat při spouštění testů. Uděláme to přidáním `--require src/jsdom-test-helper.js` do příkazu pro spouštění testů:
 
 ```js
+// package.json
 {
 ...
   "scripts": {
@@ -178,4 +183,69 @@ Ten posléze musíme načítat při spouštění testů. Uděláme to úpravou p
 
 Je důležité, aby byl skript načtený při prvním načtení reactu, protože react předpokládá, že DOM načtený při inicializaci je stále jeden a ten samý a znovu už ho nenačítá. Je proto také důležité, aby vaše testy neprováděli v DOMu side-efekty (což by ale stejně neměly). 
  
-Teď už testy prochází. A můžete si všimnout, že vypisují HTML (to má na svědomí volání `component.debug()` v testové metodě. 
+Teď už testy prochází. A můžete si všimnout, že vypisují HTML (to má na svědomí volání `component.debug()` v testové metodě). Když si stejně vypíšete i výstup z předchozích testů, které používají `shallow`, je vidět, jak se oba přístupy liší. 
+
+```
+<!-- shallow -->
+<ul>
+<TodoItem name="Dojít na nákup" />
+<TodoItem name="Naučit se testovat React komponenty" />
+<TodoItem name="Vyzkoušet Enzyme" />
+</ul>
+
+<!-- mount -->
+<Component items={{...}}>
+  <ul>
+    <TodoItem name="Dojít na nákup">
+      <li>
+        Dojít na nákup
+      </li>
+    </TodoItem>
+    <TodoItem name="Naučit se testovat React komponenty">
+      <li>
+        Naučit se testovat React komponenty
+      </li>
+    </TodoItem>
+    <TodoItem name="Vyzkoušet Enzyme">
+      <li>
+        Vyzkoušet Enzyme
+      </li>
+    </TodoItem>
+  </ul>
+</Component>
+```
+
+### Renderování čistého HTML (render)
+
+Poslední možnost je vyrenderovat si čisté HTML pomocí metody `render`. V tomto případě máme kód očištěný od react elementů a dostáváme jen čisté HTML. 
+
+```
+<!-- render -->
+<ul>
+<li>Doj&#xED;t na n&#xE1;kup</li>
+<li>Nau&#x10D;it se testovat React komponenty</li>
+<li>Vyzkou&#x161;et Enzyme</li>
+</ul>
+```
+
+Protože v testech nás bude zajímat struktura, je třeba HTML naparsovat. A protože to je docela dost práce, tak enzyme používá knihvnu `cheerio`, která už to umí. Kvůli tomu je trošku odlišnější API (prostě dostanete ten cheerio objekt) a místo `debug` voláme `toString`, abychom dostali celý výstup.
+  
+## Syntactic sugar 
+
+Během testování jistě brzo zjistíte, že by se lépe četlo, kdybyste mohli psát trochu explicitnější asserty, než jen `to.eq` nebo `to.be.ok`. V tom případě vám může pomoci knihvna [chai-enzyme](https://github.com/producthunt/chai-enzyme), která přesně tohle přidává. Můžete pak assertovat třeba takto: 
+
+```js
+expect(wrapper.find('input')).to.have.value('test')
+expect(wrapper).to.have.style('border', '1px')
+expect(wrapper.find(User).first()).to.have.prop('user').deep.equal({name: 'Jane'})
+```
+
+Instalace je poměrně jednoduchá - jen do souboru, který se requiruje v testech [přidáte pár řádků z dokumentace](https://github.com/producthunt/chai-enzyme#setup). Nezanedbatelnou výhodou je také to, že vám u failnutého testu zobrazí diff a přesnější popis chyby a ne jen "true není false" :) 
+
+## Závěr
+
+Celkově musím říct, že mě testování s enzymem bavilo :) Ale i přesto už teď vidím potenciální problémy, které se mohou při testování vyskytnout. Speciálně v tom, že při shallow testování jen upravíte strukturu statu a začnete předávat trochu jiné props, ale do testů se to nepromítne. Testy pak vesele procházejí, ale aplikace je rozbitá. To lze však zas pokrýt integračními testy. 
+ 
+ 
+ 
+ Testujete svoje reactové appky nebo na to není čas? A už jste zkoušeli enzyme? A pokud ano, narazili jste na nějaké problémy? 
