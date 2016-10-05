@@ -2,7 +2,7 @@
 layout: post
 status: publish
 comments: true
-published: true
+published: false
 title: Testování Reactu pomocí Enzymu
 date: '2016-04-15 00:00:00 +0200'
 tags: ['react', 'enzyme', 'testing']
