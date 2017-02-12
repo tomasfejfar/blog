@@ -8,6 +8,20 @@
 </head>
 
 <style>
+  .back-to-home {
+    display: none;
+    font-size: 110%;
+  }
+
+  h1 {
+    line-height: 1.3em;
+  }
+
+  @media only screen and (max-width: 37.5em) {
+    .back-to-home {
+      display: inline-block;
+    }
+  }
 </style>
 
 <body class="post">
@@ -22,11 +36,13 @@
   </div>
   <article class="post">
     <div class="headline-wrap">
+      <h1><a class="back-to-home" title="Back to homepage" href="/">🔙</a>
       {% if page.link %}
-        <h1><a href="{{ page.link }}">{{ page.title }}</a></h1>
+        <a href="{{ page.link }}">{{ page.title }}</a>
       {% else %}
-        <h1><a href="{{ site.url }}{{ page.url }}" rel="bookmark" title="{{ page.title }}">{{ page.title }}</a></h1>
+        <a href="{{ site.url }}{{ page.url }}" rel="bookmark" title="{{ page.title }}">{{ page.title }}</a>
       {% endif %}
+      </h1>
     </div><!--/ .headline-wrap -->
     <div class="article-wrap">
       {{ content }}
