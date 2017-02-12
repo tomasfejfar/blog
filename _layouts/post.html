@@ -8,13 +8,20 @@
 </head>
 
 <style>
-    .image-wrap {
-        {% if page.image.feature contains 'http' %}
-        background-image: url('{{ page.image.feature }}');
-        {% else %}
-        background-image: url('{{ site.url }}/images/{{ page.image.feature }}');
-        {% endif %}
+  .back-to-home {
+    display: none;
+    font-size: 110%;
+  }
+
+  h1 {
+    line-height: 1.3em;
+  }
+
+  @media only screen and (max-width: 37.5em) {
+    .back-to-home {
+      display: inline-block;
     }
+  }
 </style>
 
 <body class="post">
@@ -23,25 +30,19 @@
 
 {% include _navigation.html %}
 
-{% if page.image.feature %}
-  <div class="image-wrap">
-  {% if page.image.credit %}
-    <span class="image-credit">Photo Credit: <a href="{{ page.image.creditlink }}">{{ page.image.credit }}</a></span>
-  {% endif %}
-  </div><!-- /.image-wrap -->
-{% endif %}
-
 <div id="main" role="main">
   <div class="article-author-side">
     {% include _author-bio.html %}
   </div>
   <article class="post">
     <div class="headline-wrap">
+      <h1><a class="back-to-home" title="Back to homepage" href="/">🔙</a>
       {% if page.link %}
-        <h1><a href="{{ page.link }}">{{ page.title }}</a></h1>
+        <a href="{{ page.link }}">{{ page.title }}</a>
       {% else %}
-        <h1><a href="{{ site.url }}{{ page.url }}" rel="bookmark" title="{{ page.title }}">{{ page.title }}</a></h1>
+        <a href="{{ site.url }}{{ page.url }}" rel="bookmark" title="{{ page.title }}">{{ page.title }}</a>
       {% endif %}
+      </h1>
     </div><!--/ .headline-wrap -->
     <div class="article-wrap">
       {{ content }}

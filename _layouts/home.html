@@ -22,20 +22,12 @@
 
 {% include _navigation.html %}
 
-{% if page.image.feature %}
-  <div class="image-wrap">
-  {% if page.image.credit %}
-    <span class="image-credit">Photo Credit: <a href="{{ page.image.creditlink }}">{{ page.image.credit }}</a></span>
-  {% endif %}
-  </div><!-- /.image-wrap -->
-{% endif %}
-
 <div id="main" role="main">
   <div class="article-author-side">
     {% include _author-bio.html %}
   </div>
   <div id="index">
-    <h3>{{ site.title }}<span class="subtitle">{{ page.excerpt | strip_html }}</span></h3>
+    <h3>{% if page.title %}{{ page.title }} &#8211; {% endif %}{{ site.title }}</h3>
     {% for post in site.posts limit:5 %}
     <article>
       {% if post.link %}
