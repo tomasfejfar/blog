@@ -1,9 +1,9 @@
 # Site wide configuration
 
-title:            Silver Bullet
+title:            Tomáš Fejfar
 locale:           en_US
 url:
-public_url: http://blog.tomasfejfar.cz
+public_url: https://blog.tomasfejfar.cz
 
 
 # Jekyll configuration
