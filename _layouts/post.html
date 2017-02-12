@@ -8,13 +8,6 @@
 </head>
 
 <style>
-    .image-wrap {
-        {% if page.image.feature contains 'http' %}
-        background-image: url('{{ page.image.feature }}');
-        {% else %}
-        background-image: url('{{ site.url }}/images/{{ page.image.feature }}');
-        {% endif %}
-    }
 </style>
 
 <body class="post">
@@ -22,14 +15,6 @@
 {% include _browser-upgrade.html %}
 
 {% include _navigation.html %}
-
-{% if page.image.feature %}
-  <div class="image-wrap">
-  {% if page.image.credit %}
-    <span class="image-credit">Photo Credit: <a href="{{ page.image.creditlink }}">{{ page.image.credit }}</a></span>
-  {% endif %}
-  </div><!-- /.image-wrap -->
-{% endif %}
 
 <div id="main" role="main">
   <div class="article-author-side">
