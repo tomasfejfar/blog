@@ -6,27 +6,49 @@ published: true
 title: Zabezpečené stahování souborů
 date: '2011-05-05 18:00:11 +0200'
 date_gmt: '2011-05-05 18:00:11 +0200'
-categories:
-- Uncategorized
 tags:
 - php
 - tipy
 ---
 
-Jistě jste se už setkali s problémem, že potřebujete zajistit, aby se nikdo nedostal k souborum v určite složce na webu. Ale někdy mu přístup chcete povolit. Šancí je, ošetřit přístup k souborům pomocí PHP. Standartne:
+Jistě jste se už setkali s problémem, že potřebujete zajistit, aby se nikdo nedostal k souborum v určité složce na webu. Ale někdy mu přístup chcete povolit. Šancí je, ošetřit přístup k souborům pomocí PHP. 
 
+<a name="update2017"></a>
+**Update 19.3.2017:** Dnes mi přišel mail, který reaguje na můj komentář na [blogu Jakuba Vrány](https://php.vrana.cz/stazeni-souboru-po-overeni-prav.php#d-6674). Původní odkaz už nefunguje, protože jsem přišel o doménu. Tak jsem se při té příležitosti rozhodl návod aktualizovat. 
+
+Problém jde vyřešit mnohem snáz, než jsem ho řešil před pěti lety. Stačí vypnout output buffering pomocí `ob_end_clean()`. 
+    
 ```php
 <?php
+// chrání proti directory traversal attack ('slozka/../../../tajny_soubor.txt')
 $file = basename($file);
+
+// sestavíme cestu k souboru
+// VŠECHNY soubory v adresáři půjdou stahnout,
+// takže tam nedávejte nic jiného
 $filepath = $downloadFolder . '/' . $file;
-// tady nějaký test, jestli je uživatel opravněn
+
+// zkontrolujeme jestli má přístup - nějaká námi napsaná funkce
+if (!isUserAllowedToDownloadCustomFunction()) {
+	// vrátíme 404ku, aby se nedalo zjistit, jestli soubor neexistuje nebo k němu jen není přístup. 
+	http_response_code(404);
+}
+ob_end_clean(); // <---- tohle vyřeší celý problém
 header("Content-type: application/x-octet-stream");
 header("Content-Disposition: attachment; filename=$file");
 readfile($filepath);
 ```
+Stále je však potřeba zamezit tomu, aby soubory ve složce byly vidět z venku. Buď složku dát mimo webroot (což často na hostingu nejde) nebo přístup k ní omezit pomocí nastavení `.htaccess`ve složce s downloady.
+ 
+ ```
+ <Files *>
+ Order Deny,Allow
+ Deny from All
+ </Files>
+ ```
 
-Jenže na většině hostingů narazíte tady na nastavení [--memory_limit](http://cz2.php.net/manual/cs/ini.core.php#ini.memory-limit). Proto se musí použít drobný work-around:
-
+-----
+Kód níže je víc jak pět let starý. Dnes už to umím líp, ale nechávám ho tady pro inspiraci. 
 ```php
 <?php
 function readfile_chunked($filename, $retbytes = true)
