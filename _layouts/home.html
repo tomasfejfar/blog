@@ -10,7 +10,7 @@
         {% if page.image.feature contains 'http' %}
         background-image: url('{{ page.image.feature }}');
         {% else %}
-        background-image: url('{{ site.url }}/images/{{ page.image.feature }}');
+        background-image: url('{{ site.public_url }}/images/{{ page.image.feature }}');
         {% endif %}
         }
     </style>
@@ -31,14 +31,14 @@
     {% for post in site.posts limit:5 %}
     <article>
       {% if post.link %}
-        <h2 class="link-post"><a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> <a href="{{ post.link }}" target="_blank" title="{{ post.title }}"><i class="fa fa-link"></i></a></h2>
+        <h2 class="link-post"><a href="{{ site.public_url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> <a href="{{ post.link }}" target="_blank" title="{{ post.title }}"><i class="fa fa-link"></i></a></h2>
       {% else %}
-        <h2><a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
+        <h2><a href="{{ site.public_url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
         <p>{{ post.excerpt | strip_html | truncate: 160 }}</p>
       {% endif %}
     </article>
     {% endfor %}
-      <a href="{{ site.url }}/posts/" class="button">See all posts</a>
+      <a href="{{ site.public_url }}/posts/" class="button">See all posts</a>
   </div><!-- /#index -->
 </div><!-- /#main -->
 
