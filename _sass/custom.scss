@@ -53,3 +53,7 @@ footer {
     }
 }
 
+body {
+    @include font(18);
+    letter-spacing: -.003em;
+}
