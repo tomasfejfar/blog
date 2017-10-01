@@ -11,6 +11,8 @@ image:
 excerpt: Už nějakou dobu bylo moje S3 Mini neúnosně pomalé a místo resetu do továrního nastavení jsem chtěl zkusit flashnout. 
 ---
 
+**Počítejte s tím, že flashnutí nemusí vyjít a můžete telefon nenávratně zničit. Já jsem flashoval několikrát, různými verzemi přesně krok za krokem podle tohoto návodu a nikdy nebyl problém. A i když třeba telefon nešel nastartovat, tak přes Download mód a Odin šlo začít vždycky od znova.**
+
 Flashnutí libovolného telefonu je otázka několika kroků, které jsou typicky všude stejné. Liší se jen konkrétní verze operačního systému Android dostupné pro konkrétní modely. Takže i pokud nemáte zrovna *S3 Mini (GT-I8190N)*, tak vám tento návod pomůže. Sepisuji si ho mimo jiné i pro sebe, abych měl checklist, až to budu dělat přístě.  
 
 Pro S3 Mini je nejnovější Android k dispozici na [Novafusion.pl](http://www.novafusion.pl/). Odtamtud jsem pro jistotu také stahoval všechny ostatní nástroje. Při stahování buďte obezřetní. Rozumný zdroj bývá krom jiných také forum XDA Devs. Ale existuje i mnoho jiných webů, odkud bych se stahovat bál.  
