@@ -57,3 +57,7 @@ body {
     @include font(18);
     letter-spacing: -.003em;
 }
+
+abbr[title] {
+    text-decoration: none;
+}
