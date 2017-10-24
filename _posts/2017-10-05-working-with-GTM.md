@@ -5,7 +5,7 @@ comments: true
 published: true
 title: Google Tag Manager - dev & marketing collaboration workflow
 date: '2017-10-05 00:00:00 +0200'
-excerpt: I've heard it a million times. "Marketing team broke production web! They put something in Google Tag Manager and caused a JavaScript error. GTM sucks. We should have implemented all the codes ourselves." What if I tell you there is a better way?
+excerpt: I've heard it a million times. 'Marketing team broke production web! They put something in Google Tag Manager and caused a JavaScript error. GTM sucks. We should have implemented all the codes ourselves.' What if I tell you there is a better way?
 ---
 
 I've heard it a million times.
