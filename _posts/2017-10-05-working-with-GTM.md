@@ -72,7 +72,7 @@ We actually mimic our development process 1:1 with GTM workspaces.
 ## Protips
 
 * **Keep in mind you only have 3 workspaces!** If this gives you trouble, [try employing Environments](https://support.google.com/tagmanager/answer/6311518?hl=en) for reviewed workspaces even though you lose some of the flexibility.
-* **Make sure every workspace only contains one small change** - [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns#Originh)
+* **Make sure every workspace only contains one small change** - [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns#Origin)
 * **Don't let workspaces rot** - they are either done or gone.
 * **Update your workspaces** - you may need to *Update* your workspace if someone published a container while you were working. It's like pulling master into your branch or rebasing onto master. It even has a nice conflict resolution interface!
 * **Don't forget to let marketing know** that you published their changes if they are not part of your review/publish workflow.
