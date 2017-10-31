@@ -39,7 +39,7 @@ But how does one prevent such a problem? It's simple. Never merge a branch that 
 * In any case, the build fails and *Alice* updates the authentication method code. 
 * PROFIT! 
 
-There are also other ways to mitigate the danger of merging buggy code. One of them is CI running on merged code. The CI server needs to first merge the code to master, try to run the build and then report the result. That makes sure that everything will work after the merge as well. There is almost a two-year-old [GitLab issue for that feature](https://gitlab.com/gitlab-org/gitlab-ce/issues/4176). 
+There are also other ways to mitigate the danger of merging buggy code. One of them is CI running on merged code. The CI server needs to first merge the code to master, try to run the build and then report the result. That makes sure that everything will work after the merge as well. There is almost a two-year-old [GitLab issue for that feature](https://gitlab.com/gitlab-org/gitlab-ce/issues/4176). There is also an option to use [Semi-linear history merge requests](https://docs.gitlab.com/ee/user/project/merge_requests/index.html#semi-linear-history-merge-requests) that will ensure that merge button will only appear if fast-forward merge would be possible. 
 
 Other possible way to mitigate this is to pull latest master to the branch before merge. But that would make the history very hard to read and reason about. So please do not do this! 
 
