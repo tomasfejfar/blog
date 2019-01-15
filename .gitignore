@@ -1,8 +1,10 @@
-_site
-codekit-config.json
+# statie
+/output
+
+# npm
 /node_modules
 
+# composer
 /vendor
 composer.lock
-
-/output
+package-lock.json
