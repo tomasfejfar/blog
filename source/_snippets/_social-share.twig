@@ -1,14 +1,20 @@
 <div class="social-share">
   <h4>Share on</h4>
-  <ul>
-    <li>
-      <a href="https://twitter.com/intent/tweet?text={{ url }}" class="twitter" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+  <ul class="list-inline">
+    <li class="list-inline-item">
+      <a href="https://twitter.com/intent/tweet?text={{ post.relativeUrl }}" class="btn btn-info">
+        <i class="fab fa-fw fa-twitter"></i><span> Twitter</span>
+      </a>
     </li>
-    <li>
-      <a href="https://www.facebook.com/sharer/sharer.php?u={{ url }}" class="facebook" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    <li class="list-inline-item">
+      <a href="https://www.facebook.com/sharer/sharer.php?u={{ post.relativeUrl }}" class="btn btn-primary">
+        <i class="fab fa-fw fa-facebook"></i><span> Facebook</span>
+      </a>
     </li>
-    <li>
-      <a href="https://plus.google.com/share?url={{ url }}" class="google-plus" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    <li class="list-inline-item">
+      <a href="https://plus.google.com/share?url={{ post.relativeUrl }}" class="btn btn-danger">
+        <i class="fab fa-fw fa-google-plus"></i><span> Google+</span>
+      </a>
     </li>
   </ul>
-</div><!-- /.social-share -->
+</div>

@@ -16,6 +16,16 @@ h1, h2, h3 {
     font-family: BlinkMacSystemFont,segoe ui,Roboto,Oxygen-Sans,Ubuntu,Cantarell,helvetica neue,sans-serif;
 }
 
+h1 {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+h2 {
+    padding-top: .6em;
+    padding-bottom: .3em;
+}
+
 .favicon-img {
     margin: 3px 0 2px;
     vertical-align: text-bottom;

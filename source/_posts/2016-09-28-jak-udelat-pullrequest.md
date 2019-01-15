@@ -11,7 +11,7 @@ Udělat pullrequest není nic složitého. Zvládnete to během pár minut.
 
 <a href="#jak-na-to" class="btn">Chci přeskočit povídání a rovnou udělat pullrequest</a> 
 
-# Co je to pullrequest?
+## Co je to pullrequest?
 
 Pullrequest je způsob, jak v gitu poslat jinému vývojáři nějaké své změny. V základu vlastně říká: 
 
@@ -19,11 +19,11 @@ Pullrequest je způsob, jak v gitu poslat jinému vývojáři nějaké své změ
 
 Vývojáři většinou pod pojmem pullrequest rozumí [to, co najdete na Githubu](https://github.com/symfony/symfony/pull/20061), ale samotná funkcionalita pullrequestů je [dostupná i přímo v gitu](https://git-scm.com/docs/git-request-pull). 
  
-# Proč dělat pullrequesty? 
+## Proč dělat pullrequesty? 
 
 Pokud jste autorem opensource projektu, tak máte celkem velkou zodpovědnost. Na jedné straně musíte neustále přidávat nové vlastnosti, aby lidi projekt neopustili, ale na druhé straně musíte všechno udržovat funkční a nic nerozbít. V takové chvíli uvítáte jakoukoli pomoc. Jako uživateli opensource by se nám často hodilo, aby knihovna uměla to nebo ono. Ale nemůžeme chtít po autorovi, aby strávil bezesné noci programováním jen proto, že se nám zachtělo nové featury. A tady přichází ke slovu pullrequesty. Můžeme mu kód připravit a jen mu dát vědět, kde je. Na něm už je jen ho zapracovat a vydat novou verzi. 
 
-# Na co dělat pullrequesty?
+## Na co dělat pullrequesty?
 
 Ideálními kandidáty na pullrequest jsou:
 
@@ -32,7 +32,7 @@ Ideálními kandidáty na pullrequest jsou:
 * nová drobná vylepšení
 * přidání CI (Travis, AppVeyor, CodeClimate, atp)
 
-# Na co pullrequesty spíš nedělat? 
+## Na co pullrequesty spíš nedělat? 
 
 Pullrequesty v podobě, jak jsem je popsal (tedy bez nějaké předchozí domluvy a komunikace s autorem) se nehodí na radikální úpravy jako např.:
 
@@ -45,7 +45,7 @@ Ne, že by se takovéto změny nedaly v pullrequestu udělat. Jsou nevhodné sp�
 
 Už víme o pullrequestech všechno důležité, tak pojďme nějaký udělat. 
  
-# <a name="jak-na-to"></a>Jak na pullrequest
+## <a name="jak-na-to"></a>Jak na pullrequest
 
 Ať se nám to líbí, nebo ne, `opensource == github`. Jako první krok je tedy potřeba na Githubu mít účet. [Zaregistrujte se](https://github.com/join?source=header-home) nebo [se přihlaste](https://github.com/login). 
  
