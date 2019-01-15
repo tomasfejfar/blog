@@ -1,0 +1,6 @@
+-
+    resource: source/_config.yml
+-
+    resource: source/_data/authors.yml
+-
+    resource: source/_data/navigation.yml

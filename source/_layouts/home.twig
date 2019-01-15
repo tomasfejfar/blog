@@ -1,0 +1,54 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+{% include _snippets/_head.twig %}
+    <style>
+        .image-wrap {
+        {% if image.feature contains 'http' %}
+        background-image: url('{{ image.feature }}');
+        {% else %}
+        background-image: url('{{ public_url }}/images/{{ image.feature }}');
+        {% endif %}
+        }
+    </style>
+</head>
+
+<body class="home">
+
+{% include _snippets/_browser-upgrade.twig %}
+
+{% include _snippets/_navigation.twig %}
+
+<div id="main" role="main">
+  <div class="article-author-side">
+    {% include _snippets/_author-bio.twig %}
+  </div>
+  <div id="index">
+    <h3>{% if title %}{{ title }} &#8211; {% endif %}{{ title }}</h3>
+    {% for post in posts limit:5 %}
+    <article>
+      {% if post.link %}
+        <h2 class="link-post"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> <a href="{{ post.link }}" target="_blank" title="{{ post.title }}"><i class="fa fa-link"></i></a></h2>
+      {% else %}
+        <h2><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
+        <p>{{ post.excerpt | strip_html | truncate: 160 }}</p>
+      {% endif %}
+    </article>
+    {% endfor %}
+      <a href="/posts/" class="button">See all posts</a>
+  </div><!-- /#index -->
+</div><!-- /#main -->
+
+<div class="footer-wrap">
+  <footer>
+    {% include _snippets/_footer.twig %}
+  </footer>
+</div><!-- /.footer-wrap -->
+
+{% include _snippets/_scripts.twig %}
+
+</body>
+</html>
