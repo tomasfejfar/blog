@@ -32,7 +32,7 @@ sitemap: false
         </author>
         <content type="html">
           {{ post.content|xml_escape }}
-          {% include "_snippets/_feed-footer.twig" %}
+          &lt;p&gt;&lt;a href=&quot;{{ post.url }}&quot;&gt;{{ post.title|xml_escape }}&lt;/a&gt; was originally published by {{ owner.name }} at &lt;a href=&quot;&quot;&gt;{{ title }}&lt;/a&gt; on {{ post.date|date("%B %d, %Y") }}.&lt;/p&gt;
         </content>
       </entry>
     {% endif %}
