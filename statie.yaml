@@ -6,6 +6,7 @@ parameters:
         posts:
             route_prefix: ''
 
+    # data completed to templates
     owner:
         name: 'Tomáš Fejfar'
         avatar: 'bio-photo.jpg'
@@ -25,4 +26,3 @@ parameters:
 
 services:
     TomasFejfar\Blog\CustomFilterProvider: ~
-

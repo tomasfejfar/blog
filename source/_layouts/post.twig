@@ -25,12 +25,10 @@
                 <hr />
                 {% include "_snippets/_footer-banner.twig" %}
                 <hr />
-                <footer role="contentinfo">
                   {% include '_snippets/_social-share.twig' %}
                   <p class="byline text-muted">
                       <strong>{{ title }}</strong> was published on <time datetime="{{ date|date_to_xmlschema }}">{{ date|date( "%B %d, %Y") }}</time>{% if modified %} and last modified on <time datetime="{{ modified|date("%Y-%m-%d") }}">{{ modified|date( "%B %d, %Y") }}</time>{% endif %}.
                   </p>
-                </footer>
               </div>
             {% if owner.disqus-shortname %}
               <section id="disqus_thread"></section>
@@ -39,24 +37,10 @@
       </div>
     </div>
 
-
-    <div class="footer-wrap">
-      {% if related_posts.size > 0 %}
-      <div class="related-articles">
-      <h4>You might also enjoy <small class="pull-right">(<a href="/posts/">View all posts</a>)</small></h4>
-        <ul>
-        {% for post in related_posts %}
-          {% if loop.index <= 3 %}
-              <li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
-          {% endif %}
-        {% endfor %}
-        </ul>
-        <hr>
-      </div>
-      {% endif %}
-      <footer>
-        {% include '_snippets/_footer.twig' %}
-      </footer>
+    <div class="container mt-5 text-center">
+        <footer>
+            {% include '_snippets/_footer.twig' %}
+        </footer>
     </div>
 
     {% include '_snippets/_scripts.twig' %}

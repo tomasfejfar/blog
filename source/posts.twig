@@ -1,0 +1,12 @@
+layout: "_layouts/default.twig"
+title: All Posts
+---
+
+<h2>{{ title }}</h2>
+
+{% for post in posts %}
+    <article>
+        <h2><a href="/{{ post.relativeUrl }}/" title="{{ post.title }}">{{ post.title }}</a></h2>
+        <p>{{ post.excerpt|striphtml|truncate(160) }}</p>
+    </article>
+{% endfor %}
