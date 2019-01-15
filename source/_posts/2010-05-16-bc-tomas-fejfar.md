@@ -1,8 +1,6 @@
 ---
 id: 1
 title: Bc. Tomáš Fejfar
-date: '2010-05-16 01:36:14 +0200'
-date_gmt: '2010-05-15 23:36:14 +0200'
 ---
 <p>Tak a mám to za sebou. Bakalářka – jedna. Odborná rozprava – jedna. Výsledná – jedna a titul Bc. k tomu ;)</p>
 <p>Pocit neslavný, když vezmu v úvahu, že bych dopadl stejně i kdybych se místo měsíce učení válel. Ale co už. Hlavně, že je to doma. Samotné státnice byli celkem fajn. Taková příjemná rozmluva s někým kdo je špička v oboru. Navíc dokonce rozumí tomu, co sem udělal ;)</p>

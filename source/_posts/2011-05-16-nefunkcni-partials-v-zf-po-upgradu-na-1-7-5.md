@@ -1,8 +1,6 @@
 ---
 id: 7
 title: Nefunkční partials v ZF po upgradu na 1.7.5
-date: '2011-05-16 01:35:44 +0200'
-date_gmt: '2011-05-15 23:35:44 +0200'
 ---
 > Requested scripts may not include parent directory traversal (”../”, “..\” notation)
 

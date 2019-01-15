@@ -1,8 +1,6 @@
 ---
 id: 10
 title: Tibet v Brně
-date: '2011-05-16 01:49:11 +0200'
-date_gmt: '2011-05-15 23:49:11 +0200'
 ---
 <p>Je to šest dnů, co jsem si objednal v <a href="http://www.tibetvbrne.cz/cajova-souprava-s-lesklou-bilou-glazurou-hnede-teckovanou-p.aspx">e-shopu Tibet v Brně</a> konvičku na čaj, s kalíšky a podnosem. Při objednávání jsem měl trochu obavu, jestli za cenu 590,–Kč včetně dopravy a DPH bude konvička co k čemu (zvláště když v podobné ceně mají i konvičky o menším objemu a bez hezkého ponosu).</p>
 <h2>Doprava</h2>

@@ -1,8 +1,6 @@
 ---
 id: 22
 title: 'GoogleMaps: How to get InfoWindow in viewport'
-date: '2012-12-05 18:57:39 +0100'
-date_gmt: '2012-12-05 17:57:39 +0100'
 ---
 
 Common request, when embedding Google Maps in your application, is to add a marker and a infoWindow that adds some text to the marker. It seems quite straightforward. Just create the map, add marker and add infoWindow with some content. Well it's not as simple as it looks. The map will probably be displayed in such manner, that the marker is in the middle and the infoWindow is hidden outside of the map. Grrr...

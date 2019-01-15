@@ -1,8 +1,6 @@
 ---
 id: 12
 title: Zend_Log_Writer_Firebug a logování v dispatchLoopShutdown()
-date: '2011-05-16 02:12:39 +0200'
-date_gmt: '2011-05-16 00:12:39 +0200'
 ---
 Pro jeden svůj projekt jsem chtěl logovat data z DB profileru. Udělal jsem si plugin s hookem na dispatchLoopShut­down() a do něj dopsal logovací funkci. Jenže jaké bylo moje překvapení, když to nefungovalo. Zkoumal jsem to dosti dlouho a nemohl jsem najít chybu.
 Nakonec jsem zjistil, že je problém v tom, že tenhle writer k samotnému zápisu používá Wildfire komponentu, která potřebuje k své práci controller plugin a data odesílá v dispatchLoop­Shutdown(). Oprava je poměrně jednoduchá – stačí plugin ručně přidat do Front Controlleru dříve než náš plugin. (Ne, že by to dávalo smysl – ale je to řešení) 

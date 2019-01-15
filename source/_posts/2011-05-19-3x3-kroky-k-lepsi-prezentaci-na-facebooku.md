@@ -1,8 +1,6 @@
 ---
 id: 13
 title: 3x3 kroky k lepší prezentaci na Facebooku
-date: '2011-05-19 01:28:57 +0200'
-date_gmt: '2011-05-18 23:28:57 +0200'
 ---
 >Kdo není na internetu, jako by nebyl
 

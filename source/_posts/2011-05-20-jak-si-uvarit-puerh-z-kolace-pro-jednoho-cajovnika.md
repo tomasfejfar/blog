@@ -1,8 +1,6 @@
 ---
 id: 14
 title: Jak si uvařit PuErh z koláče pro jednoho čajovníka
-date: '2011-05-20 01:31:01 +0200'
-date_gmt: '2011-05-19 23:31:01 +0200'
 ---
 <p>Wiki říká:</p>
 <blockquote><p><strong>Pu-er</strong>, pu-erh, pchu-er jsou zpravidla označení pro čínský čaj pěstovaný v čínské provincii Jün-nan, zpracovává se užitím dodatečné fermentace černého čaje. Občas se také může jednat o název způsobu zpracování čajových lístků dodatečnou fermentací. Například čaj typu puerh ze zeleného čaje. Puerh je i název jednoho druhu čajového keře, který se mimo jiné vyznačuje dlouhými listy. Puerh se též jmenuje okresní město v provincii Jün-nan, kde se zpracovává čaj a podle které je pravděpodobně čaj pojmenován. Přestože některé prameny uvádějí Pu-erh jako černý čaj není to příliš přesné označení.</p>

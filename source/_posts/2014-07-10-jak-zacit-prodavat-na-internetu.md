@@ -2,8 +2,6 @@
 id: 30
 redirect_from: "/266-jak-zacit-prodavat-na-internetu/"
 title: 'Jak začít prodávat na internetu? '
-date: '2014-07-10 00:23:36 +0200'
-date_gmt: '2014-07-09 22:23:36 +0200'
 ---
 
 Marek Prokop dnes na svém blogu Do košíku vydal článek s názvem <a href="http://dokosiku.blogspot.cz/2014/07/pustil-bych-se-do-vyvoje-e-shopu.html">Pustil bych se do vývoje e-shopu... kdybych věděl jak</a>. Marek by rád by svůj obchod s čajem <a href="http://www.cajtydne.cz/">Čaj Týdne</a> rozvinul do plnohodnotného eshopu, ale není si jistý, jakým směrem se s vývojem eshopu vydat - jestli si ho vyvíjet sám, nebo jeho vývoj někomu svěřit. Rád bych přidal svůj názor na tuto problematiku, ale na komentář to bylo příliš dlouhé.

@@ -1,8 +1,6 @@
 ---
 id: 16
 title: Jak nenazvat událost na Facebooku
-date: '2011-05-24 01:36:06 +0200'
-date_gmt: '2011-05-23 23:36:06 +0200'
 ---
 <p>Facebook se nám stále více a více rozmáhá a kdo na něm není, jako by nebyl. Naneštěstí to s Facebookem vypadá asi jako s webovými stránkami v prvních letech jejich existence. Všichni to chtějí, ale nikdo neví jak na to. Chystáte se zapložit skupinu, fanpage nebo událost na Facebooku? Ano? Pak pokračujte ve čtení…K napsání tohoto blogpostu mě přiměla následující „příhoda“ na Faceboooku - objevilo se <em>Franta Novák se zůčastní Jablonec</em></p>
 <p>Své „WTF“ jsem nenapsal hned, nejdříve jsem se podíval dovnitř události. Ale tam jsem nepochodil o moc lépe.</p>

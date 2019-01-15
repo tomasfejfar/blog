@@ -517,15 +517,6 @@ $button-size: 1.5rem;
 	}
 }
 
-/* TOC trigger for collapsing */
-#drawer {
-	max-height: 100%;
-	overflow: hidden;
-	&.js-hidden {
-		max-height: 0;
-	}
-}
-
 /* Image grid - not used */
 .image-grid {
 	@include clearfix;

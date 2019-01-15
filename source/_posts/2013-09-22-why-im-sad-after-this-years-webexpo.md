@@ -1,8 +1,6 @@
 ---
 id: 29
 title: Why I'm sad after this year's WebExpo
-date: '2013-09-22 22:30:30 +0200'
-date_gmt: '2013-09-22 20:30:30 +0200'
 ---
 <blockquote><strong>TL;DR</strong>: This year's WebExpo was better than last year. Switching to English was helpful IMO. There were some kick-ass speakers that were worth listening to. Same time next year.</p></blockquote>
 <p>My first encounter with WebExpo this year was a newsletter announcing the availability of tickets. It's the first year I'm out of college, so it's also the first year with <em>double price</em>. That was quite a disappointment at first. I considered not going as my "perceived" price was somewhere around 3k to 4k. But fortunately <a href="http://www.w3w.cz">w3w</a> offered to pay for my ticket (thx guys), so one less trouble for me :)</p>

@@ -1,8 +1,6 @@
 ---
 id: 11
 title: Zend Screencast – Zend Tool
-date: '2011-05-16 01:30:49 +0200'
-date_gmt: '2011-05-15 23:30:49 +0200'
 ---
 <div>
 <div>

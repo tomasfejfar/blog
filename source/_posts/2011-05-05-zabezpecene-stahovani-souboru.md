@@ -1,8 +1,6 @@
 ---
 id: 2
 title: Zabezpečené stahování souborů
-date: '2011-05-05 18:00:11 +0200'
-date_gmt: '2011-05-05 18:00:11 +0200'
 ---
 
 Jistě jste se už setkali s problémem, že potřebujete zajistit, aby se nikdo nedostal k souborum v určité složce na webu. Ale někdy mu přístup chcete povolit. Šancí je, ošetřit přístup k souborům pomocí PHP. 

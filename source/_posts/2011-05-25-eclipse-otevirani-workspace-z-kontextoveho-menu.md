@@ -1,8 +1,6 @@
 ---
 id: 17
 title: 'Eclipse: Otevírání Workspace z kontextového menu'
-date: '2011-05-25 01:36:07 +0200'
-date_gmt: '2011-05-24 23:36:07 +0200'
 ---
 
 Poslední dobou jsem nějak rozpolcen mezi projekty od různých  zadavatelů, své projekty a vůbec se začínám ztrácet. Abych od sebe měl  oddělené tyhle věci při práci, používám Workspaces v Eclipse PDT. Jenže  přepínání Workspaces je vopruz ! :) Navíc klasicky před začátkem práce potřebuji Updatnout přes TortoiseSVN working copy, takže musím do té které složky.

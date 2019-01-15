@@ -1,8 +1,6 @@
 ---
 id: 25
 title: 'BP/DP ve Wordu: I. Styly a nadpisy'
-date: '2013-03-31 19:38:28 +0200'
-date_gmt: '2013-03-31 17:38:28 +0200'
 ---
 <p>Ať píšete BP, DP nebo třeba jen nějakou seminárku, velmi často se stává, že je třeba dodržovat určitý standard formátování. A ať si budete to formátování dělat sami, nebo to „na někoho hodíte“, tento návod by měl pomoci k tomu, aby vše šlo co možná nejrychleji.</p>
 <h2>Pravidlo první – Nekoukejte na to jak to vypadá</h2>
