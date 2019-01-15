@@ -4,14 +4,14 @@
 <!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
-  {% include '_snippets/_head.twig' %}
+  {% include '_snippets/head.twig' %}
 </head>
 
 <body class="post">
     <div id="main" role="main" class="container">
         <div class="row">
             <div class="col-3">
-              {% include '_snippets/_author-bio.twig' %}
+              {% include '_snippets/author-bio.twig' %}
             </div>
             <article class="post col-9">
               <div class="headline-wrap">
@@ -23,9 +23,9 @@
               <div>
                 {{ post.content|raw }}
                 <hr />
-                {% include "_snippets/_footer-banner.twig" %}
+                {% include "_snippets/footer-banner.twig" %}
                 <hr />
-                  {% include '_snippets/_social-share.twig' %}
+                  {% include '_snippets/social-share.twig' %}
                   <p class="byline text-muted">
                       <strong>{{ title }}</strong> was published on <time datetime="{{ date|date_to_xmlschema }}">{{ date|date( "%B %d, %Y") }}</time>{% if modified %} and last modified on <time datetime="{{ modified|date("%Y-%m-%d") }}">{{ modified|date( "%B %d, %Y") }}</time>{% endif %}.
                   </p>
@@ -39,10 +39,10 @@
 
     <div class="container mt-5 text-center">
         <footer>
-            {% include '_snippets/_footer.twig' %}
+            {% include '_snippets/footer.twig' %}
         </footer>
     </div>
 
-    {% include '_snippets/_scripts.twig' %}
+    {% include '_snippets/scripts.twig' %}
 </body>
 </html>

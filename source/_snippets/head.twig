@@ -2,7 +2,7 @@
 <title>{% if title %}{{ title }} &#8211; {% endif %}{{ title }}</title>
 {% if excerpt %}<meta name="description" content="{{ excerpt|striphtml }}">{% endif %}
 
-{% include "_snippets/_open-graph.twig" %}
+{% include "_snippets/open-graph.twig" %}
 
 {% if owner.google.verify %}<!-- Webmaster Tools verfication -->
 <meta name="google-site-verification" content="{{ owner.google.verify }}">{% endif %}
