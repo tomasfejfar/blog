@@ -20,6 +20,6 @@
   </script>
 {% endif %}
 
-{% if comments %}
-  {% include _snippets/disqus_comments.twig %}
+{% if owner.disqus-shortname %}
+    {% include _snippets/disqus_comments.twig %}
 {% endif %}

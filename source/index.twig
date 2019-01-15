@@ -2,7 +2,7 @@ layout: "_layouts/default.twig"
 title: "Blog"
 ---
 
-<h3>{% if title %}{{ title }} &#8211; {% endif %}{{ title }}</h3>
+<h2>{% if title %}{{ title }} &#8211; {% endif %}{{ main_title }}</h2>
 
 {% for post in posts %}
     {% if loop.index <= 5 %}

@@ -9,7 +9,7 @@ When versioning code with Git, you have two options. You can treat the history a
 
 ## TL;DR
 
-> If you merge a branch that is not rebased on top of current master, your code may break even if your tests were fine before and there were no merge conflicts. **Always make sure the merge request is rebased onto master before merging.** 
+> If you merge a branch that is not rebased on top of current master, your code may break even if your tests were fine before and there were no merge conflicts. **Always make sure the merge request is rebased onto master before merging.**
 
 ## Further explanation
 
@@ -25,7 +25,6 @@ How could the master build fail if the merge request was green? Was there a malf
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gitgraph.js/1.11.4/gitgraph.min.js"></script>
 <div style="width:99%;margin:0 auto;overflow-x:scroll"><canvas id="gitGraph"></canvas></div>
 <script src="/assets/js/posts/be-safe-rebase.js"></script>
- 
  
 But how does one prevent such a problem? It's simple. Never merge a branch that has not been rebased onto master. Let's see how the event would unfold if they were using rebase.
  

@@ -1,31 +1,29 @@
-<!doctype html>
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
-<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
-<head>
-    {% include '_snippets/head.twig' %}
-</head>
-
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-3">
-                {% include '_snippets/author-bio.twig' %}
-            </div>
-            <div class="col-9">
-                {% block content %}{% endblock %}
+<!DOCTYPE html>
+    <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+    <!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+    <!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+    <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+    <head>
+        {% include '_snippets/head.twig' %}
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    {% include '_snippets/author-bio.twig' %}
+                </div>
+                <div class="col-9">
+                    {% block content %}{% endblock %}
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="container mt-5 text-center">
-        <footer>
-            {% include '_snippets/footer.twig' %}
-        </footer>
-    </div>
+        <div class="container mt-5 text-center">
+            <footer>
+                {% include '_snippets/footer.twig' %}
+            </footer>
+        </div>
 
-    {% include '_snippets/scripts.twig' %}
-
+        {% include '_snippets/scripts.twig' %}
     </body>
 </html>
