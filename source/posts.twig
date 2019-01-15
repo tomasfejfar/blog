@@ -4,9 +4,25 @@ title: All Posts
 
 <h2>{{ title }}</h2>
 
+{% set written_year = 'None' %}
+
 {% for post in posts %}
+    {% set year %}{{ post.date|date('Y') }}{% endset %}
+
+    {% if year != written_year %}
+        <h3>{{ year }}</h3>
+        {% set written_year = year %}
+    {% endif %}
     <article>
         <h2><a href="/{{ post.relativeUrl }}/" title="{{ post.title }}">{{ post.title }}</a></h2>
-        <p>{{ post.excerpt|striphtml|truncate(160) }}</p>
+
+        <p>
+            {% if post.excerpt is not defined %}
+                {{ post.rawContent|truncate(160) }}
+
+            {% else %}
+                {{ post.excerpt|striphtml }}
+            {% endif %}
+        </p>
     </article>
 {% endfor %}
