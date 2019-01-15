@@ -20,7 +20,7 @@ parameters:
         line_numbers: true
     owner:
         name: 'Tomáš Fejfar'
-        avatar: 'images/bio-photo.jpg'
+        avatar: 'bio-photo.jpg'
         bio: 'Web developer'
         email: 'tomas.fejfar@gmail.com'
         disqus-shortname: 'tomasfejfar'
