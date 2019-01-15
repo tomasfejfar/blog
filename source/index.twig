@@ -6,12 +6,8 @@ layout: "_layouts/default.twig"
 {% for post in posts %}
     {% if loop.index <= 5 %}
         <article>
-            {% if post.link %}
-                <h2 class="link-post"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> <a href="{{ post.link }}" target="_blank" title="{{ post.title }}"><i class="fa fa-link"></i></a></h2>
-            {% else %}
-                <h2><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
-                <p>{{ post.excerpt|striphtml|truncate(160) }}</p>
-            {% endif %}
+            <h2><a href="/{{ post.relativeUrl }}/" title="{{ post.title }}">{{ post.title }}</a></h2>
+            <p>{{ post.excerpt|striphtml|truncate(160) }}</p>
         </article>
     {% endif %}
 {% endfor %}

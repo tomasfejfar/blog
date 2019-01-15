@@ -1,23 +1,11 @@
 parameters:
     title: 'Tomáš Fejfar'
-    locale: en_US
-    #    url: null
     public_url: 'https://blog.tomasfejfar.cz'
-    permalink: '/:title/'
-    markdown: kramdown
-    highlighter: rouge
-    sass:
-        sass_dir: _sass
-        style: compressed
-    kramdown:
-        input: GFM
-        hard_wrap: false
-        auto_ids: true
-        footnote_nr: 1
-        entity_output: as_char
-        toc_levels: 1..6
-        enable_coderay: false
-        line_numbers: true
+
+    generators:
+        posts:
+            route_prefix: ''
+
     owner:
         name: 'Tomáš Fejfar'
         avatar: 'bio-photo.jpg'
@@ -31,6 +19,9 @@ parameters:
             verify: 'qE0CgxGNzBcouYgXhkQmkemF7drVRegwI1bpiB1kgm8'
         github: 'tomasfejfar'
         stackoverflow: '112000/tomáš-fejfar'
+
+    # social networds
+    locale: en_US
 
 services:
     TomasFejfar\Blog\CustomFilterProvider: ~

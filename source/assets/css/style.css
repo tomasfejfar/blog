@@ -67,3 +67,16 @@ h1 {
         display: inline-block;
     }
 }
+
+/* footer banner */
+.footer-div {
+    background: #fff0b3;
+    border: 1px solid #ffcd00;
+    padding: 1em 2em;
+}
+
+.footer-div img{
+    float:left;
+    width: 4em;
+    margin: 0 .5em .5em 0;
+}
