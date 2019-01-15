@@ -9,15 +9,17 @@
 
 <body class="home">
     <div id="main" role="main" class="container">
-        <div class="article-author-side">
-            {% include '_snippets/_author-bio.twig' %}
-        </div>
-        <div id="index">
-            {% block content %}{% endblock %}
+        <div class="row">
+            <div class="col-3">
+                {% include '_snippets/_author-bio.twig' %}
+            </div>
+            <div id="index" class="col-9">
+                {% block content %}{% endblock %}
+            </div>
         </div>
     </div>
 
-    <div class="footer-wrap container">
+    <div class="container mt-5 text-center">
         <footer>
             {% include '_snippets/_footer.twig' %}
         </footer>

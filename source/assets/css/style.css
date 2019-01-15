@@ -7,36 +7,18 @@ html, body {
     color: #212529;
 }
 
-.jumbotron {
-    background-color: #f2f5f7;
-}
-
 .pehapkari-svg {
     vertical-align: bottom;
 
 }
 
-.lead {
-    font-weight: 400;
+h1, h2, h3 {
+    font-family: BlinkMacSystemFont,segoe ui,Roboto,Oxygen-Sans,Ubuntu,Cantarell,helvetica neue,sans-serif;
 }
 
-.jumbotron h1 {
-    font-weight: 400;
-}
-
-.reference .media-body p {
-    font-style: italic;
-}
 .favicon-img {
     margin: 3px 0 2px;
     vertical-align: text-bottom;
-}
-.nav-link {
-    text-decoration: underline;
-    font-weight: bold;
-}
-.navbar-brand {
-    font-size: 150%;
 }
 
 h2 {
@@ -49,7 +31,6 @@ h2:target::before {
     font-weight: bold;
     position: absolute;
     left: -1em;
-    font-family: Arial;
     line-height: 135%;
 }
 

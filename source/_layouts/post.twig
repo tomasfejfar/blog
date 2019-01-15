@@ -9,34 +9,34 @@
 
 <body class="post">
     <div id="main" role="main" class="container">
-      <div class="article-author-side">
-        {% include '_snippets/_author-bio.twig' %}
+        <div class="row">
+            <div class="col-3">
+              {% include '_snippets/_author-bio.twig' %}
+            </div>
+            <article class="post col-9">
+              <div class="headline-wrap">
+                <h1><a class="back-to-home" title="Back to homepage" href="/">🔙</a>
+                  <a href="/{{ post.relativeUrl }}/" rel="bookmark" title="{{ title }}">{{ title }}</a>
+                </h1>
+              </div>
+
+              <div>
+                {{ post.content|raw }}
+                <hr />
+                {% include "_snippets/_footer-banner.twig" %}
+                <hr />
+                <footer role="contentinfo">
+                  {% if share != false %}{% include _snippets/_social-share.twig %}{% endif %}
+                  <p class="byline"><strong>{{ title }}</strong> was published on <time datetime="{{ date|date_to_xmlschema }}">{{ date|date( "%B %d, %Y") }}</time>{% if modified %} and last modified on <time datetime="{{ modified|date("%Y-%m-%d") }}">{{ modified|date( "%B %d, %Y") }}</time>{% endif %}.</p>
+                </footer>
+              </div>
+            {% if owner.disqus-shortname %}
+              <section id="disqus_thread"></section>
+            {% endif %}
+            </article>
       </div>
-      <article class="post">
-        <div class="headline-wrap">
-          <h1><a class="back-to-home" title="Back to homepage" href="/">🔙</a>
-          {% if link %}
-            <a href="{{ link }}">{{ title }}</a>
-          {% else %}
-            <a href="{{ url }}" rel="bookmark" title="{{ title }}">{{ title }}</a>
-          {% endif %}
-          </h1>
-        </div><!--/ .headline-wrap -->
-        <div class="article-wrap">
-          {{ content }}
-          <hr />
-          {% include "_snippets/_footer-banner.twig" %}
-          <hr />
-          <footer role="contentinfo">
-            {% if share != false %}{% include _snippets/_social-share.twig %}{% endif %}
-            <p class="byline"><strong>{{ title }}</strong> was published on <time datetime="{{ date|date_to_xmlschema }}">{{ date|date( "%B %d, %Y") }}</time>{% if modified %} and last modified on <time datetime="{{ modified|date("%Y-%m-%d") }}">{{ modified|date( "%B %d, %Y") }}</time>{% endif %}.</p>
-          </footer>
-        </div><!-- /.article-wrap -->
-      {% if owner.disqus-shortname and comments == true %}
-        <section id="disqus_thread"></section><!-- /#disqus_thread -->
-      {% endif %}
-      </article>
-    </div><!-- /#main -->
+    </div>
+
 
     <div class="footer-wrap">
       {% if related_posts.size > 0 %}
