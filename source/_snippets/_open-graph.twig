@@ -2,7 +2,7 @@
 <meta name="twitter:title" content="{% if title %}{{ title }}{% else %}{{ title }}{% endif %}">
 {% if excerpt %}<meta name="twitter:description" content="{{ excerpt|striphtml }}">{% endif %}
 {% if owner.twitter %}<meta name="twitter:site" content="@{{ owner.twitter }}">{% endif %}
-{% if author.twitter %}<meta name="twitter:creator" content="@{{ author.twitter }}">{% endif %}
+{% if owner.twitter %}<meta name="twitter:creator" content="@{{ owner.twitter }}">{% endif %}
 {% if image.feature %}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="/images/{{ image.feature }}">

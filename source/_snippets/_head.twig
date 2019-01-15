@@ -1,23 +1,17 @@
 <meta charset="utf-8">
 <title>{% if title %}{{ title }} &#8211; {% endif %}{{ title }}</title>
 {% if excerpt %}<meta name="description" content="{{ excerpt | striphtml }}">{% endif %}
-<meta name="keywords" content="{{ tags | join: ', ' }}">
-{% if author %}
-  {% assign author = data.authors[author] %}{% else %}{% assign author = owner %}
-{% endif %}
+<meta name="keywords" content="{{ tags | join(', ') }}">
 
 {% include "_snippets/_open-graph.twig" %}
 
 {% if owner.google.verify %}<!-- Webmaster Tools verfication -->
 <meta name="google-site-verification" content="{{ owner.google.verify }}">{% endif %}
 
-{% capture canonical %}{% if permalink contains '.html' %}{{ url }}{% else %}{{ url | remove:'index.html' | strip_slash }}{% endif %}{% endcapture %}
+{% set canonical %}{% if permalink contains '.html' %}{{ url }}{% else %}{{ url | remove:'index.html' | strip_slash }}{% endif %}{% endset %}
 <link rel="canonical" href="{{ canonical }}">
 <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="{{ title }} Feed">
 
-<!-- http://t.co/dKP3o1e -->
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- For all browsers -->

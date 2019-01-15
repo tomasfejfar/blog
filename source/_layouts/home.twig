@@ -24,19 +24,21 @@
 
 <div id="main" role="main">
   <div class="article-author-side">
-    {% include _snippets/_author-bio.twig %}
+    {% include '_snippets/_author-bio.twig' %}
   </div>
   <div id="index">
     <h3>{% if title %}{{ title }} &#8211; {% endif %}{{ title }}</h3>
-    {% for post in posts limit:5 %}
-    <article>
-      {% if post.link %}
-        <h2 class="link-post"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> <a href="{{ post.link }}" target="_blank" title="{{ post.title }}"><i class="fa fa-link"></i></a></h2>
-      {% else %}
-        <h2><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
-        <p>{{ post.excerpt | striphtml | truncate: 160 }}</p>
+    {% for post in posts %}
+      {% if loop.index <= 5 %}
+        <article>
+          {% if post.link %}
+            <h2 class="link-post"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> <a href="{{ post.link }}" target="_blank" title="{{ post.title }}"><i class="fa fa-link"></i></a></h2>
+          {% else %}
+            <h2><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
+            <p>{{ post.excerpt | striphtml | truncate: 160 }}</p>
+          {% endif %}
+        </article>
       {% endif %}
-    </article>
     {% endfor %}
       <a href="/posts/" class="button">See all posts</a>
   </div><!-- /#index -->
