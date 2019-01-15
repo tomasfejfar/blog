@@ -71,3 +71,10 @@ h1 {
     width: 4em;
     margin: 0 .5em .5em 0;
 }
+
+blockquote {
+    font-size: 1.3em;
+    line-height: 1.3em;
+    padding-top: .3em;
+    padding-bottom: .1em;
+}
