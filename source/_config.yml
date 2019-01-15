@@ -1,7 +1,7 @@
 parameters:
     title: 'Tomáš Fejfar'
     locale: en_US
-    url: null
+#    url: null
     public_url: 'https://blog.tomasfejfar.cz'
     permalink: '/:title/'
     markdown: kramdown
@@ -9,9 +9,6 @@ parameters:
     sass:
         sass_dir: _sass
         style: compressed
-    gems:
-        - jekyll-sitemap
-        - jekyll-redirect-from
     kramdown:
         input: GFM
         hard_wrap: false
@@ -21,63 +18,16 @@ parameters:
         toc_levels: 1..6
         enable_coderay: false
         line_numbers: true
-    post_ext: md
-    page_ext: md
-    post_layout: post
-    page_layout: page
-    titlecase: false
     owner:
         name: 'Tomáš Fejfar'
-        avatar: bio-photo.jpg
+        avatar: 'images/bio-photo.jpg'
         bio: 'Web developer'
-        email: tomas.fejfar@gmail.com
-        disqus-shortname: tomasfejfar
-        twitter: tomasfejfar
-        facebook: tomasfejfar
+        email: 'tomas.fejfar@gmail.com'
+        disqus-shortname: 'tomasfejfar'
+        twitter: 'tomasfejfar'
+        facebook: 'tomasfejfar'
         google:
-            plus: null
-            analytics: UA-304405-13
-            verify: qE0CgxGNzBcouYgXhkQmkemF7drVRegwI1bpiB1kgm8
-            ad-client: null
-            ad-slot: null
-        bing-verify: null
-        github: tomasfejfar
-        stackoverflow: 112000/tomáš-fejfar
-        linkedin: null
-        xing: null
-        instagram: null
-        lastfm: null
-        tumblr: null
-        pinterest: null
-        foursquare: null
-        steam: null
-        dribbble: null
-        youtube: null
-        soundcloud: null
-        weibo: null
-        flickr: null
-        codepen: null
-    include:
-        - .htaccess
-    exclude:
-        - lib
-        - config.rb
-        - Capfile
-        - config
-        - log
-        - Rakefile
-        - Rakefile.rb
-        - tmp
-        - less
-        - '*.sublime-project'
-        - '*.sublime-workspace'
-        - test
-        - spec
-        - Gruntfile.js
-        - package.json
-        - node_modules
-        - Gemfile
-        - Gemfile.lock
-        - LICENSE
-        - README.md
-        - .idea
+            analytics: 'UA-304405-13'
+            verify: 'qE0CgxGNzBcouYgXhkQmkemF7drVRegwI1bpiB1kgm8'
+        github: 'tomasfejfar'
+        stackoverflow: '112000/tomáš-fejfar'

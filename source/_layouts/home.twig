@@ -10,7 +10,7 @@
         {% if image.feature contains 'http' %}
         background-image: url('{{ image.feature }}');
         {% else %}
-        background-image: url('{{ public_url }}/images/{{ image.feature }}');
+        background-image: url('/images/{{ image.feature }}');
         {% endif %}
         }
     </style>

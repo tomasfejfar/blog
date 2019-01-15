@@ -19,7 +19,7 @@
     {% if image.feature contains 'http' %}
       "{{ image.feature }}"
     {% else %}
-      "{{ public_url }}/images/{{ image.feature }}"
+      "/images/{{ image.feature }}"
     {% endif %}
   alt="{{ title }} feature image">
   {% if image.credit %}

@@ -1,24 +1,24 @@
 <!-- Twitter Cards -->
 <meta name="twitter:title" content="{% if title %}{{ title }}{% else %}{{ title }}{% endif %}">
-{% if excerpt %}<meta name="twitter:description" content="{{ excerpt | strip_html }}">{% endif %}
+{% if excerpt %}<meta name="twitter:description" content="{{ excerpt|strip_html }}">{% endif %}
 {% if owner.twitter %}<meta name="twitter:site" content="@{{ owner.twitter }}">{% endif %}
 {% if author.twitter %}<meta name="twitter:creator" content="@{{ author.twitter }}">{% endif %}
 {% if image.feature %}
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="{{ public_url }}/images/{{ image.feature }}">
+<meta name="twitter:image" content="/images/{{ image.feature }}">
 {% else %}
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="{% if image.thumb %}{{ public_url }}/images/{{ image.thumb }}{% else %}{{ public_url }}/images/bio-photo-big.jpg{% endif %}">
+<meta name="twitter:image" content="{% if image.thumb %}/images/{{ image.thumb }}{% else %}/images/bio-photo-big.jpg{% endif %}">
 {% endif %}
 <!-- Open Graph -->
 <meta property="og:locale" content="{{ locale }}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ title }}{% endif %}">
-{% if excerpt %}<meta property="og:description" content="{{ excerpt | strip_html }}">{% endif %}
-<meta property="og:url" content="{{ url | replace:'index.html','' | prepend: public_url }}">
+{% if excerpt %}<meta property="og:description" content="{{ excerpt|strip_html }}">{% endif %}
+<meta property="og:url" content="{{ url|replace('index.html','')|prepend: public_url }}">
 <meta property="og:site_name" content="{{ title }}">
 {% if image.feature %}
-<meta property="og:image" content="{{ public_url }}/images/{{ image.feature }}">
+<meta property="og:image" content="/images/{{ image.feature }}">
 {% else %}
-<meta property="og:image" content="{% if image.thumb %}{{ public_url }}/images/{{ image.thumb }}{% else %}{{ public_url }}/images/bio-photo-big.jpg{% endif %}">
+<meta property="og:image" content="{% if image.thumb %}/images/{{ image.thumb }}{% else %}/images/bio-photo-big.jpg{% endif %}">
 {% endif %}

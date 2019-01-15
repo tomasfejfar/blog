@@ -1,6 +1,7 @@
--
-    resource: source/_config.yml
--
-    resource: source/_data/authors.yml
--
-    resource: source/_data/navigation.yml
+imports:
+    - {resource: source/_config.yml }
+    - {resource: source/_data/authors.yml }
+    - {resource: source/_data/navigation.yml }
+
+services:
+    TomasFejfar\Blog\CustomFilterProvider: ~

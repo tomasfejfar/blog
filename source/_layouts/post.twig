@@ -40,18 +40,18 @@
       {% if link %}
         <a href="{{ link }}">{{ title }}</a>
       {% else %}
-        <a href="{{ public_url }}{{ url }}" rel="bookmark" title="{{ title }}">{{ title }}</a>
+        <a href="{{ url }}" rel="bookmark" title="{{ title }}">{{ title }}</a>
       {% endif %}
       </h1>
     </div><!--/ .headline-wrap -->
     <div class="article-wrap">
       {{ content }}
       <hr />
-      {% include _snippets/_footer-banner.twig %}
+      {% include "_snippets/_footer-banner.twig" %}
       <hr />
       <footer role="contentinfo">
         {% if share != false %}{% include _snippets/_social-share.twig %}{% endif %}
-        <p class="byline"><strong>{{ title }}</strong> was published on <time datetime="{{ date | date_to_xmlschema }}">{{ date | date: "%B %d, %Y" }}</time>{% if modified %} and last modified on <time datetime="{{ modified | date: "%Y-%m-%d" }}">{{ modified | date: "%B %d, %Y" }}</time>{% endif %}.</p>
+        <p class="byline"><strong>{{ title }}</strong> was published on <time datetime="{{ date|date_to_xmlschema }}">{{ date|date( "%B %d, %Y") }}</time>{% if modified %} and last modified on <time datetime="{{ modified|date("%Y-%m-%d") }}">{{ modified|date( "%B %d, %Y") }}</time>{% endif %}.</p>
       </footer>
     </div><!-- /.article-wrap -->
   {% if owner.disqus-shortname and comments == true %}
@@ -63,21 +63,21 @@
 <div class="footer-wrap">
   {% if related_posts.size > 0 %}
   <div class="related-articles">
-  <h4>You might also enjoy <small class="pull-right">(<a href="{{ public_url }}/posts/">View all posts</a>)</small></h4>
+  <h4>You might also enjoy <small class="pull-right">(<a href="/posts/">View all posts</a>)</small></h4>
     <ul>
     {% for post in related_posts limit:3 %}
-      <li><a href="{{ public_url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
+      <li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
     {% endfor %}
     </ul>
     <hr />
   </div><!-- /.related-articles -->
   {% endif %}
   <footer>
-    {% include _snippets/_footer.twig %}
+    {% include "_snippets/_footer.twig" %}
   </footer>
-</div><!-- /.footer-wrap -->
+</div>
 
-{% include _snippets/_scripts.twig %}
+{% include "_snippets/_scripts.twig" %}
 
 </body>
 </html>
