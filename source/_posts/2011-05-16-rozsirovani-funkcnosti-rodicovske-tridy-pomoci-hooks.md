@@ -1,17 +1,8 @@
 ---
 id: 8
-status: publish
-comments: true
-published: true
 title: Rozšiřování funkčnosti rodičovské třídy pomocí hooks
 date: '2011-05-16 01:34:49 +0200'
 date_gmt: '2011-05-15 23:34:49 +0200'
-categories:
-- Uncategorized
-tags:
-- php
-- tipy
-- zend framework
 ---
 
 K napsání tohoto příspěvku mě inspirovala práce na jednom  projektu v Zend Frameworku, který je opravdu dobře napsaný z hlediska  dědičnosti atp. Někdo bude mít možná pocit, že tu znovuobjevuji kolo,  ale někomu to třeba pomůže. Pokud vás zajímá co jsou to <strong>hooks</strong>, tak čtěte dále.

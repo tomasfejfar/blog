@@ -1,17 +1,8 @@
 ---
 id: 28
-status: publish
-comments: true
-published: true
 title: How to apply patches from very different code in git
 date: '2013-08-14 18:35:55 +0200'
 date_gmt: '2013-08-14 16:35:55 +0200'
-categories:
-- Uncategorized
-tags:
-- php
-- programování
-- git
 ---
 
 Out codebase has some archaic code, that was rewritten during one refactoring or other. But there is usually some cool feature that was not in the main branch, but in one of the archaic ones. When you need to use it in the new version - you can't merge it (in our case it's in completely different pre-git repo). So you create a patch. And you try to use it in git using

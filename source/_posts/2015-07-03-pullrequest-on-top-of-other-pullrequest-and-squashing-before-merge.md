@@ -1,17 +1,8 @@
 ---
 id: 32
-status: publish
-comments: true
-published: true
 title: Pullrequest on top of other pullrequest and squashing before merge
 date: '2015-07-03 16:14:40 +0200'
 date_gmt: '2015-07-03 14:14:40 +0200'
-tags:
-- tipy
-- problem
-- ze života
-- programování
-- git
 ---
 
 We use pull-requests for development. We do small commits, that allow us to do better review per-commit - usually you add new commit for each code-review issue to allow the reviewer to check that it's fixed. Just before merging the PR we squash all the commits to keep the history clean and tidy. And sometimes it happens that there is a pullrequest (usually refactoring) that is caused by changes required by some other PR. So you develop small PR for the refactoring and on top of it you work on your  feature branch. You happily rebase you working branch on top of the work in PR. Your history may look like this:

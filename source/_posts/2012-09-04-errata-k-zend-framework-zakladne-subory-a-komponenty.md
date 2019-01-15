@@ -1,19 +1,8 @@
 ---
 id: 20
-status: publish
-comments: true
-published: true
 title: 'Errata k "Zend framework: základné súbory a komponenty"'
 date: '2012-09-04 00:06:23 +0200'
 date_gmt: '2012-09-03 22:06:23 +0200'
-categories:
-- Uncategorized
-tags:
-- php
-- zend framework
-- tutorial
-- programování
-- zend
 ---
 
 Originální <a href="http://www.zdrojak.cz/clanky/zend-framework-zakladne-subory-a-komponenty/" target="_blank">článek najdete na zdrojáku</a>. Vzhledem k tomu, že se autor neobtěžoval opravit oznámené chyby v minulých dílech, jsem se rozhodl, že je zde zveřejním pěkně všechny pohromadě. Pokusím se opravit některé nepřesnosti, které se v článku objevily a doplnit věci, které tam podle mého chybí.

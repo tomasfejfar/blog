@@ -1,17 +1,8 @@
 ---
 id: 26
-status: publish
-comments: true
-published: true
 title: 'BP/DP ve Wordu: II. Formátování'
 date: '2013-03-31 19:38:35 +0200'
 date_gmt: '2013-03-31 17:38:35 +0200'
-categories:
-- Uncategorized
-tags:
-- tutorial
-- "škola"
-- word
 ---
 <p>V minulé čísti jsme si ukázali, jak si správně nastylovat dokument a teď se budeme soustředit na to, jak ho zformátovat, aby vypadal trochu k světu. <span style="line-height: 1.6;"><br />
 </span></p>

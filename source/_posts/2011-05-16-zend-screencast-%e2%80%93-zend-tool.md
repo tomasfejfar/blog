@@ -1,16 +1,8 @@
 ---
 id: 11
-status: publish
-comments: true
-published: true
 title: Zend Screencast – Zend Tool
 date: '2011-05-16 01:30:49 +0200'
 date_gmt: '2011-05-15 23:30:49 +0200'
-categories:
-- Uncategorized
-tags:
-- zend framework
-- screencast
 ---
 <div>
 <div>

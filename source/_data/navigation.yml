@@ -1,7 +1,0 @@
-parameters:
-    -
-        title: Blog
-        url: /
-    -
-        title: Archive
-        url: /posts/

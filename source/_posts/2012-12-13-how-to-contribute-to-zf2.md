@@ -1,19 +1,8 @@
 ---
 id: 23
-status: publish
-comments: true
-published: true
 title: How to contribute to ZF2
 date: '2012-12-13 22:01:03 +0100'
 date_gmt: '2012-12-13 21:01:03 +0100'
-categories:
-- Uncategorized
-tags:
-- php
-- zend framework
-- programování
-- zf2
-- git
 ---
 <p>... for git dummies</p>
 <p>I'd like to show you how to contribute to Zend Framework 2. I'll focus on the technical issues you may encouter on the way. I assume you have set up Github correctly. If  not, <a href="https://help.github.com/articles/set-up-git">consult Github help</a>.</p>

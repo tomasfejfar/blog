@@ -1,17 +1,8 @@
 ---
 id: 13
-status: publish
-comments: true
-published: true
 title: 3x3 kroky k lepší prezentaci na Facebooku
 date: '2011-05-19 01:28:57 +0200'
 date_gmt: '2011-05-18 23:28:57 +0200'
-categories:
-- Uncategorized
-tags:
-- facebook
-- fb stránky
-- marketing
 ---
 >Kdo není na internetu, jako by nebyl
 

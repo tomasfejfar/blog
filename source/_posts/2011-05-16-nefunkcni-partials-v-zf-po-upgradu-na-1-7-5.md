@@ -1,18 +1,8 @@
 ---
 id: 7
-status: publish
-comments: true
-published: true
 title: Nefunkční partials v ZF po upgradu na 1.7.5
 date: '2011-05-16 01:35:44 +0200'
 date_gmt: '2011-05-15 23:35:44 +0200'
-categories:
-- Uncategorized
-tags:
-- php
-- tipy
-- problem
-- zend framework
 ---
 > Requested scripts may not include parent directory traversal (”../”, “..\” notation)
 

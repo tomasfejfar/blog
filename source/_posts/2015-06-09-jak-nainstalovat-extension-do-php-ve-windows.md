@@ -1,17 +1,8 @@
 ---
 id: 31
-status: publish
-comments: true
-published: true
 title: Jak nainstalovat extension do PHP ve Windows
 date: '2015-06-09 10:24:54 +0200'
 date_gmt: '2015-06-09 08:24:54 +0200'
-categories:
-- Uncategorized
-tags:
-- php
-- problem
-- windows
 ---
 
 Potřeboval jsem nainstalovat <code>php_ssh2</code> extension a byla to taková pruda, že než abych příště zas musel složitě hledat a poskládávat správné řešení, tak se s vámi podělím na blogu.

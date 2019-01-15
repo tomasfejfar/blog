@@ -1,14 +1,8 @@
 ---
 id: 27
-status: publish
-comments: true
-published: true
 title: Migration from R400 to X220
 date: '2013-06-21 14:35:25 +0200'
 date_gmt: '2013-06-21 12:35:25 +0200'
-categories:
-- Uncategorized
-tags: []
 ---
 <p><strong>Updated: </strong>The "hotfix" for SSD works very well. I have been using it for a year now and I had no problems whatsoever.</p>
 <hr />

@@ -1,8 +1,5 @@
 ---
 id: 37
-status: publish
-comments: true
-published: true
 title: Jak nastavit Git, SSH a bezpečný klíč na Windows 
 date: '2017-04-04 00:00:00 +0200'
 excerpt: Nastavit správně Git na Windows není úplně legrace, ale ukážu vám, jak na to. Na konci budete mít lepší a bezpečnější řešení, které zapadá do Windows ekosystému.   

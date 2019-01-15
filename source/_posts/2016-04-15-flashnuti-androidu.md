@@ -1,11 +1,7 @@
 ---
 id: 34
-status: publish
-comments: true
-published: true
 title: Jak jsem flashnul Samsung Galaxy S3 Mini na Android 5.1
 date: '2016-04-15 00:00:00 +0200'
-tags: ['android', 'it']
 image:
     feature: 
 excerpt: Už nějakou dobu bylo moje S3 Mini neúnosně pomalé a místo resetu do továrního nastavení jsem chtěl zkusit flashnout. 

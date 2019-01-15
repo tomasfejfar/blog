@@ -1,8 +1,5 @@
 ---
 id: 38
-status: publish
-comments: true
-published: true
 title: Be safe, rebase! 
 date: '2017-09-24 00:00:00 +0200'
 excerpt: Even if your build is green and tests pass it's not a guarantee that it won't fail after you merge. You should always rebase onto master before merging! To learn more read the full blogpost.  

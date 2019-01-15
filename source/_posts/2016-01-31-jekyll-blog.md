@@ -1,11 +1,7 @@
 ---
 id: 33
-status: publish
-comments: true
-published: true
 title: Přemigroval jsem blog na Jekyll
 date: '2016-01-31 00:00:00 +0200'
-tags: []
 image:
     feature: posts/jekyll.jpg
 excerpt: Jak se mi dařilo a na jaké problémy jsem narazil při statickém generování tohoto blogu v Jekyllu? Dozvíte se to uvnitř! 

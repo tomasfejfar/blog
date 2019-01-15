@@ -1,16 +1,8 @@
 ---
 id: 18
-status: publish
-comments: true
-published: true
 title: Tai Mu Long Zhu – Dračí oči
 date: '2011-05-27 01:36:12 +0200'
 date_gmt: '2011-05-26 23:36:12 +0200'
-categories:
-- Uncategorized
-tags:
-- "čaje"
-- ze života
 ---
 <p>Nedá mi to a musím napsat maličký report na čaj, který jsem si včera přinesl z čajovny.</p>
 <h2>Tai Mu Long Zhu</h2>

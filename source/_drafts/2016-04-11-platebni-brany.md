@@ -1,8 +1,4 @@
 ---
-layout: post
-status: publish
-comments: true
-published: true
 title: Jak řeší různé platební brány zabezpečení přenášených údajů
 date: '2016-04-11 00:00:00 +0200'
 tags: []

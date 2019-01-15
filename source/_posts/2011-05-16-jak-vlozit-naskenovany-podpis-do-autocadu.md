@@ -1,16 +1,8 @@
 ---
 id: 4
-status: publish
-comments: true
-published: true
 title: Jak vložit naskenovaný podpis do AutoCADu
 date: '2011-05-16 01:32:18 +0200'
 date_gmt: '2011-05-15 23:32:18 +0200'
-categories:
-- Uncategorized
-tags:
-- tutorial
-- autocad
 ---
 <p>AutoCAD je z mého pohledu jedním z <em>nejzáhadnějších </em>softů, co existuje. Je plný „black-box“ magie, kdy se někde něco děje a kvuli tomu se něco nedá udělat.</p>
 <p>Dneska sem byl konfrontován s problémem <strong>jak vložit do AutoCADu naskenovaný podpis</strong>. Abych vám ušetřil případné sakrování (a konec konců, i sobě, až na tuhle zkušenost zapomenu a budu to někdy potřebovat), tak sem sepíšu (ve výsledku celkem snadný) postup jak to udělat. <strong>Na práci je využito (krom AutoCADu) jen opensourcových nástrojů.</strong></p>

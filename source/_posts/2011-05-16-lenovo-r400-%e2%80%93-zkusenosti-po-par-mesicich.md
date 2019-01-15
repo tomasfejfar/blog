@@ -1,14 +1,8 @@
 ---
 id: 6
-status: publish
-comments: true
-published: true
 title: Lenovo R400 – zkušenosti po pár měsících
 date: '2011-05-16 02:24:27 +0200'
 date_gmt: '2011-05-16 00:24:27 +0200'
-categories:
-- Uncategorized
-tags: []
 ---
 <p>Když jsem si před přibližně třemi měsíci kupoval nový NB, byl jsem rozhodnut si pořídit business třídu od Lenova a ne nějakou levnou náhražku (Lenovo 3000 N100) jako posledně. Tedy, je nutno dodat, že mojí „levnou náhražku“ zdědila sestra, která se k ní chová dosti macešsky – typicky mučení koukáním na film, když je NB obalen peřinou :) Když sem viděl noťas, který při mém používání měl max 35 stupňů, mající rozžhavený postranní výdech tak na 60, tak sem šel do mdlob – chlazení má dobré, ale fyzika je fyzika :( Ale zatím drží, takže proto ty uvozovky…</p>
 <p>Ale zpět k tématu. S výběrem jsem byl bohužel tlačen časem, takže jsem nemohl čekat na povánoční slevy. Původně jsem měl vyhlédnutý model 15" <a href="http://www.czechcomputer.cz/product.jsp?artno=58624">R500 s integrovanou grafikou (NP234MC)</a>, jenže ten v té době stál okolo 22.000(dnešní cena – 18.000 – omfg), což bylo mimo to co sem na NB měl. Měl jsem limit 20.000. Po chvilce rozhodování, procházení fór a zjišťování zkušeností jsem se nakonec rozhodl pro 14" <a 	href="http://www.czechcomputer.cz/product.jsp?artno=59949">Lenovo R400 taktéž s integrovanou GPU</a> v ceně 19.500 (dnes 17.000 – omfffffg).</p>

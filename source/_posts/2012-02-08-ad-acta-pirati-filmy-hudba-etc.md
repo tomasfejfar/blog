@@ -1,8 +1,5 @@
 ---
 id: 19
-status: publish
-comments: true
-published: true
 title: Ad ACTA, piráti, filmy, hudba, etc.
 excerpt: "Když se zamyslím nad situací ohledně mediálních korporací a autorského zákona,
   tak mě tak napadá, jestli to celé není způsobené umělým nadhodnocením produktů (filmů,
@@ -11,10 +8,6 @@ wordpress_id: 111
 wordpress_url: http://blog.tomasfejfar.cz/?p=111
 date: '2012-02-08 00:31:01 +0100'
 date_gmt: '2012-02-07 23:31:01 +0100'
-categories:
-- Uncategorized
-tags:
-- zamyšlení
 ---
 <p>Když se zamyslím nad situací ohledně mediálních korporací a autorského zákona, tak mě tak napadá, jestli to celé není způsobené umělým nadhodnocením produktů (filmů, hudby). Podobná situace je např. s vrcholovými sportovci.</p>
 <p><a id="more"></a><a id="more-111"></a></p>

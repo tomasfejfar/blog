@@ -1,6 +1,6 @@
 <!-- Twitter Cards -->
 <meta name="twitter:title" content="{% if title %}{{ title }}{% else %}{{ title }}{% endif %}">
-{% if excerpt %}<meta name="twitter:description" content="{{ excerpt|strip_html }}">{% endif %}
+{% if excerpt %}<meta name="twitter:description" content="{{ excerpt|striphtml }}">{% endif %}
 {% if owner.twitter %}<meta name="twitter:site" content="@{{ owner.twitter }}">{% endif %}
 {% if author.twitter %}<meta name="twitter:creator" content="@{{ author.twitter }}">{% endif %}
 {% if image.feature %}
@@ -14,7 +14,7 @@
 <meta property="og:locale" content="{{ locale }}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ title }}{% endif %}">
-{% if excerpt %}<meta property="og:description" content="{{ excerpt|strip_html }}">{% endif %}
+{% if excerpt %}<meta property="og:description" content="{{ excerpt|striphtml }}">{% endif %}
 <meta property="og:url" content="{{ url|replace('index.html','')|prepend: public_url }}">
 <meta property="og:site_name" content="{{ title }}">
 {% if image.feature %}

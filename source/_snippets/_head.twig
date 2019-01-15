@@ -1,16 +1,15 @@
 <meta charset="utf-8">
 <title>{% if title %}{{ title }} &#8211; {% endif %}{{ title }}</title>
-{% if excerpt %}<meta name="description" content="{{ excerpt | strip_html }}">{% endif %}
+{% if excerpt %}<meta name="description" content="{{ excerpt | striphtml }}">{% endif %}
 <meta name="keywords" content="{{ tags | join: ', ' }}">
 {% if author %}
   {% assign author = data.authors[author] %}{% else %}{% assign author = owner %}
 {% endif %}
 
-{% include _snippets/_open-graph.twig %}
+{% include "_snippets/_open-graph.twig" %}
 
 {% if owner.google.verify %}<!-- Webmaster Tools verfication -->
 <meta name="google-site-verification" content="{{ owner.google.verify }}">{% endif %}
-{% if owner.bing-verify %}<meta name="msvalidate.01" content="{{ owner.bing-verify }}">{% endif %}
 
 {% capture canonical %}{% if permalink contains '.html' %}{{ url }}{% else %}{{ url | remove:'index.html' | strip_slash }}{% endif %}{% endcapture %}
 <link rel="canonical" href="{{ canonical }}">
@@ -40,11 +39,3 @@
 <link rel="shortcut icon" href="/favicon.ico">
 <!-- 32x32 -->
 <link rel="shortcut icon" href="/favicon.png">
-<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
-<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-precomposed.png">
-<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72-precomposed.png">
-<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114-precomposed.png">
-<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144-precomposed.png">

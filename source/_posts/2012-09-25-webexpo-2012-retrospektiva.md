@@ -1,21 +1,9 @@
 ---
 id: 21
-status: publish
-comments: true
-published: true
 title: Webexpo 2012 - retrospektiva
 excerpt: Letošní, opět lehce rozporuplné Webexpo je za námi. Jaké bylo?
 date: '2012-09-25 00:54:07 +0200'
 date_gmt: '2012-09-24 22:54:07 +0200'
-categories:
-- Uncategorized
-tags:
-- php
-- zend framework
-- ze života
-- událost
-- zend
-- webexpo
 ---
 <p>Četl jsem tweet "Webexpo je jediná konference, která mě dokázala nasrat ještě než začala" (autora nemůžu teď najít). A plně vyjadřoval pocity, které jsem z webexpa před začátkem měl. A podařilo se to do konce webexpa změnit? Chcete-li to vědět, čtěte dál!</p>
 <h2>Přednasrání</h2>
