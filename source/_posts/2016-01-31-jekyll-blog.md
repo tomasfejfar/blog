@@ -40,12 +40,12 @@ Zprovoznění rozhodně nebylo bezbolestné. Narazil jsem na různé problémy s
 
 Důležitá věc je, abyste Jekyll vždy spouštěli přes `bundle exec jekyll` a ne přímo, protože jinak není jisté, že se použije správná verze z *bundleru* a můžete se pak setkat třeba s takovouto chybou.  
 
-{% highlight text%}
+```bash
 Configuration file: W:/www/projects/gh-pages/_config.yml
 C:/Ruby22/lib/ruby/gems/2.2.0/gems/jekyll-3.0.2/lib/jekyll/plugin_manager.rb:30:in 'require': cannot load such file -- jekyll-sitemap (LoadError)
         from C:/Ruby22/lib/ruby/gems/2.2.0/gems/jekyll-3.0.2/lib/jekyll/plugin_manager.rb:30:in 'block in require_gems'
         ...
-{% endhighlight %}
+```
 
 Pokud ho spustíte skrz bundler `bundle exec jekyll serve`, tak to v pohodě projde. Skrz bundler to používá ty dependency specifikované v `Gemfile`. Jinak to může použít libovolnou, zrovna globálně nainstalovanou verzi.  
 

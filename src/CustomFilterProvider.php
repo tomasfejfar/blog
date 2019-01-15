@@ -16,12 +16,13 @@ final class CustomFilterProvider implements FilterProviderInterface
         return [
             // https://www.rubydoc.info/github/mojombo/jekyll/Jekyll%2FFilters:date_to_xmlschema
             // https://stackoverflow.com/a/26094939/1348344
-            'date_to_xmlschema'=> function ($value) {
-                return (new DateTime($value))->format('c');
+            'date_to_xmlschema'=> function ($value): string {
+                return DateTime::from($value)->format('c');
             },
-
-            'to_xmlschema'=> function ($value) {
-                var_dump($value);
+            // https://www.rubydoc.info/github/mojombo/jekyll/Jekyll%2FFilters:xml_escape
+            // https://3v4l.org/Mng53
+            'xml_escape'=> function ($value): string {
+                return htmlspecialchars($value);
             }
         ];
     }

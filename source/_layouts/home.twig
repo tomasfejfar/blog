@@ -4,10 +4,11 @@
 <!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
-{% include _snippets/_head.twig %}
+
+    {% include '_snippets/_head.twig' %}
     <style>
         .image-wrap {
-        {% if image.feature contains 'http' %}
+        {% if 'http' in image.feature %}
         background-image: url('{{ image.feature }}');
         {% else %}
         background-image: url('/images/{{ image.feature }}');
@@ -31,22 +32,25 @@
             <h2 class="link-post"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> <a href="{{ post.link }}" target="_blank" title="{{ post.title }}"><i class="fa fa-link"></i></a></h2>
           {% else %}
             <h2><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
-            <p>{{ post.excerpt | striphtml | truncate: 160 }}</p>
+            <p>{{ post.excerpt|striphtml|truncate(160) }}</p>
           {% endif %}
         </article>
       {% endif %}
     {% endfor %}
+
+      {% block content %}{% endblock %}
+
       <a href="/posts/" class="button">See all posts</a>
   </div><!-- /#index -->
 </div><!-- /#main -->
 
 <div class="footer-wrap">
   <footer>
-    {% include _snippets/_footer.twig %}
+    {% include '_snippets/_footer.twig' %}
   </footer>
 </div><!-- /.footer-wrap -->
 
-{% include _snippets/_scripts.twig %}
+{% include '_snippets/_scripts.twig' %}
 
 </body>
 </html>

@@ -34,3 +34,4 @@ parameters:
 
 services:
     TomasFejfar\Blog\CustomFilterProvider: ~
+

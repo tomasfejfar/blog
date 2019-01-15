@@ -12,7 +12,7 @@
 {% if image.feature %}
   <div class="image-wrap">
   <img src=
-    {% if image.feature contains 'http' %}
+    {% if 'http' in image.feature %}
       "{{ image.feature }}"
     {% else %}
       "/images/{{ image.feature }}"

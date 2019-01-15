@@ -4,21 +4,25 @@
 {% if owner.twitter %}<meta name="twitter:site" content="@{{ owner.twitter }}">{% endif %}
 {% if owner.twitter %}<meta name="twitter:creator" content="@{{ owner.twitter }}">{% endif %}
 {% if image.feature %}
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="/images/{{ image.feature }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="/images/{{ image.feature }}">
 {% else %}
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="{% if image.thumb %}/images/{{ image.thumb }}{% else %}/images/bio-photo-big.jpg{% endif %}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content="{% if image.thumb %}/images/{{ image.thumb }}{% else %}/images/bio-photo-big.jpg{% endif %}">
 {% endif %}
+
 <!-- Open Graph -->
 <meta property="og:locale" content="{{ locale }}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ title }}{% endif %}">
 {% if excerpt %}<meta property="og:description" content="{{ excerpt|striphtml }}">{% endif %}
-<meta property="og:url" content="{{ url|replace('index.html','')|prepend: public_url }}">
+{% if post is defined %}
+    <meta property="og:url" content="{{ public_url }}{{ post.getRelativePath() }}">
+{% endif %}
 <meta property="og:site_name" content="{{ title }}">
+
 {% if image.feature %}
-<meta property="og:image" content="/images/{{ image.feature }}">
+    <meta property="og:image" content="/images/{{ image.feature }}">
 {% else %}
-<meta property="og:image" content="{% if image.thumb %}/images/{{ image.thumb }}{% else %}/images/bio-photo-big.jpg{% endif %}">
+    <meta property="og:image" content="{% if image.thumb %}/images/{{ image.thumb }}{% else %}/images/bio-photo-big.jpg{% endif %}">
 {% endif %}

@@ -1,7 +1,7 @@
 <div itemscope itemtype="http://schema.org/Person">
 
   <a href="/">
-{% if owner.avatar contains 'http' %}
+{% if 'http' in owner.avatar %}
 	<img src="{{ owner.avatar }}" class="bio-photo" alt="{{ owner.name }} bio photo">
 {% else %}
 	<img src="/images/{{ owner.avatar }}" class="bio-photo" alt="{{ owner.name }} bio photo">
