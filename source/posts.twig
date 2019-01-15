@@ -10,7 +10,7 @@ title: All Posts
     {% set year %}{{ post.date|date('Y') }}{% endset %}
 
     {% if year != written_year %}
-        <h3>{{ year }}</h3>
+        <h3 class="mt-5">{{ year }}</h3>
         {% set written_year = year %}
     {% endif %}
     <article>

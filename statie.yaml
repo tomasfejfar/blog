@@ -1,5 +1,5 @@
 parameters:
-    title: 'Tomáš Fejfar'
+    main_title: 'Tomáš Fejfar'
     public_url: 'https://blog.tomasfejfar.cz'
 
     generators:
