@@ -23,6 +23,3 @@ parameters:
 
     # social networds
     locale: en_US
-
-services:
-    TomasFejfar\Blog\CustomFilterProvider: ~
