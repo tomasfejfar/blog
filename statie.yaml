@@ -12,7 +12,7 @@ parameters:
         avatar: 'bio-photo.jpg'
         bio: 'Web developer'
         email: 'tomas.fejfar@gmail.com'
-        disqus-shortname: 'tomasfejfar'
+        disqusShortname: 'tomasfejfar'
         twitter: 'tomasfejfar'
         facebook: 'tomasfejfar'
         google:

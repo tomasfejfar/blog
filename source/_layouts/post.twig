@@ -28,7 +28,7 @@
                           <strong>{{ title }}</strong> was published on <time datetime="{{ date|date_to_xmlschema }}">{{ date|date( "%B %d, %Y") }}</time>{% if modified %} and last modified on <time datetime="{{ modified|date("%Y-%m-%d") }}">{{ modified|date( "%B %d, %Y") }}</time>{% endif %}.
                       </p>
                   </div>
-                {% if owner.disqus-shortname %}
+                {% if owner.disqusShortname %}
                   <section id="disqus_thread"></section>
                 {% endif %}
                 </article>
