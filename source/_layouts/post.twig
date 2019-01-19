@@ -8,14 +8,11 @@
     </head>
 
     <body>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-3">
-                  {% include '_snippets/author-bio.twig' %}
-                </div>
-                <article class="col-9">
+                <article class="col-md-9 order-md-2">
                     <h1><a class="back-to-home" title="Back to homepage" href="/">🔙</a>
-                      <a href="/{{ post.relativeUrl }}/" rel="bookmark" title="{{ title }}">{{ title }}</a>
+                      {{ title }}
                     </h1>
 
                   <div>
@@ -32,6 +29,9 @@
                   <section id="disqus_thread"></section>
                 {% endif %}
                 </article>
+                <div class="col-md-3 order-md-1">
+                    {% include '_snippets/author-bio.twig' %}
+                </div>
           </div>
         </div>
 

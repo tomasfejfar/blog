@@ -2,6 +2,11 @@ html, body {
     scroll-behavior: smooth;
 }
 
+.container-fluid {
+    max-width: 1024px;
+    margin-top: 1em;
+}
+
 .highlight {
     background: #ffcd00;
     color: #212529;
@@ -12,28 +17,28 @@ html, body {
 
 }
 
-h1, h2, h3 {
+/*h1, h2, h3 {
     font-family: BlinkMacSystemFont,segoe ui,Roboto,Oxygen-Sans,Ubuntu,Cantarell,helvetica neue,sans-serif;
-}
+}*/
 
-h1 {
+/*h1 {
     padding-top: 1em;
     padding-bottom: 1em;
-}
+}*/
 
-h2 {
+/*h2 {
     padding-top: .6em;
     padding-bottom: .3em;
-}
+}*/
 
 .favicon-img {
     margin: 3px 0 2px;
     vertical-align: text-bottom;
 }
 
-h2 {
+/*h2 {
     position: relative;
-}
+}*/
 
 h2:target::before {
     content: ' ▶ ';
@@ -49,14 +54,22 @@ h2:target::before {
     font-size: 110%;
 }
 
-h1 {
+/*h1 {
     line-height: 1.3em;
-}
+}*/
 
 @media only screen and (max-width: 37.5em) {
     .back-to-home {
         display: inline-block;
     }
+
+    p img {
+        max-width: 100%;
+    }
+}
+
+img {
+    max-width: 100%;
 }
 
 /* footer banner */
@@ -66,8 +79,8 @@ h1 {
     padding: 1em 2em;
 }
 
-.footer-div img{
-    float:left;
+.footer-div img {
+    float: left;
     width: 4em;
     margin: 0 .5em .5em 0;
 }
@@ -75,6 +88,10 @@ h1 {
 blockquote {
     font-size: 1.3em;
     line-height: 1.3em;
-    padding-top: .3em;
-    padding-bottom: .1em;
+    padding-top: 1rem;
+    padding-bottom: .01rem;
+    padding-left: 1em;
+    border-left: .1em solid #ffcd00;
+    background-color: #fff5cc;
+
 }

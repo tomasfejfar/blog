@@ -9,7 +9,7 @@ Zbývá jen pár dní a začne říjen! Měsíc, kdy se zkracují dny a prodluž
    
 Udělat pullrequest není nic složitého. Zvládnete to během pár minut.  
 
-<a href="#jak-na-to" class="btn">Chci přeskočit povídání a rovnou udělat pullrequest</a> 
+<a href="#jak-na-to" class="btn btn-warning">Chci přeskočit povídání a rovnou udělat pullrequest</a> 
 
 ## Co je to pullrequest?
 
@@ -79,7 +79,7 @@ Pokud vytváříte pullrequest hned po tom, co jste pushnuli, tak se vám ve va�
 
 ![Tlačítko na pullrequest](/images/posts/hacktober/8-pr-step1.png)
 
-<a href="#pr-ready" class="btn">Tlačítko se mi objevilo, přeskočit ruční vytváření</a>
+<a href="#pr-ready" class="btn btn-warning">Tlačítko se mi objevilo, přeskočit ruční vytváření</a>
 
 Pokud se vám tlačítko neobjevilo, tak si otevřete původní (!) projekt na Githubu, tedy ne svůj fork! A přejděte na záložku *Pull Requests* a tam je tlačítko *New Pull Request*. 
  

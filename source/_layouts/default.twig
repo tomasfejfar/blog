@@ -9,12 +9,13 @@
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-3">
-                    {% include '_snippets/author-bio.twig' %}
-                </div>
-                <div class="col-9">
+                <div class="col-md-9 order-md-2">
                     {% block content %}{% endblock %}
                 </div>
+                <div class="col-md-3 order-md-1">
+                    {% include '_snippets/author-bio.twig' %}
+                </div>
+
             </div>
         </div>
 
