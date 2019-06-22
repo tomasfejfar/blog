@@ -1,0 +1,246 @@
+---
+id: 41
+title: How to reset master to empty commit
+date: '2019-06-21 00:00:00 +0200'
+excerpt: Most people I know are using PR-based development and some companies even make this a hard requirement for legal reasons, so that every piece of code is seen at least by two people. You usually create a branch, push it to origin and make a PR against master. But what to do if you forgot to do this in a new repo and now you have a bunch of commits already in master? And how to prevent it in the future? 
+---
+
+Most people I know are using PR-based development and some companies even make this a hard requirement for legal reasons, so that every piece of code is seen at least by two people. You usually create a branch, push it to origin and make a PR against master. But what to do if you forgot to do this in a new repo and now you have a bunch of commits already in master? And how to prevent it in the future? 
+
+## How to prevent this situation in the first place? 
+
+### TL;DR
+
+> Add an alias `start = !git init && git commit --allow-empty -m \"Initial commit\"` and use it to create an empty repository. 
+
+Malta is a country located on an archipelago in the Mediterranean Sea south of Sicily. The official languages are English and Maltese. There is actually a multitude of islands that make up the Maltese archipelago - the two main islands are Malta and Gozo. 
+
+English is spoken here because the island was part of English empire until 1967. That also means that you drive on left in Malta (bad news if it messes with your brain like in my case). English remnants can be seen around the whole island. [Typical English red phone booth](https://goo.gl/maps/37n4syMjUGE2) set in what seems more like Italy than England is one of the most surreal ones.       
+
+## When to visit Malta?
+
+We arrived in the beginning of October and stayed until November. October was still quite warm. When the sky was clear, the temperatures felt like regular summer and sunburns were a real thing. It was colder on some days when the winds were stronger. It was totally OK to swim most of October. Last week in November, it was a few degrees colder and we did not swim as often mostly due to clouds and wind. Generally, the temperatures were above 20°C. Some days it felt like 30, most days like 25.  
+
+We heard stories from locals that the city is very crowded in summer, but it has not been the case in October.   
+
+## How to get to Malta
+
+Most often people arrive at MLA (*Malta International Airport* also known as *Luqa Airport*). From the Czech Republic, there are direct ČSA flights for 2000 to 4000 CZK (70-150€) depending on the date and how early you book. Check [AZAir](http://www.azair.com) for fares from your city. 
+
+## Where to stay in Malta?
+
+The capital city of Malta is called Valletta. It's located on the north-eastern coast of the Malta island. It abounds with historical sites and monuments. But as with most cities, you don't really want to live in the historical center. 
+
+From our experience, Sliema is a great place to stay. It's located on a peninsula across the bay from Valletta. Compared to Valletta, it's more modern and suitable for normal life. There are local restaurants, supermarkets and small groceries hidden in the narrow streets. There is also a promenade along the whole peninsula called Sliema Front with many restaurants and shops. There are rock-beaches along almost the whole waterfront. In our experience, the best place to swim and sunbathe is near the [Roman Baths](https://goo.gl/maps/A44GYAVyfK82) and Surfside restaurant. There is a good access to the open sea as well as a natural pool for children.
+
+Exact location on the peninsula depends on your needs. We lived in the middle next to the Huber bus station. That proved very useful. The Scott's supermarket is around the corner. Beach is 10 minutes down the hill. It's the same distance to each part of the peninsula - to the Ferries bus station, to the Exiles bus station, to Balluta Bay and just a little longer walk to the Towers supermarket. The St. James hospital is nearby should you ever need it. It's a relatively quiet neighborhood. The downside is that everything is downhill - that means you need to get uphill when you go back :) 
+
+## How to get around Malta
+
+![Tallinja](/images/posts/malta/tallinja.jpg)
+
+### Buses
+
+Bus transport is great in Malta, but there are some specific aspects you should know. But before I get to it, let's start with the trip from the airport. I'll assume you stay in Sliema or Valletta.
+
+There is the X4 line to Bombi bus station (not your last time there probably) on a big junction. Take the stairs to the lower part of the junction and from there you can take a multitude of bus lines to Sliema (13, 13A, 14, 15 and 16 will take you at least to Ferries).
+
+### Bus tickets
+
+Let's make a short break to talk about [bus fares](https://www.publictransport.com.mt/en/bus-card-and-ticketing). In the summer season it's 2€ for a 2-hour ticket including interchanging, in the winter season (from mid-October) it's 1.5€. In my opinion, it's best to buy prepaid **12 Single Day Journeys** card for 15€. It's very convenient and one card can be used by multiple people at once.
+
+### Bus specifics
+
+There are bus stations every few hundred meters in the cities. It's almost never more than a kilometer in the countryside. Compared to what we're used to in the Czech Republic, it feels like there is a bus station around every corner. 
+
+However, this setup means that almost all stations are on-demand. You need to press a button when you want to get off at the next station. What surprised us is that you also need to wave at the driver if you want to get on. It actually happened that we forgot and the bus drove right past us. 
+
+Also, even in the winter season, the buses tend to be overcrowded during rush hours and on weekends. It's not at all uncommon to have a bus drive past you with the driver just shrugging - sorry, it's full. 
+
+*<a name="travelHack"></a>Travel Hack:* If you manage to live in the center of Sliema like we did, you can hack the buses. You always go to the furthest bus stop from where you want to go. Go to the southern bus stop if you want to go north and vice versa. There is usually some room on the bus when it enters Sliema, but you can be sure there will be none when it leaves on the other side.
+
+### Bus lines
+
+Google Maps have a pretty good idea about the bus lines in Malta. We used Google Maps to plan our trips almost all the time. However, make sure to leave some room for the unexpected. Buses *tend* to arrive around the times they should. Until they don't. Or they arrive full. 
+
+We haven't had hard time taking buses around the island. Worst case was one Sunday when our trip to the north took almost two and a half hours instead of 50 minutes. First, the bus arrived full, so after 30 minutes of waiting, we took an another bus that took us about a third of the way (which was a mistake - see [Travel Hack](#travelHack)). From there we had a really hard time catching a bus that was not full. *Note:* TD and X lines tend to be less crowded as they stop only at a few stops.
+
+### Summary
+
+Buses are cheap and frequent. Don't forget to wave. In rush hours they may be full or late.  
+
+### Cars
+
+When we were on Gran Canaria, we rented cars a few times to go on a trip around the island. We have not rented a car in Malta the whole month. We actually never needed to, to be honest. Buses were fine. 
+
+If you choose to rent a car, keep in mind to drive on the left. There is also an unhealthy number of one-way streets in the towns. Well, there are almost exclusively one-way streets. And parking spaces are very scarce. Also, congestion is a norm during the rush hours. It's not worth the stress IMO. 
+
+I wouldn't suggest renting a car in Malta unless you absolutely hate buses.  
+
+### Boats
+
+There is one boat you should definitely take - it's the ferry from Sliema to Valletta. It's fast (10 minutes) and cheap (1.5€) way to get to Valletta. It's also possible to take various boat trips around the island. It felt very much like a tourist trap, so we steered well away from those. In case you want to try, you find them near the Ferries bus station. 
+
+## What to do in Malta?
+
+For hikes in the countryside (and in the cities as well) I suggest you download [Windy Maps](https://play.google.com/store/apps/details?id=cz.seznam.windymaps&hl=en). It's an app that allows you to download very detailed tourist maps for offline use. We've been using them successfully throughout our stay. There are paths as well as town details that are **not available on Google Maps** - sometimes there are paths and POIs on Windy Maps, but only a big grey area on Google Maps. 
+
+## Sliema neighborhood
+
+### Walk along the Sliema Front
+
+![Sliema Front](/images/posts/malta/sliema-waterfront.jpg)
+
+Paved [promenade around the whole peninsula](https://goo.gl/maps/iRrQPCEiGcm). Great for long night walks. There are bars, cafes and restaurants along the seafront. During walking, you get different views of the sea. Sometimes you stand on a steep cliff, sometimes you can see the beach just a few meters below. There are stairs to the rock beaches every few hundred meters.
+
+### See the boats in harbor
+
+The [area around Ferries bus stop](https://goo.gl/maps/uq4Bbdxr42B2) is much more vibrant than the rest of Sliema but also more touristy. It's a nice walk along the sea looking at the bay with different boats and views of both Valletta and Manoel Island. Nice during day and night. 
+
+### Visit Duck Village
+
+![Duck Village](/images/posts/malta/ducks.jpg)
+
+Further south from Ferries on the bridge to Manoel Island, there is a place called [the Duck Village](https://goo.gl/maps/rwEz4gtjByj). It's a bizarre, unique, but quite nice place for ducks to live, made by some local volunteers.
+
+### Marvel at the yachts in Manoel Island Yacht Marina 
+
+If you walk along the southern edge of Manoel Island, there is [a yacht marina](https://goo.gl/maps/JTE4iUQYKrs). Definitely worth a visit. So many beautiful boats in one place. Later in the afternoon, it was almost empty. 
+
+### Look at Valleta from Tigné Pedestrian Bridge
+
+Near The Point Shopping Mall, there is a [lookout elevated above the seafront](https://goo.gl/maps/BQF7AqjY75G2). It has nice views day and night. You can walk below it further to the tip of the peninsula along the coast. Unfortunately, we couldn't find a way to Fort Tigné on the very tip.
+
+### Get amazed by waves crashing against the coast 
+
+![Massive vawes](/images/posts/malta/waves.jpg)
+ 
+[Near the Chalet bus station](https://goo.gl/maps/ivMCvYiCm5N2) is a great place to look at the waves on an extremely windy day if you encounter one. 
+
+### Swim in the sea
+
+![Swimming](/images/posts/malta/swimming.jpg)
+
+The [best part of the beach](https://goo.gl/maps/jbBCspxXfR82) in Sliema is near the Ghadir bus stop. There is also a natural pool for kids and when the sea is too rough. 
+
+### Watch colorful fishing boats in Spinola Bay
+
+[Nice bay](https://goo.gl/maps/dhnR6mZhqmx) in the northern part of Sliema. There are many fishing boats and fish restaurants on the seafront. 
+
+### Feed a cat at the Cat Village
+
+Like Duck Village, but for cats :) Houses and hides located [on the corner of two streets](https://goo.gl/maps/YuXkfFXQpYy). Again, bizarre, but nice. 
+
+## Valletta
+
+![Valletta](/images/posts/malta/valletta.jpg)
+
+There are enough places in Valletta to walk around the whole day. And there is even more to see if you want to go to the museums, galleries and other similar places. I won't go into the details here. We walked around the whole area and didn't go in any of the museums. I'll just point out some things that I think you might miss, but should not.  
+
+### Observe the differences of St. Paul's Anglican Cathedral
+
+[This church](https://goo.gl/maps/PsSvoLSrZwk) is very different from other churches that we've seen in Malta. They offer descriptions in multiple languages at the entrance. Interesting information can also be found on the panels inside. It's the prominent tower you see from Sliema. 
+
+### View the Grand Harbor from Upper Barrakka Gardens
+
+[Beautiful views of the harbor](https://goo.gl/maps/F4kbUXCaCND2). There is a lift on the south part that can take you down to the harbor (free down, paid up, stairs also available). There is [The Saluting Battery](https://goo.gl/maps/NGCgYPXMwBs) right below. They actually [fire the guns every day](http://www.salutingbattery.com/visitor-info.html), so make sure you're there at the right time.
+
+### Have a chocolate shot at Chocolate District
+
+You can get [great coffee and chocolate](https://goo.gl/maps/pWmt8i4gzjk) here. Wide choice of different coffee beans. Try the chocolate shots. They also offer tasty cakes and pralines. The cafe is in the basement, but you can sit outside as well. Very attentive staff. 
+
+### Find the hidden monument in Hastings Garden
+
+[On the top of the city fortification](https://goo.gl/maps/gSsaYb8E7Vq), there is a beautiful park. You can admire amazing views of the city outside the gates as well as Sliema. In the northern part, there is a [Václav Havel Memorial](https://goo.gl/maps/vGjXPcCcGjD2). Havel was the first Czech president, dramatist and one of the leaders of the Velvet Revolution in Czechoslovakia. It was very surprising to find it in Malta.  
+
+## Full day trips around the island
+
+## Mdina and Rabat
+
+[Mdina](https://goo.gl/maps/h2wXFDEhmo32) is a picturesque walled city on top of a mountain in the north-western part of the island. If you get the chance, make sure to look at it from the outside as well as inside. Also, the view from the walls to the surrounding countryside is amazing. We actually walked every street in the inner city. It was fun. There are also gardens just outside the walls to the southwest. You can get there by stairs next to the Il-Veduta restaurant to the left from the city gate. 
+
+![Catacombs](/images/posts/malta/catacombs.jpg)
+
+Rabat is a city next to Mdina. It's a walking distance. You definitely shouldn't miss [St. Paul's Catacombs](https://goo.gl/maps/kuS3W6DNjjz) - burial chambers from Roman times. It was an amazing experience because you can get underground right inside the catacombs. There are plenty of them and each one is different. Some of them are smaller, some have lighting, some only have emergency lights and you can explore them on your own. After a few, they start to look a bit alike and it can get a bit tiring, so make sure to read the signs outside the entrance of each catacomb to learn about what's inside and pick your favorite. 
+
+If you like walking and you are still not tired after visiting the two towns, you can take the bus to Ħad-Dingli and then take a walk (~1km) to the Dingli Cliffs (or make it a full day trip - see below). It fits nicely into the schedule as you arrive right on time for sunset. 
+
+## Dingli Cliffs
+
+![Dingli Cliffs](/images/posts/malta/cliffs.jpg)
+
+Dingli cliffs are a natural preserve on the south-western coast of the island. The cliffs are the highest point of Malta - about 250 metres from the sea level. An amazing thing to see. But as it is with many amazing places, it's not much fun to be on them - it is better to look at them from a distance. You probably arrive at St. Mary Magdalene Chapel south of Dingli (either by bus or on foot from Ħad-Dingli). After you enjoy the view, I suggest you take the road south. There is a small peninsula next to the [Zuta bus station](https://goo.gl/maps/CC7aHn8AczS2) offering great views of the cliffs from the rock formation on the tip. If you feel like watching the sunset, this is the place. And you can actually see the whole cliffs from here. Also note the uninhabited Filfla island nearby. 
+
+If you took this trip after Mdina and Rabat, it's sunset. Enjoy. Your trip ends here. Otherwise, I suggest you continue south. 
+
+## Trip from Dingli to Blue Grotto
+ 
+(11km - [route](https://en.mapy.cz/s/2bhRj))
+
+![Cliffs](/images/posts/malta/cliffs2.jpg)
+
+From the Zuta station, continue down below the cliffs along the coast (red MVV Tour 1 on Windy Maps which is only a white road in grey nothingness on Google Maps). After a kilometer the red road turns right into a path. Don't go there. It is private property and you can't cross. Continue up to the [junction with a big road](https://goo.gl/maps/KTiCcasQkPr), then right and down to the coast. 
+
+At the roundabout, turn right along the quarry. Check the weather - *if it's windy or rainy, continue left instead of right* - the bottom part could be dangerous in bad weather. 
+
+The part of the road along the quarry is very boring, but it's worth it. After a while, you arrive at [Ghar Lapsi Divesite](https://goo.gl/maps/tVLMsFLTfW92). A beautiful little place to swim, snorkel or have something to eat in one of the local restaurants. The road seemingly ends with a parking lot, but there is a path further to the south, right next to the sign "DANGER! Falling rocks". If you're in doubt, check with the locals as we did, but in our experience (10/2017) it was safe. Adventurous though, so make sure to mind your surroundings. You WILL need Windy Maps and GPS for this part as it shows the whole path, Google Maps omit the most important final part. 
+
+![Falling rocks](/images/posts/malta/cliffs-falling-rocks.jpg)
+
+The path winds along the coast with monumental cliffs to your left and a steep drop to the sea on your right. The meadows around are full of stones that fell from the cliffs above. For us it was the most interesting trek of the whole month. We actually got lost once, so mind the map! :)
+
+At the end you climb the cliff to the Mnajdra and Ħaġar Qim temples (maybe a bit strong word - it's actually walkable). Take a look, get inside if you have time. Then continue via the main road for about a kilometer to Blue Grotto. Enjoy a few last bits of sunshine and then head for the bus station right next to it.  
+
+## Marsaxlokk to Marsaskala 
+
+(11.6km - [route](https://en.mapy.cz/s/2bhUl))
+
+![Marsaxlokk](/images/posts/malta/marsaxlokk.jpg)
+
+Marsaxlokk is a fishermen village on the south-eastern coast. It's known for its fish market on Sundays. We went there on Sunday, but in hindsight we should have picked another day. The seafront was crowded and the "fish market" was actually "souvenir and hawkers market with two fishermen stalls". Annoying. Experiencing the small village on a quiet day would be much better. 
+
+Take the opportunity to look at the harbor with colorful fishing boats. Then continue along the coast in the south-west direction and slightly uphill (beautiful views of the village). Take the road south along the power station, down to the Delimara Fort. If you take the fork to the right in front of the fort, you'll get to a beautiful outlook with a great view of the Birzebbuga port. There is a nice little bay on the other side of the peninsula, which is great for swimming and snorkeling. Then continue north along the eastern coast. You may want to see St. Peter`s Pool, but it feels touristy compared to where you've just been. Other options are Il-Ħofra l-Kbira and Il-Ħofra ż-Żgħira. 
+
+You don't want to miss Il-Ponta tal-Munxar - the tip of the white cliff some 30 meters above sea level. The path leading to it is not accessible by cars and I believe it's the most beautiful part of the hike. After that you descent to the town of Marsaskala. Feel free to walk the streets and look around. Bus from Marsaskala station will take you back to Bombi. 
+
+## Trip around the northern part of the island near Red Tower 
+
+(12.8km - [route](https://en.mapy.cz/s/2dImm))
+
+![Red Tower](/images/posts/malta/red-tower.jpg)
+
+The northernmost part of the Malta island is comprised of a sizeable peninsula that extends to both east and west of the isthmus near the town of Għadira. I suggest you go on this trip on weekdays or get as close to Bombi as possible. The lines in that direction are all very crowded on weekends. They go to the Paradise Beach, Gozo ferry as well as in the direction of Għajn Tuffieħa beach. Basically everyone is going that direction on a nice weekend. It took us more than 2 hours to catch a bus that was not absolutely full. In the end, we took X4 from Airport to Gozo ferry. It stops less often than normal lines and was therefore almost empty. If you're lucky you'll be able to take a direct line to the Qammieh bus stop. That will take you to the top of the hill near the Red Tower - the first stop on this trip. 
+
+Red Tower is iconic and actually painted red. It's accessible for 2€ from 10AM to around 3PM (it apparently changes every year), so it's better to get there as soon as you arrive. The view from the top of the tower is awesome. You can see as far as Għajn Tuffieħa cliffs in the south, Gozo and the small island of Comino in the north and pretty much the whole area you will walk to the east and west. When ready, continue east across the roundabout. 
+
+This part of the way is less interesting as it goes along the road. You can either go straight east towards the eastern tip, or you can take a little detour and turn right to visit [WWII Beach Post - Ta' l-Imgharqa](https://goo.gl/maps/Hfm5JzZtTN42). The way there will take you through a bit of wild vegetation, along bird catchers' cottages down to the coast. You can then continue east along the coast. Not for too long unfortunately because there are many private properties, so you'll need to get back to the main road. Note the round fish farms in the sea to the right. Follow the straight road up to the [Il-Madonna tal-Aħrax](https://goo.gl/maps/NG4f74wuA612) - a statue on the top of the cliff. There is also a chapel nearby. 
+
+From there continue north along the coast to the [White Tower](https://goo.gl/maps/TPzqrvw2qbw). Unfortunately, the tower itself is not accessible. If you're ahead of schedule, you can check out [the Coral Lagoon](https://goo.gl/maps/ArGhjUq7MNT2) nearby. The route will then lead you along the northern coast through beautiful local villages. There is also an option for a quick bath at Palm Beach near [Mambo's Beach Club](https://goo.gl/maps/JMZJYAugDLy). Then just continue westward. A wind turbine nearby is a good orientation point. After a while, you'll see Triq il-Marfa - something like a highway. The walk along is quite annoying, but luckily also short. Near the water treatment plant on the left side turn left to get to the parking lot on the top of the hill. There is a path to the right that will take you down to the [Paradise Bay Beach](https://goo.gl/maps/ZDMHEgWQJ7y). It was not very well maintained when we visited in November - lots of cans and plastic from the sea. Apparently it's much better during the main season. You should arrive right on time for sunset. When you're ready, go back the way you came, just turn left at the water plant. You can either catch a bus from the station nearby or walk a little further and check out the ferry port.   
+
+## Għajn Tuffieħa beach
+
+![Tuffieha](/images/posts/malta/tuffieha.jpg)
+
+[This beach](https://goo.gl/maps/QvoHYTAnikS2) is located in the north-western coast of Malta. It's a beautiful cove, shielded on both sides with steep cliffs. What sets it apart from other swimming locations is the sand - quite uncommon thing in Malta. The bus stops on the top of the cliff and you can get to the beach by long stairs on the left side. The sun shines here even later in the afternoon due to the western orientation. You can also walk atop the cliff south to the next cove. 
+
+## Festivals
+
+October seemed like the right time for festivals in Malta. There were two notable festivals in October. 
+
+### Qormi Bread Festival 
+
+![Bread festival](/images/posts/malta/bread.jpg)
+
+[Facebook page](https://www.facebook.com/Casalfornaroqormi/)
+
+Maltese bread is quite specific, much unlike British bread. It has hard crust and soft crumb. And Maltese are proud of it. So proud they make a [specific festival just for the bread](https://www.facebook.com/Casalfornaroqormi)! The village of Qormi is located south of Valletta. It's quite small with very narrow streets. The festival starts in the evening and the village is decorated with lights and flags for the occasion. It is definitely worth the visit. Most of the crowd seemed local and many stalls had Maltese-only signs (everyone speaks good English though). Apart from local bread and bread-related food there were stalls with Maltese rabbit with garlic and so on. A cultural performances are also a part of the festival. 
+
+### Ħamrun Chocolate Festival
+
+[Facebook event for 2017](https://www.facebook.com/events/1834988400146752/)
+
+Ħamrun is located just south of Sliema. We actually walked there. It's a nice trip along the coast with views of Valletta, later of the marina and then just little up the hill to Ħamrun. The festival takes place along the main road that is closed for the occasion. There is a wide selection of (not only) chocolate sweets. We've tasted some Sudanese sweets as well as typical Maltese fried pastry with figs called [Imqaret](https://en.wikipedia.org/wiki/Imqaret). And a lot of chocolate in the form of hot chocolate, pralines and pastry. The local scouts also take part in the festival and you should see their base in the old railway station. There was a railway exhibition featuring miniature steam engines (among other things). We admired the precise engineering - I've never seen actual working [miniature hot air engine](https://en.wikipedia.org/wiki/Hot_air_engine) before. 
+
+## Let me know what you think
+
+That's all from me. I've shared with you all the places we liked in Malta. Have you been to some other places that are worth the visit? Let me know. 
