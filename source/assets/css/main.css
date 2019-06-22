@@ -94,3 +94,19 @@ h2:target::before {
     right: 0;
     top: .25em;
 }
+
+.heading-anchor, .heading-anchor:hover {
+    text-decoration: none;
+    color: #212529;
+}
+
+.heading-anchor:hover::after {
+    display: inline-block;
+    content: "#";
+    padding-left: .25em;
+    border: 0 !important;
+}
+
+.posts-list {
+    margin-bottom: 1em;
+}

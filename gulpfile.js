@@ -9,7 +9,7 @@ var log = require('gulplog');
 gulp.task('default', function () {
     // Generate current version
     log.info('Generating...');
-    exec('vendor/bin/statie generate source', function (err, stdout, stderr) {
+    exec('vendor/bin/statie generate source --verbose', function (err, stdout, stderr) {
         stdout ? log.info(stdout.trim()) : null;
         stderr ? log.error("Error:\n" + stderr.trim()) : null;
 
@@ -19,9 +19,9 @@ gulp.task('default', function () {
     });
 
     // For the second arg see: https://github.com/floatdrop/gulp-watch/issues/242#issuecomment-230209702
-    return watch(['source/**/*', '!**/*___jb_tmp___'], function () {
+    return watch(['statie.yaml', 'source/**/*', '!**/*___jb_tmp___'], function () {
         log.info('Regenerating...');
-        exec('vendor/bin/statie generate source', function (err, stdout, stderr) {
+        exec('vendor/bin/statie generate source --verbose', function (err, stdout, stderr) {
             stdout ? log.info(stdout.trim()) : null;
             stderr ? log.error("Error:\n" + stderr.trim()) : null;
         });
