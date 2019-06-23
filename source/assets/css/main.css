@@ -1,5 +1,7 @@
 html, body {
     scroll-behavior: smooth;
+    line-height: 1.8;
+    font-size: 1.15em;
 }
 
 .highlight {
@@ -9,6 +11,7 @@ html, body {
 
 .jumbotron {
     background-color: #f2f5f7;
+padding: 1rem 1rem;
 }
 
 .pehapkari-svg {
@@ -27,14 +30,17 @@ html, body {
 .reference .media-body p {
     font-style: italic;
 }
+
 .favicon-img {
     margin: 3px 0 2px;
     vertical-align: text-bottom;
 }
+
 .nav-link {
     text-decoration: underline;
     font-weight: bold;
 }
+
 .navbar-brand {
     font-size: 150%;
 }
@@ -42,6 +48,7 @@ html, body {
 h2 {
     position: relative;
 }
+
 h2:target::before {
     content: ' ▶ ';
     color: #f00;
@@ -51,12 +58,14 @@ h2:target::before {
     font-family: Arial;
     line-height: 135%;
 }
+
 .crossed-out {
     position: relative;
     display: inline-block;
     text-decoration: none;
 }
-.crossed-out::before{
+
+.crossed-out::before {
     content: '';
     border-bottom: 2px solid red;
     width: 80%;
@@ -66,12 +75,14 @@ h2:target::before {
     -webkit-transform: skewY(-10deg);
     transform: skewY(-10deg);
 }
+
 .quoted {
     font-style: italic;
     position: relative;
     padding-left: 2em;
     padding-right: 2em;
 }
+
 .quoted::before {
     content: '„';
     font-size: 400%;
@@ -79,10 +90,11 @@ h2:target::before {
     font-family: "Times New Roman", serif;
     font-weight: bold;
     color: rgba(136, 136, 136, .25);
-    position:absolute;
+    position: absolute;
     left: 0;
     bottom: .5em;
 }
+
 .quoted::after {
     content: '“';
     font-size: 400%;
@@ -90,7 +102,7 @@ h2:target::before {
     font-family: "Times New Roman", serif;
     font-weight: bold;
     color: rgba(136, 136, 136, .25);
-    position:absolute;
+    position: absolute;
     right: 0;
     top: .25em;
 }
@@ -109,4 +121,18 @@ h2:target::before {
 
 .posts-list {
     margin-bottom: 1em;
+}
+
+.post-body img {
+    max-width: 100%;
+}
+
+blockquote {
+    border-left: .5em solid rgba(255, 205, 0, .6);
+    background: rgba(255, 205, 0, .15);
+    padding: .5em .5em .01em 1em;
+}
+
+.post-sidebar .img-thumbnail {
+margin: 0 auto;
 }

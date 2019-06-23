@@ -1,26 +1,31 @@
 {% include '_snippets/head.twig' %}
 {% include '_snippets/header.twig' %}
 
-{% if post.excerpt is defined %}
-    <div class="jumbotron container">
-        <div class="row">
+<div class="row">
+    <div class="col-md-9">
+        <div class="jumbotron container">
 
-            <div class="col-md-10">
-                <h1 class="">{{ post.title }}</h1>
+
+            <h1 class="">{{ post.title }}</h1>
+            {% if post.excerpt is defined %}
                 <p class="lead">{{ post.excerpt }}</p>
-            </div>
-            <div class="col-md-2 text-center">
-                <a href="{{ homepage_url }}"><img class="img-thumbnail rounded-circle d-none d-md-block" src="/assets/images/me.jpg"></a>
-                <dl class="m-1">
-                    <dt>Author</dt><dd><a href="{{ homepage_url }}">Tomáš Fejfar</a></dd>
-                    {% if post.date %}
-                        <dt>Published on</dt><dd>{{ post.date|date('Y-m-d') }}</dd>
-                    {% endif %}
-                </dl>
-            </div>
+            {% endif %}
+        </div>
+        <div class="post-body">
+            {% block content %}{% endblock %}
         </div>
     </div>
-{% endif %}
-{% block content %}{% endblock %}
-
+    <div class="col-md-3 text-center post-sidebar">
+        <a href="{{ homepage_url }}"><img class="img-thumbnail rounded-circle d-none d-md-block"
+                                          src="/assets/images/me.jpg"></a>
+        <dl class="m-1">
+            <dt>Author</dt>
+            <dd><a href="{{ homepage_url }}">Tomáš Fejfar</a></dd>
+            {% if post.date %}
+                <dt>Published on</dt>
+                <dd>{{ post.date|date('Y-m-d') }}</dd>
+            {% endif %}
+        </dl>
+    </div>
+</div>
 {% include '_snippets/footer.twig' %}
