@@ -1,0 +1,7 @@
+parameters:
+  site_title: "Blog - Tomáš Fejfar"
+  site_url: "https://blog.tomasfejfar.cz"
+  homepage_url: "https://www.tomasfejfar.cz"
+  generators:
+    posts:
+      route_prefix: ""

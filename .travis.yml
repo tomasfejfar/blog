@@ -1,0 +1,17 @@
+language: php
+
+php: 7.2
+
+install:
+    - composer install
+
+script:
+    - vendor/bin/statie generate source
+
+deploy:
+    provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    local_dir: output
+    on:
+        branch: master

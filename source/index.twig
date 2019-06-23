@@ -1,0 +1,39 @@
+---
+layout: _layouts/default.twig
+---
+
+<div class="jumbotron">
+    <img class="float-lg-right img-thumbnail rounded-circle d-none d-lg-block" src="/assets/images/me.jpg">
+    <h1 class="display-3">Tomáš Fejfar</h1>
+    <h2 class="mb-5">
+        <small class="text-muted">PHP developer and web development coach</small>
+    </h2>
+    <p><a class="btn btn-primary" href="#posts">Read something I wrote</a>
+        <span class="btn">or</span> <a class="btn btn-outline-primary"
+                                         href="http://www.tomasfejfar.cz">Check out my website</a>
+    </p>
+</div>
+
+<div class="row posts-list" id="posts">
+    {% for post in posts %}
+    {% if not loop.index0 % 3 %}
+</div>
+<div class="row posts-list">
+    {% endif %}
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <a href="{{ post|link }}"><h5 class="card-title">{{ post.title }}</h5></a>
+                {% if post.excerpt is defined %}
+                    <p class="card-text">{{ post.excerpt }}</p>
+                    <p class="card-text">
+                        <small class="text-muted">{{ post.date|date('j. n. Y') }}</small>
+                    </p>
+                {% endif %}
+
+            </div>
+            <div class="card-footer"><a href="{{ post|link }}">Read more...</a></div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
