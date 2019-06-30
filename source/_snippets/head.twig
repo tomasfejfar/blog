@@ -2,14 +2,20 @@
     {% set title = 'Tomáš Fejfar - blog' %}
 {% endif %}
 
+{% set description = 'Organizuji školení gitu, školení PhpStormu a konzultace efektivního vývoje v týmu. Zabývám se také zakázkovým vývojem v PHP. Můžu pracovat jak samostatně, tak v týmu dalších freelancerů nebo jako součást vašeho interního týmu.' %}
+{% if post is defined %}
+    {% if post.excerpt is defined %}
+        {% set description = post.excerpt %}
+    {% endif %}
+{% endif %}
+
 <!doctype html>
 <html lang="cs">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Organizuji školení gitu, školení PhpStormu a konzultace efektivního vývoje v týmu. Zabývám se také zakázkovým vývojem v PHP. Můžu pracovat jak samostatně, tak v týmu dalších freelancerů nebo jako součást vašeho interního týmu. ">
+    <meta name="description" content="{{ description }}">
     <title>
         {{ title }}
-
     </title>
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/main.css" type="text/css">
