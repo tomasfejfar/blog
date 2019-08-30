@@ -72,7 +72,7 @@ Na raut Seznamu jsem se nedostal, ale udělali jsme si véču v hospodě.  Poke
 
 ### [Nepoužívejte Git jako SVN!](http://webexpo.cz/praha2012/prednaska/nepouzivejte-git-jako-svn/) - 60%
 
-Je vidět, že Vašek není žádný _git-newbie_, ale přišlo mi, že je příliš ovlivněný specifickým používáním gitu v Mediu. Vyloženě mimo bylo IMO popisování github-workflow jako "_mergujeme pullrequesty do masteru_" (resp. myslím, že to není to o co v tom workflow jde). Github umožňuje mnohem širší možnosti práce s pullrequesty a forky. Moje popíchnutí ohledně toho, že commit nemusí znamenat jeden funkční stav aplikace jsme si s Vaškem vysvětlili později a bylo to spíš nekompatibilním názvoslovím. Celkově jsem z toho měl rozpačitý pocit, ale to byl aspoň důvod Vaška odchytnou na afterparty a detaily dořešit, což jsem taky udělal.
+Je vidět, že Vašek není žádný _git-newbie_, ale přišlo mi, že je příliš ovlivněný specifickým používáním gitu v Mediu. Vyloženě mimo bylo IMO popisování github-workflow jako "_mergujeme pullrequesty do masteru_" (resp. myslím, že to není to o co v tom workflow jde). GitHub umožňuje mnohem širší možnosti práce s pullrequesty a forky. Moje popíchnutí ohledně toho, že commit nemusí znamenat jeden funkční stav aplikace jsme si s Vaškem vysvětlili později a bylo to spíš nekompatibilním názvoslovím. Celkově jsem z toho měl rozpačitý pocit, ale to byl aspoň důvod Vaška odchytnou na afterparty a detaily dořešit, což jsem taky udělal.
 
 ### [Ekosystém. Tak se tvoří weby!](http://webexpo.cz/praha2012/prednaska/ekosystem-tak-se-tvori-weby/) - 80%
 

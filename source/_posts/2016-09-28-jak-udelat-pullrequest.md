@@ -71,7 +71,7 @@ Já jsem si udělal branch `korektura-opensource-2`. A commit jsem pojmenoval `I
 
 ## Konečně pullrequest
 
-První věc, kterou musíte udělat, je pushnout svojí branch na Github. 
+První věc, kterou musíte udělat, je pushnout svojí branch na GitHub. 
 
 ![Připraveno na GitHubu](/images/posts/hacktober/4-commit-ready.png)
 

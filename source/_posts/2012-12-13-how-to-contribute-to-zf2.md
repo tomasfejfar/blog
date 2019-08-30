@@ -5,9 +5,9 @@ title: How to contribute to ZF2
 
 ... for git dummies
 
-I'd like to show you how to contribute to Zend Framework 2\. I'll focus on the technical issues you may encouter on the way. I assume you have set up Github correctly. If  not, [consult Github help](https://help.github.com/articles/set-up-git).
+I'd like to show you how to contribute to Zend Framework 2\. I'll focus on the technical issues you may encouter on the way. I assume you have set up GitHub correctly. If  not, [consult GitHub help](https://help.github.com/articles/set-up-git).
 
-ZF2 is developed using Github and in contrast to ZF1, you don't need to sign CLA.
+ZF2 is developed using GitHub and in contrast to ZF1, you don't need to sign CLA.
 
 First step to contributong is creating your own fork (where you will push your changes and make pullrequests from). Go to [https://github.com/zendframework/zf2](https://github.com/zendframework/zf2) and choose "Fork" in the top left corner. That will create a copy of ZF2 repo in your account - for me, it's [https://github.com/tomasfejfar/zf2](https://github.com/tomasfejfar/zf2).
 
