@@ -5,7 +5,7 @@ date: '2016-09-30 00:00:00 +0200'
 excerpt: Blíží se Hacktober Fest 2016. Poradím vám, jak udělat váš první pullrequest.  
 ---
 
-Zbývá jen pár dní a začne říjen! Měsíc, kdy se zkracují dny a prodlužují noci. Programátoři všeho druhu tak mají víc času si po nocích programovat. A není náhodou, že právě tento měsíc probíhá [#hacktoberfest](https://github.com/blog/2260-hacktoberfest-is-back). **Hacktoberfest** si klade za cíl motivovat vývojáře, aby se podíleli na opensource projektech. Jak? **Stačí se zaregistrovat a poslat nejméně 4 pullrequesty do libovolných opensource projektů a dostanete od Githubu a DigitalOceanu tričko s logem Hacktoberfestu.** 
+Zbývá jen pár dní a začne říjen! Měsíc, kdy se zkracují dny a prodlužují noci. Programátoři všeho druhu tak mají víc času si po nocích programovat. A není náhodou, že právě tento měsíc probíhá [#hacktoberfest](https://github.com/blog/2260-hacktoberfest-is-back). **Hacktoberfest** si klade za cíl motivovat vývojáře, aby se podíleli na opensource projektech. Jak? **Stačí se zaregistrovat a poslat nejméně 4 pullrequesty do libovolných opensource projektů a dostanete od GitHubu a DigitalOceanu tričko s logem Hacktoberfestu.** 
    
 Udělat pullrequest není nic složitého. Zvládnete to během pár minut.  
 
@@ -17,7 +17,7 @@ Pullrequest je způsob, jak v gitu poslat jinému vývojáři nějaké své změ
 
 > *"Podívej, mám tady v repozitáři **http://github.com/ja/projekt** nějaké úpravy. Začal jsem stavět na tvojí práci ve **v1.0.0** a commity přidával do větve **moje-upravy**. Jestli chceš, tak si ty úpravy stáhni a zahrň je do svojí větve."*
 
-Vývojáři většinou pod pojmem pullrequest rozumí [to, co najdete na Githubu](https://github.com/symfony/symfony/pull/20061), ale samotná funkcionalita pullrequestů je [dostupná i přímo v gitu](https://git-scm.com/docs/git-request-pull). 
+Vývojáři většinou pod pojmem pullrequest rozumí [to, co najdete na GitHubu](https://github.com/symfony/symfony/pull/20061), ale samotná funkcionalita pullrequestů je [dostupná i přímo v gitu](https://git-scm.com/docs/git-request-pull). 
  
 ## Proč dělat pullrequesty? 
 
@@ -47,13 +47,13 @@ Už víme o pullrequestech všechno důležité, tak pojďme nějaký udělat.
  
 ## <a name="jak-na-to"></a>Jak na pullrequest
 
-Ať se nám to líbí, nebo ne, `opensource == github`. Jako první krok je tedy potřeba na Githubu mít účet. [Zaregistrujte se](https://github.com/join?source=header-home) nebo [se přihlaste](https://github.com/login). 
+Ať se nám to líbí, nebo ne, `opensource == github`. Jako první krok je tedy potřeba na GitHubu mít účet. [Zaregistrujte se](https://github.com/join?source=header-home) nebo [se přihlaste](https://github.com/login). 
  
 Dále si vyberte, do kterého projektu chcete pullrequest poslat. Abych ukazoval postup na konkrétním případě, vybral jsem si [blog Tomáše Votruby](http://www.tomasvotruba.cz/blog/). Ano, blog. Tomáš ho píše ve statickém generátoru [Sculpin](https://sculpin.io/), takže jsou všechny blogposty jen soubory. Takže tam opravím pár drobností a pošlu pullrequest. Tak tedy směle do toho. 
 
 ## Vidličkujeme aneb *hardcore forking action*
 
-Prvním krokem je si udělat vlastní fork - tedy kopii repozitáře, do které můžete posílat nové commity. Otevřeme si [repozitář na Githubu](https://github.com/TomasVotruba/tomasvotruba.cz) a klikneme na tlačítko *Fork*. 
+Prvním krokem je si udělat vlastní fork - tedy kopii repozitáře, do které můžete posílat nové commity. Otevřeme si [repozitář na GitHubu](https://github.com/TomasVotruba/tomasvotruba.cz) a klikneme na tlačítko *Fork*. 
  
  ![Fork](/images/posts/hacktober/1-fork.png)
 
@@ -73,7 +73,7 @@ Já jsem si udělal branch `korektura-opensource-2`. A commit jsem pojmenoval `I
 
 První věc, kterou musíte udělat, je pushnout svojí branch na Github. 
 
-![Připraveno na Githubu](/images/posts/hacktober/4-commit-ready.png)
+![Připraveno na GitHubu](/images/posts/hacktober/4-commit-ready.png)
 
 Pokud vytváříte pullrequest hned po tom, co jste pushnuli, tak se vám ve vašem forku objeví rovnou tlačítko na pullrequest. 
 
@@ -81,7 +81,7 @@ Pokud vytváříte pullrequest hned po tom, co jste pushnuli, tak se vám ve va�
 
 <a href="#pr-ready" class="btn btn-warning">Tlačítko se mi objevilo, přeskočit ruční vytváření</a>
 
-Pokud se vám tlačítko neobjevilo, tak si otevřete původní (!) projekt na Githubu, tedy ne svůj fork! A přejděte na záložku *Pull Requests* a tam je tlačítko *New Pull Request*. 
+Pokud se vám tlačítko neobjevilo, tak si otevřete původní (!) projekt na GitHubu, tedy ne svůj fork! A přejděte na záložku *Pull Requests* a tam je tlačítko *New Pull Request*. 
  
 ![Pullrequest](/images/posts/hacktober/5-pr-step1.png) 
 
