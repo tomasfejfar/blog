@@ -1,0 +1,135 @@
+
+    
+<!doctype html>
+<html lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Organizuji školení gitu, školení PhpStormu a konzultace efektivního vývoje v týmu. Zabývám se také zakázkovým vývojem v PHP. Můžu pracovat jak samostatně, tak v týmu dalších freelancerů nebo jako součást vašeho interního týmu.">
+    <title>
+        Zabezpečené stahování souborů
+    </title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/github.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<a id="top"></a>
+<header class="navbar navbar-expand-lg navbar-light bg-warning">
+    <a class="navbar-brand" href="/">Blog - Tomáš Fejfar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    </header>
+<hr class="invisible">
+<div class="container">
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="jumbotron container">
+
+
+            <h1 class="">Zabezpečené stahování souborů</h1>
+                    </div>
+        <div class="post-body">
+            <p>Jistě jste se už setkali s problémem, že potřebujete zajistit, aby se nikdo nedostal k souborum v určité složce na webu. Ale někdy mu přístup chcete povolit. Šancí je, ošetřit přístup k souborům pomocí PHP. </p>
+<p><a name="update2017"></a>
+<strong>Update 19.3.2017:</strong> Dnes mi přišel mail, který reaguje na můj komentář na <a href="https://php.vrana.cz/stazeni-souboru-po-overeni-prav.php#d-6674">blogu Jakuba Vrány</a>. Původní odkaz už nefunguje, protože jsem přišel o doménu. Tak jsem se při té příležitosti rozhodl návod aktualizovat. </p>
+<p>Problém jde vyřešit mnohem snáz, než jsem ho řešil před pěti lety. Stačí vypnout output buffering pomocí <code>ob_end_clean()</code>. </p>
+<pre><code class="language-php">&lt;?php
+// chrání proti directory traversal attack ('slozka/../../../tajny_soubor.txt')
+$file = basename($file);
+
+// sestavíme cestu k souboru
+// VŠECHNY soubory v adresáři půjdou stahnout,
+// takže tam nedávejte nic jiného
+$filepath = $downloadFolder . '/' . $file;
+
+// zkontrolujeme jestli má přístup - nějaká námi napsaná funkce
+if (!isUserAllowedToDownloadCustomFunction()) {
+    // vrátíme 404ku, aby se nedalo zjistit, jestli soubor neexistuje nebo k němu jen není přístup. 
+    http_response_code(404);
+}
+ob_end_clean(); // &lt;---- tohle vyřeší celý problém
+header("Content-type: application/x-octet-stream");
+header("Content-Disposition: attachment; filename=$file");
+readfile($filepath);</code></pre>
+<p>Stále je však potřeba zamezit tomu, aby soubory ve složce byly vidět z venku. Buď složku dát mimo webroot (což často na hostingu nejde) nebo přístup k ní omezit pomocí nastavení <code>.htaccess</code>ve složce s downloady.</p>
+<pre><code> &lt;Files *&gt;
+ Order Deny,Allow
+ Deny from All
+ &lt;/Files&gt;</code></pre>
+<hr />
+<p>Kód níže je víc jak pět let starý. Dnes už to umím líp, ale nechávám ho tady pro inspiraci. </p>
+<pre><code class="language-php">&lt;?php
+function readfile_chunked($filename, $retbytes = true)
+{
+    $chunksize = 1 * (1024 * 1024); // how many bytes per chunk
+    $cnt = 0;
+    $handle = fopen($filename, 'rb');
+    if ($handle === false) {
+        return false;
+    }
+    while (!feof($handle)) {
+        $buffer = fread($handle, $chunksize);
+        echo $buffer;
+        ob_flush();
+        flush();
+        if ($retbytes) {
+            $cnt += strlen($buffer);
+        }
+    }
+    $status = fclose($handle);
+    if ($retbytes &amp;&amp; $status) {
+        return $cnt; // return num. bytes delivered like readfile() does.
+    }
+    return $status;
+}
+</code></pre>
+<p>Tenhle kód je k dispozici v <a href="http://cz2.php.net/readfile">diskuzi o readfile() na PHP.net</a> Jenže stále není vyhráno, protože stále může potenciální útočník zjistit název souboru a přistoupit k němu přímo. Tomu opět zamezíme poměrně jednoduchým nastavením.</p>
+<p>Vytvoříme <code>.htaccess</code>, který dáme do složky s downloady.</p>
+<pre><code>&lt;Files *&gt;
+Order Deny,Allow
+Deny from All
+&lt;/Files&gt;</code></pre>
+<pre><code>&lt;Files ~ "\.php$"&gt;
+Order Deny,Allow
+Allow from all
+&lt;/Files&gt;</code></pre>
+<p>To zaručí, že pro všechny soubory bude odmítnut přístup (<strong>Error 403 – Forbidden</strong>), kromě těch s koncovkou <code>.php</code>. A je to. Ochránili jsme složku proti jakémukoli pokusu o získání jejího obsahu. Kromě přístupu přes FTP, samozřejmně.</p>
+<p><strong>EDIT – BEZPEČNOSTNÍ DÍRA:</strong> Se skriptu jsem našel bezpečnostní díru. A to, že skriuptem se dají získat i soubory *.php z danného adresáře. To je třeba ošetřit podmínkou.</p>
+<pre><code class="language-php">if(strpos($file, '.php')){
+    die('Pokus o zneužití');
+}</code></pre>
+<p><strong>EDIT2 – Nefunkčnost v IE:</strong> Zjistil jsem, že skript nefunguje ze záhadného důvodu v IE. Je třeba do hlavičky poslat ještě:</p>
+<pre><code class="language-php">header("Pragma: public");
+header("Expires: 0");
+header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+header("Cache-Control: private",false);
+header("Content-Transfer-Encoding: binary");;
+header("Content-type: image/jpg"); // zde konkretni MIME-typ, ne stream.</code></pre>        </div>
+    </div>
+    <div class="col-md-3 text-center post-sidebar">
+        <a href="https://www.tomasfejfar.cz"><img class="img-thumbnail rounded-circle d-none d-md-block"
+                                          src="/assets/images/me.jpg"></a>
+        <dl class="m-1">
+            <dt>Author</dt>
+            <dd><a href="https://www.tomasfejfar.cz">Tomáš Fejfar</a></dd>
+                            <dt>Published on</dt>
+                <dd>2011-05-05</dd>
+                    </dl>
+    </div>
+</div>
+</div> <footer class="footer">
+    <div class="container">
+        <p class="text-center"><a href="#top" class="btn btn-light btn-lg">Zpátky nahoru!</a></p>
+    </div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/jquery-3.2.1.slim.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/popper.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/bootstrap.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="182700b847b95f6705103410-|49" defer=""></script></body>
+</html>

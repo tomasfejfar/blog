@@ -1,0 +1,73 @@
+
+                
+<!doctype html>
+<html lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Už nějakou dobu bylo moje S3 Mini neúnosně pomalé a místo resetu do továrního nastavení jsem chtěl zkusit flashnout.">
+    <title>
+        Jak jsem flashnul Samsung Galaxy S3 Mini na Android 5.1
+    </title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/github.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<a id="top"></a>
+<header class="navbar navbar-expand-lg navbar-light bg-warning">
+    <a class="navbar-brand" href="/">Blog - Tomáš Fejfar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    </header>
+<hr class="invisible">
+<div class="container">
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="jumbotron container">
+
+
+            <h1 class="">Jak jsem flashnul Samsung Galaxy S3 Mini na Android 5.1</h1>
+                            <p class="lead">Už nějakou dobu bylo moje S3 Mini neúnosně pomalé a místo resetu do továrního nastavení jsem chtěl zkusit flashnout.</p>
+                    </div>
+        <div class="post-body">
+            <p><strong>Počítejte s tím, že flashnutí nemusí vyjít a můžete telefon nenávratně zničit. Já jsem flashoval několikrát, různými verzemi přesně krok za krokem podle tohoto návodu a nikdy nebyl problém. A i když třeba telefon nešel nastartovat, tak přes Download mód a Odin šlo začít vždycky od znova.</strong></p>
+<p>Flashnutí libovolného telefonu je otázka několika kroků, které jsou typicky všude stejné. Liší se jen konkrétní verze operačního systému Android dostupné pro konkrétní modely. Takže i pokud nemáte zrovna <em>S3 Mini (GT-I8190N)</em>, tak vám tento návod pomůže. Sepisuji si ho mimo jiné i pro sebe, abych měl checklist, až to budu dělat přístě.  </p>
+<p>Pro S3 Mini je nejnovější Android k dispozici na <a href="http://www.novafusion.pl/">Novafusion.pl</a>. Odtamtud jsem pro jistotu také stahoval všechny ostatní nástroje. Při stahování buďte obezřetní. Rozumný zdroj bývá krom jiných také forum XDA Devs. Ale existuje i mnoho jiných webů, odkud bych se stahovat bál.  </p>
+<p>První věcí, která je k flashnutí potřeba je <strong>Odin</strong> - program v PC, přes který nahrajete přímo do interní paměti telefonu utilitu na flashnutí (a mimo jiné taky zálohování, formátování, atp.). Najdete ho v sekci Downloads. Dále potřebujete TWRP - recovery tool, kterým budete posléze nahrávat samotný OS. V sekci download pozor na to, abyste vybrali verzi &quot;odin&quot;. A Samsung USB driver. </p>
+<h2 id="nahravani-twrp"><a href="#nahravani-twrp" class="heading-anchor">Nahrávání TWRP</a></h2>
+<p>Telefon nejprve zapněte do módu vzdáleného nahrávání. To se udělá vypnutím a stisknutím <code>[Volume-][Home][Power]</code>. Až telefon naběhne do nahrávacího módu, tak zapněte v PC Odin (potřebuje oprávnění správce) a připojte telefon kabelem k PC. Odin by měl telefon zachytit a vypsat nějaké ladící informace do textového logu vlevo dole. Jakmile je Odin připravený, tak pod tlačítkem <code>PDA</code> vyberte stažený TWRP soubor (<code>twrp2.8_golden.nova.20140911.tar.md5</code>). Zkontrolujte si, že máte zaškrtnuté POUZE <code>Force Reboot</code> a <code>F. Reset Time</code>! Pak můžete pokračovat kliknutím na <code>Start</code>. Po několika desítkách sekund by mělo být hotovo. Telefon se vypne. Odteď by mělo být možné zapnutím pomocí <code>[Volume+][Home][Power]</code> nabootovat telefon do TWRP. V nové verzi má TWRP hezké dotykové rozhraní, které se dobře používá.</p>
+<h2 id="flashnuti"><a href="#flashnuti" class="heading-anchor">Flashnutí</a></h2>
+<p>Doporučuji pomocí Backup zazálohovat současnou verzi telefonu. Zálohu si uložte ideálně na SD kartu, odkud si ji můžete snadno přetahnout do PC pro jistotu. </p>
+<p>Dále si stahněte z Novafusion odpovídající verzi Androidu ve verzi &quot;recovery&quot; (tj. pro TWRP - <code>cm12.1_golden.nova.20160412.zip</code>). A GApps - tam si vyberte co vám vyhovuje (nejspíš chcete ARM, 5.1, Mini - <code>open_gapps-arm-5.1-mini-20160414.zip</code>).  </p>
+<p>Až budete připraveni, tak telefon nabootujte do normálního systému. Připojte ho k PC a normálního správcem souborů nahrajte do rootu stažené soubory. </p>
+<p>Dalším krokem je smazání současných dat. Ten uděláte v TWRP v podmenu Wipe. Až budete mít, tak v menu Install vyberte stažený OS a spusťte instalaci. Může trvat docela dlouho - u mě asi 15 minut. Na konci se zeptá, co dál. Vraťte se zpět do hlavního menu a nainstalujte ještě GApps. Po jejich instalaci využijte nabízené možnosti <code>Wipe Dalvik Cache</code> a pak restartujte telefon. </p>
+<h2 id="zaver"><a href="#zaver" class="heading-anchor">Závěr</a></h2>
+<p>První boot bude trvat velmi dlouho (max. však přibližně pět minut). V průběhu se budou optimalizovat nainstalované aplikace. Pokud máte štěstí, tak nyní telefon naběhne do nového OS. Pokud nenaběhne, tak to můžete zkusit celé znovu, případně zkusit jinou verzi.  </p>        </div>
+    </div>
+    <div class="col-md-3 text-center post-sidebar">
+        <a href="https://www.tomasfejfar.cz"><img class="img-thumbnail rounded-circle d-none d-md-block"
+                                          src="/assets/images/me.jpg"></a>
+        <dl class="m-1">
+            <dt>Author</dt>
+            <dd><a href="https://www.tomasfejfar.cz">Tomáš Fejfar</a></dd>
+                            <dt>Published on</dt>
+                <dd>2016-04-15</dd>
+                    </dl>
+    </div>
+</div>
+</div> <footer class="footer">
+    <div class="container">
+        <p class="text-center"><a href="#top" class="btn btn-light btn-lg">Zpátky nahoru!</a></p>
+    </div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/jquery-3.2.1.slim.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/popper.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/bootstrap.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="182700b847b95f6705103410-|49" defer=""></script></body>
+</html>

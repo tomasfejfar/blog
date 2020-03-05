@@ -1,0 +1,91 @@
+
+    
+<!doctype html>
+<html lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Organizuji školení gitu, školení PhpStormu a konzultace efektivního vývoje v týmu. Zabývám se také zakázkovým vývojem v PHP. Můžu pracovat jak samostatně, tak v týmu dalších freelancerů nebo jako součást vašeho interního týmu.">
+    <title>
+        How to contribute to ZF2
+    </title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/github.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<a id="top"></a>
+<header class="navbar navbar-expand-lg navbar-light bg-warning">
+    <a class="navbar-brand" href="/">Blog - Tomáš Fejfar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    </header>
+<hr class="invisible">
+<div class="container">
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="jumbotron container">
+
+
+            <h1 class="">How to contribute to ZF2</h1>
+                    </div>
+        <div class="post-body">
+            <p>... for git dummies</p>
+<p>I'd like to show you how to contribute to Zend Framework 2. I'll focus on the technical issues you may encouter on the way. I assume you have set up GitHub correctly. If  not, <a href="https://help.github.com/articles/set-up-git">consult GitHub help</a>.</p>
+<p>ZF2 is developed using GitHub and in contrast to ZF1, you don't need to sign CLA.</p>
+<p>First step to contributong is creating your own fork (where you will push your changes and make pullrequests from). Go to <a href="https://github.com/zendframework/zf2">https://github.com/zendframework/zf2</a> and choose &quot;Fork&quot; in the top left corner. That will create a copy of ZF2 repo in your account - for me, it's <a href="https://github.com/tomasfejfar/zf2">https://github.com/tomasfejfar/zf2</a>.</p>
+<p>Now clone the repo using</p>
+<pre><code class="language-bash">git clone https://github.com/tomasfejfar/zf2</code></pre>
+<p>Now you have the repo locally. It has two branches <strong>master</strong> and <strong>origin/master</strong>. <strong>Master</strong> is your local main branch. <strong>Origin/master</strong> is your fork's main branch. You need a way to communicate with the ZF2 official repo. So you need to add one more remote.</p>
+<pre><code class="language-bash">git remote add upstream  https://github.com/zendframework/zf2</code></pre>
+<p>Now you should have two remotes. Verify it using</p>
+<pre><code class="language-bash">git remote</code></pre>
+<p>You should see <strong>origin</strong> and <strong>upstream</strong>. If it's so - it's great. Remember it's generally a <strong>not</strong> a good idea TO COMMIT INTO MASTER. It will save you lot of problems and merge conflicts.</p>
+<h3 id="how-to-create-a-pullrequest"><a href="#how-to-create-a-pullrequest" class="heading-anchor">How to create a pullrequest</a></h3>
+<p>To contribute, you need to create a pullrequest. The pullrequest should ideally contain one branch. That branch should be branched from the most current master and it should contain ONLY the changes that are relevant to the pullrequest. If you are fixing two separate issues, create two separate pullrequests.</p>
+<p>So, let's start. First you need to make sure your <strong>master</strong> is up to date. You may need to call</p>
+<pre><code class="language-bash">git stash</code></pre>
+<p>if you have some uncommited changes to clean your working copy. Don't worry, you may later return stashed changes using</p>
+<pre><code class="language-bash">git stash pop</code></pre>
+<p>When your working copy is clean, it's time to sync your repo with official zf2 repo (<strong>upstream</strong>).</p>
+<pre><code class="language-bash">git checkout master
+
+git pull upstream master
+
+git push origin</code></pre>
+<p>First, you checkout your <strong>master</strong>, than pull changes from official ZF2 repo and then push those changes to your fork. Now your <strong>master</strong> is in the same exact state as is the <strong>official zf2 master</strong> and so is your <strong>origin/master</strong>. And you may create a branch.</p>
+<pre><code class="language-bash">git checkout -b fix-something master</code></pre>
+<p>You are now on your local <strong>fix-something</strong> branch and you may commit as you wish. It's good idea to write descriptive commit messages (what is changed, what you tried to do), so that it's clear what your intentions are. When your changes are ready, you need to push that branch into your origin</p>
+<pre><code class="language-bash">git push origin fix-something</code></pre>
+<p>Now when your branch is on github, you go to your fork and there is a button &quot;Pullrequest&quot; on the top (or there may appear a message &quot;you recently pushed branch fix-something, do you want to create a PR?&quot;. Yes, you do! From yourname/zf2 - fix-something branch to zendframework/zf2 - master.<em>Note:</em>  To be honest, I'm not sure whether you should pullrequest against master or develop. There are currently PRs for both and I can't find the pattern :) Important things are - create a branch for your PR and create that branch from recent master, not some two year old commit.</p>
+<p>I hope this helps you to contribute to ZF2! For some more ideas about contributing to ZF2 read <a href="http://mwop.net/blog/255-How-to-Contribute-to-ZF2.html">MWOP's blogpost</a> (it's little outdated, but still have some important information). Documentation <a href="http://devzone.zend.com/2463/zf2-documentation-we-want-you/">needs your help too</a>. When in doubt, use the mailing list or ask on IRC.</p>
+<p>Feel free to suggest improvements to this <em>howto</em> in comments or by sending me a mail ;)</p>
+<p><a href="http://creativecommons.org/licenses/by/3.0/"><img src="http://i.creativecommons.org/l/by/3.0/80x15.png" alt="Creative Commons License" /></a><br />
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.</p>        </div>
+    </div>
+    <div class="col-md-3 text-center post-sidebar">
+        <a href="https://www.tomasfejfar.cz"><img class="img-thumbnail rounded-circle d-none d-md-block"
+                                          src="/assets/images/me.jpg"></a>
+        <dl class="m-1">
+            <dt>Author</dt>
+            <dd><a href="https://www.tomasfejfar.cz">Tomáš Fejfar</a></dd>
+                            <dt>Published on</dt>
+                <dd>2012-12-13</dd>
+                    </dl>
+    </div>
+</div>
+</div> <footer class="footer">
+    <div class="container">
+        <p class="text-center"><a href="#top" class="btn btn-light btn-lg">Zpátky nahoru!</a></p>
+    </div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/jquery-3.2.1.slim.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/popper.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/bootstrap.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="182700b847b95f6705103410-|49" defer=""></script></body>
+</html>

@@ -1,0 +1,122 @@
+
+                
+<!doctype html>
+<html lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="I&#039;ve heard it a million times. &#039;Marketing team broke production web! They put something in Google Tag Manager and caused a JavaScript error. GTM sucks. We should have implemented all the codes ourselves.&#039; What if I tell you there is a better way?">
+    <title>
+        Google Tag Manager - dev &amp; marketing collaboration workflow
+    </title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/github.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<a id="top"></a>
+<header class="navbar navbar-expand-lg navbar-light bg-warning">
+    <a class="navbar-brand" href="/">Blog - Tomáš Fejfar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    </header>
+<hr class="invisible">
+<div class="container">
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="jumbotron container">
+
+
+            <h1 class="">Google Tag Manager - dev &amp; marketing collaboration workflow</h1>
+                            <p class="lead">I&#039;ve heard it a million times. &#039;Marketing team broke production web! They put something in Google Tag Manager and caused a JavaScript error. GTM sucks. We should have implemented all the codes ourselves.&#039; What if I tell you there is a better way?</p>
+                    </div>
+        <div class="post-body">
+            <p>I've heard it a million times.</p>
+<blockquote>
+<p>Marketing team broke production web! They put something in <abbr title="Google Tag Manager">GTM</abbr> and caused a JavaScript error. GTM sucks. We should have implemented all the codes ourselves. </p>
+</blockquote>
+<p>What if I tell you there is a better way?</p>
+<h2 id="tl-dr"><a href="#tl-dr" class="heading-anchor">TL;DR</a></h2>
+<blockquote>
+<ul>
+<li>Workspace is branch.</li>
+<li>Published container is master.</li>
+<li>Only devs have <em>Publish</em> access.</li>
+<li>Do code reviews.</li>
+</ul>
+</blockquote>
+<h2 id="how-it-usually-goes-down"><a href="#how-it-usually-goes-down" class="heading-anchor">How it usually goes down?</a></h2>
+<ol>
+<li>Marketing asks development team to implement GTM</li>
+<li>Development implements GTM</li>
+<li>Marketing team starts using GTM</li>
+<li>Site is broken because of JavaScript error</li>
+<li>… lots of finger-pointing</li>
+<li>Unnecessary animosity between dev and marketing</li>
+</ol>
+<h2 id="how-do-we-prevent-this"><a href="#how-do-we-prevent-this" class="heading-anchor">How do we prevent this?</a></h2>
+<p>We use branching and code reviews to prevent bugs in development. We could use the same tools in GTM too!</p>
+<h3 id="get-your-user-management-right"><a href="#get-your-user-management-right" class="heading-anchor">Get your user management right</a></h3>
+<p>As you would not let marketing deploy your website to production, you should not let them deploy GTM. There are two levels of User Management - <em>Account</em> and <em>Container</em>. For <em>Account</em> permissions you can set either <strong>User</strong> or <strong>Admin</strong> permissions. <strong>Admin</strong> permissions will allow user to change <em>Permissions</em> - so that's something only handful of people should have. Everyone else should be just <strong>User</strong>. It's probably a good idea to have a service account with Admin permissions that no-one is actually using. This ensures that you'll always have a way to assign permissions in case of emergencies and vacations. We usually create <code>sa@example.com</code> as in &quot;Service Account&quot; and use it as registration mail for services that do not allow multiple users.</p>
+<p>For <em>Container</em> there are following permissions:</p>
+<ul>
+<li><strong>No access</strong> - User won't even see the container.</li>
+<li><strong>Read</strong> - User will be able to see the container, but would not be able to change anything. This is probably useful only for someone whom you don't trust but absolutely HAS to have access.</li>
+<li><strong>Edit</strong> - This is what you want your marketing team to have.</li>
+<li><strong>Approve</strong> - This means user is allowed Edits as well as creating new container versions. This could also be useful, but since you can't edit versions after they are created, it's not ideal if you want to do code reviews.</li>
+<li><strong>Publish</strong> - This only goes to people you'd trust with production deploy rights.</li>
+</ul>
+<h3 id="create-workspace"><a href="#create-workspace" class="heading-anchor">Create Workspace</a></h3>
+<p>In GTM there is a powerful concept of &quot;Workspaces&quot;. Workspace is an isolated version of the container where you are safe to make any (even destructive) changes. It's very much like Git branch. You can add new tags, triggers, variables, etc. All the changes are tracked in the workspace. Any change can easily be reverted (<em>Abandon</em>) if needed. There is also a <em>Preview mode</em> that allows you to see the changes before they are published. If you go to the production web with Preview mode turned on, you'll see <em>Quick preview</em> pane at the bottom of the screen. It shows which tags were fired, what values variables hold and what data is in data layer.</p>
+<h3 id="data-belongs-to-the-data-layer-and-variables"><a href="#data-belongs-to-the-data-layer-and-variables" class="heading-anchor">Data belongs to the Data Layer and Variables</a></h3>
+<p>Make sure you publish all the data that marketers and SEO specialists may need to the <a href="https://developers.google.com/tag-manager/devguide#adding-data-layer-variables-to-a-page"><strong>data layer</strong></a>. Also account IDs should go to <strong>Variables</strong> (for more information <a href="https://www.simoahava.com/analytics/variable-guide-google-tag-manager/">this tutorial</a> is a great resource). It's usually a good idea to create GTM events (for example <code>datalayer.push({event: purchase})</code>) for every important website event like submitted subscription form, checkout, purchase, etc. You will be asked to add some more eventually, but great many tracking scripts only need to know that transaction happened so this will take you a long way. If you want to go the extra mile, prepare a Trigger with descriptive name in the GTM. For example, a trigger named <code>User purchased a product</code> (Trigger type: <code>Custom event</code>, Event name: <code>purchase</code>) is much easier to use for non-technical folk.</p>
+<h2 id="setup-a-workflow"><a href="#setup-a-workflow" class="heading-anchor">Setup a workflow</a></h2>
+<p>We actually mimic our development process 1:1 with GTM workspaces.</p>
+<ol>
+<li>You create a Trello <strong>card in Backlog</strong> explaining the desired change</li>
+<li>You <strong>move the card to Working</strong></li>
+<li>You <strong>create a new Workspace</strong> that has the same name as the card and add a card link to description</li>
+<li>You copy the link to the Workspace into the card description</li>
+<li>You do whatever you need in the workspace</li>
+<li>When you're ready, you <strong>move the card to Ready for review</strong></li>
+<li><strong>Changes are reviewed</strong></li>
+<li>Reviewer can <strong>suggests changes</strong> (checklist in the card)</li>
+<li>Reviewer <strong>publishes the Workspace</strong> (Title and Description are pre-filled from step 3)</li>
+<li>Reviewer <strong>moves the card to Done</strong></li>
+</ol>
+<h2 id="protips"><a href="#protips" class="heading-anchor">Protips</a></h2>
+<ul>
+<li><strong>Keep in mind you only have 3 workspaces!</strong> If this gives you trouble, <a href="https://support.google.com/tagmanager/answer/6311518?hl=en">try employing Environments</a> for reviewed workspaces even though you lose some of the flexibility.</li>
+<li><strong>Make sure every workspace only contains one small change</strong> - <a href="https://en.wikipedia.org/wiki/Separation_of_concerns#Origin">separation of concerns</a></li>
+<li><strong>Don't let workspaces rot</strong> - they are either done or gone.</li>
+<li><strong>Update your workspaces</strong> - you may need to <em>Update</em> your workspace if someone published a container while you were working. It's like pulling master into your branch or rebasing onto master. It even has a nice conflict resolution interface!</li>
+<li><strong>Don't forget to let marketing know</strong> that you published their changes if they are not part of your review/publish workflow.</li>
+<li><strong>Be friendly when giving feedback</strong> - both of you are working towards the same goal. Also <strong>be humble</strong> - you may not have all the context of the change - don't assume you do.</li>
+</ul>        </div>
+    </div>
+    <div class="col-md-3 text-center post-sidebar">
+        <a href="https://www.tomasfejfar.cz"><img class="img-thumbnail rounded-circle d-none d-md-block"
+                                          src="/assets/images/me.jpg"></a>
+        <dl class="m-1">
+            <dt>Author</dt>
+            <dd><a href="https://www.tomasfejfar.cz">Tomáš Fejfar</a></dd>
+                            <dt>Published on</dt>
+                <dd>2017-10-05</dd>
+                    </dl>
+    </div>
+</div>
+</div> <footer class="footer">
+    <div class="container">
+        <p class="text-center"><a href="#top" class="btn btn-light btn-lg">Zpátky nahoru!</a></p>
+    </div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/jquery-3.2.1.slim.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/popper.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/bootstrap.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="182700b847b95f6705103410-|49" defer=""></script></body>
+</html>

@@ -1,0 +1,105 @@
+
+    
+<!doctype html>
+<html lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Organizuji školení gitu, školení PhpStormu a konzultace efektivního vývoje v týmu. Zabývám se také zakázkovým vývojem v PHP. Můžu pracovat jak samostatně, tak v týmu dalších freelancerů nebo jako součást vašeho interního týmu.">
+    <title>
+        Errata k &quot;Zend framework: základné súbory a komponenty&quot;
+    </title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/github.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<a id="top"></a>
+<header class="navbar navbar-expand-lg navbar-light bg-warning">
+    <a class="navbar-brand" href="/">Blog - Tomáš Fejfar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    </header>
+<hr class="invisible">
+<div class="container">
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="jumbotron container">
+
+
+            <h1 class="">Errata k &quot;Zend framework: základné súbory a komponenty&quot;</h1>
+                    </div>
+        <div class="post-body">
+            <p>Originální <a href="http://www.zdrojak.cz/clanky/zend-framework-zakladne-subory-a-komponenty/" target="_blank">článek najdete na zdrojáku</a>. Vzhledem k tomu, že se autor neobtěžoval opravit oznámené chyby v minulých dílech, jsem se rozhodl, že je zde zveřejním pěkně všechny pohromadě. Pokusím se opravit některé nepřesnosti, které se v článku objevily a doplnit věci, které tam podle mého chybí.</p>
+<h2 id="index-php"><a href="#index-php" class="heading-anchor">index.php</a></h2>
+<p>APPLICATION_ENV není ani tak název serveru, jako spíš typ prostředí. Podle této konstanty se následně načte příslušná část konfiguračního souboru <code>application.ini</code>. Ve výchozím stavu jsou do <code>application.ini</code> předgenerovaná prostředí: <code>production, development, staging, testing</code></p>
+<p>Jednotlivá nastavení od sebe mohou navzájem dědit a díky tomu není nutné vypisovat všechno 4x, ale stačí všechno napsat do <code>production</code> a do ostatních psát jen odlišné hodnoty.</p>
+<p>Hodnota APPLICATION_ENV je určena nastavením stejnojmenné proměnné prostředí v .htaccess. Jedná se o jednoduchou direktivu, která určitě není neprůstřelná (proto není v ofic. ZF), ale pro naše potřeby stačí<br /></p>
+<pre><code class="language-php">&lt;?php
+    public static function isLocalhost()
+    {
+        if (Config::isIIS()) {
+            return $_SERVER['LOCAL_ADDR'] == '127.0.0.1';
+        }
+        return $_SERVER['SERVER_ADDR'] == '127.0.0.1';
+    }
+
+    public static function isIIS()
+    {
+        if (isset($_SERVER['SERVER_SOFTWARE']) &amp;&amp; substr($_SERVER['SERVER_SOFTWARE'], 0, 14) == 'Microsoft-IIS/') {
+            return true;
+        }
+        return false;
+    }</code></pre>
+<h2 id="bootstrap-php"><a href="#bootstrap-php" class="heading-anchor">Bootstrap.php</a></h2>
+<p>Rozhodně nesouhlasím s tím, že by někdo používal kombinaci nastavení v index.php a Bootstrapu. Nedává to smysl. Bootstraping pomocí Zend_Application představuje značný overhead. Ten je daní za flexibilní možnosti boostrapování.</p>
+<p><code>Zend_Application</code> používá sadu takzvaných <code>Resources</code>, což jsou jednotlivé součásti aplikace, které mohou být znovu použity a jednoduše nastaveny pomocí <code>application.ini</code>. Typickým zástupcem je například <code>Zend_Application_Resource_Db</code>, což je vlastně třída bootstrapující připojení k databázi. Díky tomu stačí do application.ini přidat</p>
+<pre><code>resources.db.adapter = "pdo_mysql"
+resources.db.params.host = "localhost"
+resources.db.params.username = "webuser"
+resources.db.params.password = "XXXXXXX"
+resources.db.params.dbname = "test"
+resources.db.isDefaultTableAdapter = true</code></pre>
+<p>Od té chvíle máte automaticky nastavené připojení k databázi, aniž byste napsali jedinou řádku výkonného PHP kódu. Navíc editaci ini souboru zvládne i průměrně zručný sysadmin, narozdíl od zkoumání PHP. Není to nic světoborného. Něco podobného umí určitě i nette, cakephp nebo codeigniter. Velká výhoda v tomto případě spočívá ale v tom, že <code>Resource</code> si můžete tvořit sami. Můžete si tedy např. udělat resource na připojení k twitteru, nějakému API, nastavení cachování. Záleží na vás. Tyto resource pak můžete používat jako drop-in napříč projekty.</p>
+<p>Pokud je pro vás prioritní rychlost a znovupoužitelné resources nepoužijete, není důvod Zend_Application používat. Můžete snadno všechny komponenty instancovat ručně v index.php <a href="http://framework.zend.com/manual/en/zend.db.adapter.html#zend.db.adapter.connecting.factory-config" target="_blank">klidně i pomocí nastavení zapsaného v ini souboru</a>. Na Shopiu Zend_Application z důvodů rychlosti nepoužíváme a máme vlastní třídu na boostrapování aplikace. Osobně fakt, že je si možné framework přizpůsobit mým potřebám, vnímám jako jednu z hlavních výhod ZF.</p>
+<h2 id="zend-registry"><a href="#zend-registry" class="heading-anchor">Zend_Registry</a></h2>
+<p>Registr je objektovou náhradou globálních proměnných s trochu širšími možnostmi (je zbytečné do nich zabíhat, <a href="http://framework.zend.com/manual/en/zend.registry.using.html" target="_blank">vizte manuál</a>). Protože ZF1 ještě neobsahuje žádný DIC, je předávání závislostí poněkud problematické. Je to řešeno tak, že se do určitých klíčů registru umisťují předpřipravené objekty tak, aby bylo možné je kdekoli získat. Příkladem jsou například překlady. Každá třída, která může používat překlady se podívá do registru, jestli existuje klíč <code>Zend_Translate</code> a pokud ano, načte si z něj třídu pro překlady a začne automaticky překládat. A podobně to funguje s dalšími součástmi.</p>
+<p>Ukládat si do registru jen tak nějaké proměnné, protože &quot;zrovna nevim co s ní&quot; je rozhodně <strong>BAD PRACTICE</strong>. Takže příklad je zcela zcestný.</p>
+<p>Naprosto nechápu proč autor uvádí metodu <code>_unsetInstance</code>. <code>Zend_Registry</code> je singleton. A tím pádem má i metody <code>setInstance</code> a <code>unsetInstance</code>. Ale naprosto nechápu, proč je to potřeba uvádět, nota bene, když není uvedeno milion důležitějších věcí.</p>
+<h2 id="zend-log"><a href="#zend-log" class="heading-anchor">Zend_Log</a></h2>
+<p>Když už je na začátku uvedené použití Zend_Application, tak by bylo fajn ukázat, že i log se inicializuje pomocí resource:</p>
+<pre><code>resources.log.stream.writerName = "Stream"
+resources.log.stream.writerParams.stream = APPLICATION_PATH "/../data/logs/application.log"
+resources.log.stream.writerParams.mode = "a"
+resources.log.stream.filterName = "Priority"
+resources.log.stream.filterParams.priority = 4</code></pre>
+<p>Jen pro úplnost zmíním, že <code>Zend_Log_Writer_Null</code> nezapisuje do <code>/dev/null</code>. On prostě nezapisuje nikam - tam kde by měl zapisovat, nedělá nic. Je určen k tomu, když máte třeba nějaký speciální log nějaké komponenty a chcete aby najednou nelogovala. Místo abyste mazali všechny volání logu v kódu nebo úplně vypli logování, jen přehodíte konkrétní writer na Null ;)</p>
+<h2 id="zaver"><a href="#zaver" class="heading-anchor">Závěr</a></h2>
+<p>Celkově na mě seriál působí tak, že ho píše někdo kdo v ZF dělá pár měsíců. Nechci tím nějak snižovat to, že do toho investuje svůj čas. Já na psaní takového seriálu v odpovídající kvalitě kupříkladu čas nemám. Ale myslím, že by bylo lepší se pro začátek třeba držet minimálně strukturou <a href="http://framework.zend.com/manual/en/learning.quickstart.intro.html">QuickStartu, který je v ZF manuálu</a>. Nebo třeba <a href="http://akrabat.com/zend-framework-tutorial/">Akrabatova tutorialu</a>... Cokoli by bylo lepší než toto. Pominu-li, že si tím autor nedělá úplně nejlepší jméno (i když když neodkáže a jen napíše, že publikuje na odborném serveru, tak to nebude špatné), tak tím dělá velmi špatné jméno i celému frameworku. Ale celkově - začít psát pár měsíců před vydáním kompletně přepsané major verze frameworku tutoriál k zastaralé verzi na hranici morální živostnosti není asi úplně ideální postup. Bohužel (resp. bohudík), ne všechny frameworky jsou vyvíjeny tak agilně, jako nette. A v ZF máme zpětnou kompatibilitu už od verze někde 3--4 roky zpátky, to se holt nedá zfleku přepsat a tak v ZF1 jsou stále některé (v té době zcela běžné) bad practices (narážím na zmíněný Zend_Registry.</p>        </div>
+    </div>
+    <div class="col-md-3 text-center post-sidebar">
+        <a href="https://www.tomasfejfar.cz"><img class="img-thumbnail rounded-circle d-none d-md-block"
+                                          src="/assets/images/me.jpg"></a>
+        <dl class="m-1">
+            <dt>Author</dt>
+            <dd><a href="https://www.tomasfejfar.cz">Tomáš Fejfar</a></dd>
+                            <dt>Published on</dt>
+                <dd>2012-09-04</dd>
+                    </dl>
+    </div>
+</div>
+</div> <footer class="footer">
+    <div class="container">
+        <p class="text-center"><a href="#top" class="btn btn-light btn-lg">Zpátky nahoru!</a></p>
+    </div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/jquery-3.2.1.slim.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/popper.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/bootstrap.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="182700b847b95f6705103410-|49" defer=""></script></body>
+</html>

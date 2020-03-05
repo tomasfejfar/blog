@@ -1,0 +1,66 @@
+
+    
+<!doctype html>
+<html lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Organizuji školení gitu, školení PhpStormu a konzultace efektivního vývoje v týmu. Zabývám se také zakázkovým vývojem v PHP. Můžu pracovat jak samostatně, tak v týmu dalších freelancerů nebo jako součást vašeho interního týmu.">
+    <title>
+        Proč nepoužívat sessionId přenášené v URL? (praktická ukázka)
+    </title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/github.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<a id="top"></a>
+<header class="navbar navbar-expand-lg navbar-light bg-warning">
+    <a class="navbar-brand" href="/">Blog - Tomáš Fejfar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    </header>
+<hr class="invisible">
+<div class="container">
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="jumbotron container">
+
+
+            <h1 class="">Proč nepoužívat sessionId přenášené v URL? (praktická ukázka)</h1>
+                    </div>
+        <div class="post-body">
+            <p>S HTTP protokolem, který byl navrhnut jako bezstavový, nastal velký problém ve  chvíli, kdy přišla potřeba identifikovat jednotlivé návštěvníky. Tento problém byl posléze vyřešen vznikem sessions. Session je vlastně vazba určitého unikátního klíče na každého jednotlivého návštěvníka a protože v dřevních dobách ne každý prohlížeč uměl používat cookies, předával se unikátní identifikátor pomocí url v promenné PHPSESSID. Jenže dnes jsme někde jinde. Cookies umí každý prohlížeč a kdo je má z bezpečnostních důvodů vypnuté, tak tak činí s vědomým rizikem, že mu nemusí všechno fungovat. Ale i přesto se dnes najdou weby, které session v URL používají. Jedním z nich je i <a href="http://www.dinotoys.cz/">eshop s dárky</a> DinoToys (ať mají aspoň backlink k té negativní reklamě). Myslím, že po dnešku bude obchod DinoToys litovat, že kdy rozjel reklamní akci na slevu pomocí Slevomat.cz. Když posílali (nebo když admin Slevomatu vytvářel) doprovodný text k nabídce slevy na svém eshopu, zkopírovali v adrese URL i identifikátor session v parametru uid. To způsobilo, že všichni návštěvníci ze Slevomatu byli bráni jako jediný člověk. Tím pádem si různě přepisovali košíky a přidávali si navzájem zboží. Stejně tak byly vidět jejich registrační údaje a adresy. Jak se takové situaci vyvarovat? Velmi pěkně <a href="http://www.phpguru.cz/clanky/sid-do-url-nepatri">bezpečné nastavení cookies</a> shrnul na svém blogu Honza Tichý.</p>
+<p>Člověk si kolikrát říká, k čemu se píší všechny ty bezpečnostní poučky, když si poté nepohlídají ani základní věci. Jsem ochoten přijmout, že nastavení sessions souvisí se serverem a pokud se jedná o sdílený hosting, tak to často člověk nemůže nijak ovlivnit. Ale tenhle eshop obsahuje těch bezpečnostních chyb opravdu hodně. Namátkou… Mělo by stačit se odhlásit a vše by bylo v pořádku – pro přihlášení musíte znovu zadat heslo. Jenže kliknutím na odhlásit se nestane kromě přesměrování nic. Když vlezete znovu se stejným uid, jste ihned znovu přihlášeni (sice by to nic v tomhle případě neřešilo, ale i tak). Stejně tak pro změnu hesla by mělo být třeba znát původní heslo. Nikoliv. Stačí vyplnit 2× to stejné a je to :)</p>
+<p>Vlastníka webu jsem informoval mailem a protože nemám za cíl poškodit ani vlastníka ani uživatele shopu, tak článek vychází se zpožděním, aby měl zmíněný eshop dostatek času chybu opravit. Bohužel už nyní si chyby někdo všimnul a vpisuje lidem do objednávek nesmyslné údaje.</p>
+<p>Co říct na závěr?</p>
+<p><strong>Chcete bezpečný eshop? Zkuste se podívat na <a href="http://www.shopio.cz/">Shopio.cz</a>!</strong></p>
+<p>Nemáte na Shopio a stačí vám jednoduchý eshop? Zkuste se podívat na <a href="http://www.mpalan.cz/reference/internetove-obchody.php">web Mpalan.cz</a></p>
+<p><em>Update:</em> Eshop by dle vyjádření vlastníka již měl být opraven. Takže článek vydávám už teď.</p>        </div>
+    </div>
+    <div class="col-md-3 text-center post-sidebar">
+        <a href="https://www.tomasfejfar.cz"><img class="img-thumbnail rounded-circle d-none d-md-block"
+                                          src="/assets/images/me.jpg"></a>
+        <dl class="m-1">
+            <dt>Author</dt>
+            <dd><a href="https://www.tomasfejfar.cz">Tomáš Fejfar</a></dd>
+                            <dt>Published on</dt>
+                <dd>2011-05-22</dd>
+                    </dl>
+    </div>
+</div>
+</div> <footer class="footer">
+    <div class="container">
+        <p class="text-center"><a href="#top" class="btn btn-light btn-lg">Zpátky nahoru!</a></p>
+    </div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/jquery-3.2.1.slim.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/popper.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/bootstrap.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="182700b847b95f6705103410-|49" defer=""></script></body>
+</html>

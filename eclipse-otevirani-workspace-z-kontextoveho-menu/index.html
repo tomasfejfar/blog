@@ -1,0 +1,72 @@
+
+    
+<!doctype html>
+<html lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Organizuji školení gitu, školení PhpStormu a konzultace efektivního vývoje v týmu. Zabývám se také zakázkovým vývojem v PHP. Můžu pracovat jak samostatně, tak v týmu dalších freelancerů nebo jako součást vašeho interního týmu.">
+    <title>
+        Eclipse: Otevírání Workspace z kontextového menu
+    </title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/github.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<a id="top"></a>
+<header class="navbar navbar-expand-lg navbar-light bg-warning">
+    <a class="navbar-brand" href="/">Blog - Tomáš Fejfar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    </header>
+<hr class="invisible">
+<div class="container">
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="jumbotron container">
+
+
+            <h1 class="">Eclipse: Otevírání Workspace z kontextového menu</h1>
+                    </div>
+        <div class="post-body">
+            <p>Poslední dobou jsem nějak rozpolcen mezi projekty od různých  zadavatelů, své projekty a vůbec se začínám ztrácet. Abych od sebe měl  oddělené tyhle věci při práci, používám Workspaces v Eclipse PDT. Jenže  přepínání Workspaces je vopruz ! :) Navíc klasicky před začátkem práce potřebuji Updatnout přes TortoiseSVN working copy, takže musím do té které složky.</p>
+<p>A tak by mi spoustu času ulehčilo, kdybych měl v kontextovém menu  něco jako <code>Start Eclipse Workspace here</code>. A posléze jsem na to přišel a  taky se o to podělím.</p>
+<p>Eclipse se spuští s určeným workspacem pomocí parametru <em>data</em>.  Takže si nejdříve připravíme cestu, kterou budeme Eclipse spouštět. U  mě je to <code>c:\Program Files (x86)\eclipse\eclipse.exe</code>, nakonec připojíme  parametr data a %1, které se nahrdí cestou – tedy <code>c:\Program Files  (x86)\eclipse\eclipse.exe -data %1</code>. A nyní ta zajímavá část.</p>
+<p>Kontextové menu složky najdeme v registrech. Takže si spustíme  regedit (ve Vistách musíme mít admin privledges). Najdeme si větev  <code>HKEY_CLASSES_ROOT\Directory\shell\</code>. V ní jsou jednotlivé položky. Do  větve přidáme větev <code>Eclipse.OpenWorkspaceHere</code>. Poklepáním na <code>Výchozí</code>  v pravé části nastavíme výchozí hodnotu – to bude text, který se objeví  v menu. Pak do vytvořené větve vložíme větev <code>command</code> a do její  hodnoty <code>Výchozí</code> vložíme připravenou cestu k eclipse. Tada ! Hotovo :)</p>
+<p>Případně, pokud chcete komfortnější variantu, tak si vytvořte soubor Eclipse.reg a do něj vložte:</p>
+<pre><code>Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\shell\Eclipse.OpenWorkspace]
+@="Open Eclipse Workspace here"
+
+[HKEY_CLASSES_ROOT\Directory\shell\Eclipse.OpenWorkspace\command]
+@="c:\Program Files (x86)\eclipse\eclipse.exe -data %1"</code></pre>
+<p>Samozřejmně upravený – se správnou cestou. A pozor na zpětná lomítka</p>        </div>
+    </div>
+    <div class="col-md-3 text-center post-sidebar">
+        <a href="https://www.tomasfejfar.cz"><img class="img-thumbnail rounded-circle d-none d-md-block"
+                                          src="/assets/images/me.jpg"></a>
+        <dl class="m-1">
+            <dt>Author</dt>
+            <dd><a href="https://www.tomasfejfar.cz">Tomáš Fejfar</a></dd>
+                            <dt>Published on</dt>
+                <dd>2011-05-25</dd>
+                    </dl>
+    </div>
+</div>
+</div> <footer class="footer">
+    <div class="container">
+        <p class="text-center"><a href="#top" class="btn btn-light btn-lg">Zpátky nahoru!</a></p>
+    </div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/jquery-3.2.1.slim.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/popper.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/bootstrap.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="182700b847b95f6705103410-|49" defer=""></script></body>
+</html>

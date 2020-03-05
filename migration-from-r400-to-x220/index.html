@@ -1,0 +1,72 @@
+
+    
+<!doctype html>
+<html lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Organizuji školení gitu, školení PhpStormu a konzultace efektivního vývoje v týmu. Zabývám se také zakázkovým vývojem v PHP. Můžu pracovat jak samostatně, tak v týmu dalších freelancerů nebo jako součást vašeho interního týmu.">
+    <title>
+        Migration from R400 to X220
+    </title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/github.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<a id="top"></a>
+<header class="navbar navbar-expand-lg navbar-light bg-warning">
+    <a class="navbar-brand" href="/">Blog - Tomáš Fejfar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    </header>
+<hr class="invisible">
+<div class="container">
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="jumbotron container">
+
+
+            <h1 class="">Migration from R400 to X220</h1>
+                    </div>
+        <div class="post-body">
+            <p><strong>Updated:</strong> The &quot;hotfix&quot; for SSD works very well. I have been using it for a year now and I had no problems whatsoever.</p>
+<hr />
+<p>When buying the X220 I hadn't thought much about the implications of the actual migration to the new model. But there were surprises awaiting. Good and bad.</p>
+<p>First - good - the display in X220 is awesome. If you can get your hand on one, buy it! It has very nice colors (compared to the yellow-green tint on R400, and practically any other recent ThinkPad) and is much brighter. In combination with matte surface it's ideal for working outside.</p>
+<p>Second - bad - the touchpad sucks. A little. It has the &quot;revolutionary&quot; dotted surface, that is supposed to help sliding the fingers. It does. But it also creates not very pleasant feeling. Something like you have when working with sandpaper for extended period of time. I hope I'll get used to it. If not, TrackPoint to the rescue!</p>
+<p>Third - good - the exact model I got is a beast! It's i7 with 8 gigs of RAM and 7200RPM HDD.  Just screaming for SSD. And I have one. 256GB Intel 320. But...</p>
+<p>Fourth - bad - the X220 is so small that it saves space by using 7mm HDD. Ouch. The Intel 320 is very 9.5mm-ish :(</p>
+<h2 id="how-to-fit-9-5mm-drive-into-x220-7mm-hole"><a href="#how-to-fit-9-5mm-drive-into-x220-7mm-hole" class="heading-anchor">How to fit 9.5mm drive into X220 7mm hole?</a></h2>
+<p>It was surprisingly simple, well it's simple if you use SSD. With SSD you don't care about vibrations and other physical effects like sudden acceleration, etc. For HDDs Lenovo uses rubber bands that go along the sides of the drive to reduce vibration and act as a pillow (in addition to Active Protection System) in case of  a fall. Those are not needed with SSD. And luckily those together with the HDD case are exactly 2.5mm high. That means that if you don't use the case and rubbers you can fit the 9.5mm drive into the slot.</p>
+<p>One problem is that the HDD case has a band on it, used to pull the drive out of the casing. That can be easily fixed using two pieces of duct tape. Put one long piece on the top and one on the bottom of the drive so that there is a bit of a loose end on the side opposite to the connectors. Then press them together in front of the drive to form something that resembles the original band. If the pieces are long enough, they can withstand quite some pulling power. I managed to pull the drive out sing two pieces of transparent tape. With duct tape you're on the safe side. Make the band long enough, so that when you close the door to the casing, it will be collapsed between the door and the drive - that will stop the drive from falling out of the connectors in case of sudden side acceleration.</p>
+<p>The credit for this solution goes to <a href="http://superuser.com/questions/403565/different-versions-of-2-5-drives-unscrewing-intel-320-for-slimmer-drive-to-fit/404112#404112">adam on SuperUser</a>, who claims he has been using it for past 5 months without problems.</p>
+<p>Last surprise was that I could just switch the drives and Windows 8 on SSD worker with only minor hiccup. I put the SSD in X200, turn it on. It failed to boot the first time. The second time it ran some tests, displayed something about &quot;Configuring devices&quot; and booted happily after restart. One other thing surprised me - it forgot most of the sensitive information (filled wifi passwords being the most prominent example). Obviously the cipher used is based on some unique identifier of the machine and does not work when the drive is moved to different one. Nice security feature.</p>
+<p>I'm quite happy with the new machine. I'll add some more thoughts after I explore it little more.</p>        </div>
+    </div>
+    <div class="col-md-3 text-center post-sidebar">
+        <a href="https://www.tomasfejfar.cz"><img class="img-thumbnail rounded-circle d-none d-md-block"
+                                          src="/assets/images/me.jpg"></a>
+        <dl class="m-1">
+            <dt>Author</dt>
+            <dd><a href="https://www.tomasfejfar.cz">Tomáš Fejfar</a></dd>
+                            <dt>Published on</dt>
+                <dd>2013-06-21</dd>
+                    </dl>
+    </div>
+</div>
+</div> <footer class="footer">
+    <div class="container">
+        <p class="text-center"><a href="#top" class="btn btn-light btn-lg">Zpátky nahoru!</a></p>
+    </div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/jquery-3.2.1.slim.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/popper.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/bootstrap.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="182700b847b95f6705103410-|49" defer=""></script></body>
+</html>

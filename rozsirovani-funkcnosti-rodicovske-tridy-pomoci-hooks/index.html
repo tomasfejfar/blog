@@ -1,0 +1,106 @@
+
+    
+<!doctype html>
+<html lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Organizuji školení gitu, školení PhpStormu a konzultace efektivního vývoje v týmu. Zabývám se také zakázkovým vývojem v PHP. Můžu pracovat jak samostatně, tak v týmu dalších freelancerů nebo jako součást vašeho interního týmu.">
+    <title>
+        Rozšiřování funkčnosti rodičovské třídy pomocí hooks
+    </title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/github.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<a id="top"></a>
+<header class="navbar navbar-expand-lg navbar-light bg-warning">
+    <a class="navbar-brand" href="/">Blog - Tomáš Fejfar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    </header>
+<hr class="invisible">
+<div class="container">
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="jumbotron container">
+
+
+            <h1 class="">Rozšiřování funkčnosti rodičovské třídy pomocí hooks</h1>
+                    </div>
+        <div class="post-body">
+            <p>K napsání tohoto příspěvku mě inspirovala práce na jednom  projektu v Zend Frameworku, který je opravdu dobře napsaný z hlediska  dědičnosti atp. Někdo bude mít možná pocit, že tu znovuobjevuji kolo,  ale někomu to třeba pomůže. Pokud vás zajímá co jsou to <strong>hooks</strong>, tak čtěte dále.</p>
+<h2 id="problem"><a href="#problem" class="heading-anchor">Problém</a></h2>
+<p>Rodičovský controller má v sobě většinu funkcionality. Takže třeba  pro update stačí načíst data, do proměnné controlleru dát form a zavolat  <em>parent::update()</em>. Všechno šlape jako hodinky do chvíle, než je  potřeba nějak rozšířit funkcionalitu nad možnosti parent controlleru.  Např. přidat nějakou složitou validaci dat, přidat nějaký ruhý form,  atp. V tu chvíli se na první pohled zdá, že jediná šance je zkopírovat  kód parent controlleru a udělat v něm potřebné úpravy. A docela dlouho  sem to takhle (prasecky) dělal.</p>
+<h2 id="reseni"><a href="#reseni" class="heading-anchor">Řešení</a></h2>
+<p>Do chvíle, než mě <a href="http://www.martinhujer.cz/">Martin Hujer</a> upozornil na to, že se na tohle dají hezky použít <strong>hooks</strong>! <img src="http://blog.red-pill.cz/wp-includes/images/smilies/icon_smile.gif" alt=":)" /> Ne že bych je neznal už dřív. V ZendFrameworku je používám dnes a denně  např. ve FrontController pluginech (dispatchLoopShutdown, preDispatch,  …). Ale vůbec mi nedošlo, že bych je mohl použít.</p>
+<h2 id="coto-toto"><a href="#coto-toto" class="heading-anchor">Coto, toto?</a></h2>
+<p>Cože to ty hooks jsou? Pro neznalé: Hooks jsou procedury, které  nalepíte někam doprostřed kódu a ve zděděné třídě do nich pak napíšete  co potřebujete, aniž byste museli měnit rodičovskou třídu. Pochopitelné?  Moc ne, že.</p>
+<p>Příklad pomůže.</p>
+<p><strong>Původní zdrojový kód</strong></p>
+<pre><code class="language-php">&lt;?php
+// ParentController
+function updateAction()
+{
+    //nějaký kód co nastavuje třeba form, title, oescapování, atp.
+    $this-&gt;view-&gt;headTitle('test');
+    //semhle bych chtěl vložit nějaký svůj kód
+    $this-&gt;_model-&gt;update($this-&gt;_data);
+    //nějaký další kód
+}
+</code></pre>
+<p><strong>Zdrojový kód s hooks</strong></p>
+<pre><code class="language-php">&lt;?php
+// ParentController
+function updateAction()
+{
+    //nějaký kód co nastavuje třeba form, title, oescapování, atp.
+    $this-&gt;view-&gt;headTitle('test');
+    $this-&gt;_beforeUpdate();
+    $this-&gt;_model-&gt;update($this-&gt;_data);
+    $this-&gt;_afterUpdate();
+    //nějaký další kód
+}
+</code></pre>
+<pre><code class="language-php">&lt;?php
+protected function _beforeUpdate(){}
+protected function _afterUpdate(){}</code></pre>
+<pre><code class="language-php">&lt;?php
+class IndexController extends ParentController {
+    protected function _beforeUpdate()
+    {
+        //tady si můžu zavolat co potřebuji a provede se to
+        //před updatem DB
+        //např.:
+        $this-&gt;_data['date'] = '2009-01-01';
+    }
+}
+</code></pre>        </div>
+    </div>
+    <div class="col-md-3 text-center post-sidebar">
+        <a href="https://www.tomasfejfar.cz"><img class="img-thumbnail rounded-circle d-none d-md-block"
+                                          src="/assets/images/me.jpg"></a>
+        <dl class="m-1">
+            <dt>Author</dt>
+            <dd><a href="https://www.tomasfejfar.cz">Tomáš Fejfar</a></dd>
+                            <dt>Published on</dt>
+                <dd>2011-05-16</dd>
+                    </dl>
+    </div>
+</div>
+</div> <footer class="footer">
+    <div class="container">
+        <p class="text-center"><a href="#top" class="btn btn-light btn-lg">Zpátky nahoru!</a></p>
+    </div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/jquery-3.2.1.slim.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/popper.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/bootstrap.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="182700b847b95f6705103410-|49" defer=""></script></body>
+</html>

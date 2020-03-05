@@ -1,0 +1,88 @@
+
+                
+<!doctype html>
+<html lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Even if your build is green and tests pass it&#039;s not a guarantee that it won&#039;t fail after you merge. You should always rebase onto master before merging! To learn more read the full blogpost.">
+    <title>
+        Be safe, rebase!
+    </title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/github.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<a id="top"></a>
+<header class="navbar navbar-expand-lg navbar-light bg-warning">
+    <a class="navbar-brand" href="/">Blog - Tomáš Fejfar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    </header>
+<hr class="invisible">
+<div class="container">
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="jumbotron container">
+
+
+            <h1 class="">Be safe, rebase!</h1>
+                            <p class="lead">Even if your build is green and tests pass it&#039;s not a guarantee that it won&#039;t fail after you merge. You should always rebase onto master before merging! To learn more read the full blogpost.</p>
+                    </div>
+        <div class="post-body">
+            <p>When versioning code with Git, you have two options. You can treat the history as immutable and use merging as a way to pull new changes. Or you use rebase, recreating the history many times over.  I've been using rebase for more than five years. And I've been endorsing it to other developers all the time. The usual selling point is better readability or easier integration of changes from other branches. But today I want to talk about a different value of rebasing – and that is codebase stability.</p>
+<h2 id="tl-dr"><a href="#tl-dr" class="heading-anchor">TL;DR</a></h2>
+<blockquote>
+<p>If you merge a branch that is not rebased on top of current master, your code may break even if your tests were fine before and there were no merge conflicts. <strong>Always make sure the merge request is rebased onto master before merging.</strong></p>
+</blockquote>
+<h2 id="further-explanation"><a href="#further-explanation" class="heading-anchor">Further explanation</a></h2>
+<p>There are three developers - <em>Alice</em>, <em>Bob</em> and <em>Carrie</em>. They all work on the same project. Their codebase is of reasonable quality and with good test coverage. They have continuous integration server in place and never merge anything if tests fail.</p>
+<p>On that sunny afternoon, everything seemed as usual. <em>Alice</em> was refactoring the <code>Person</code> class, creating new class <code>User</code> to replace it. <em>Bob</em>’s merge request implementing new authentication method was already reviewed, tests were green and <em>Carrie</em> merged it. Then she reviewed <em>Alice</em>'s merge request. She noticed that CI server showed green badge as well and felt confident merging it. She merged it and launched deployment. Why not? Tests passed, no merge conflicts, all green. But before the deploy finished, she noticed a new message in her inbox. Its subject sent a chill down her spine: <code>"Build failed for branch master"</code>. Support inbox started filling with messages from customers that could not log in. <em>Carrie</em> eventually found the problem and fixed it. But the incident resulted in more than five minutes of downtime.</p>
+<h2 id="what-happened"><a href="#what-happened" class="heading-anchor">What happened?</a></h2>
+<p>How could the master build fail if the merge request was green? Was there a malfunction in the CI server? No. The reason is simple. <em>Bob</em>'s code that added new authentication method was merged first. It was in master, using the <code>Person</code> class. At the time <em>Alice</em>’s branch was branched from master the new auth method was not there yet. <em>Alice</em> replaced all the usages of the <code>Person</code> class unaware that there is <em>Bob</em>’s new auth method in master is using it as well. When <em>Alice</em>'s change was merged later, it removed the <code>Person</code> class causing the auth method to fail. Observe the git log below.</p>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitgraph.js/1.11.4/gitgraph.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gitgraph.js/1.11.4/gitgraph.min.js"></script>
+<div style="width:99%;margin:0 auto;overflow-x:scroll"><canvas id="gitGraph"></canvas></div>
+<script src="/assets/js/posts/be-safe-rebase.js"></script>
+<p>But how does one prevent such a problem? It's simple. Never merge a branch that has not been rebased onto master. Let's see how the event would unfold if they were using rebase.</p>
+<ul>
+<li><em>Carrie</em> merges <em>Bob</em>'s merge request. </li>
+<li>Then she moves on to review <em>Alice</em>'s merge request. </li>
+<li>She notices that the branch is not based off current master. </li>
+<li>She either rebases it herself or asks <em>Alice</em> to do so. </li>
+<li>In any case, the build fails and <em>Alice</em> updates the authentication method code. </li>
+<li>PROFIT! </li>
+</ul>
+<p>There are also other ways to mitigate the danger of merging buggy code. One of them is CI running on merged code. The CI server needs to first merge the code to master, try to run the build and then report the result. That makes sure that everything will work after the merge as well. There is almost a two-year-old <a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/4176">GitLab issue for that feature</a>. There is also an option to use <a href="https://docs.gitlab.com/ee/user/project/merge_requests/index.html#semi-linear-history-merge-requests">Semi-linear history merge requests</a> that will ensure that merge button will only appear if fast-forward merge would be possible. </p>
+<p>Other possible way to mitigate this is to pull latest master to the branch before merge. But that would make the history very hard to read and reason about. So please do not do this! </p>
+<p>To quickly check if there is something new in master, you can do <code>git log origin/master ^my-feature-branch --no-merges</code> that will show any commits in master that are not in your feature branch. </p>
+<h2 id="be-safe-rebase"><a href="#be-safe-rebase" class="heading-anchor">Be safe, rebase</a></h2>
+<p>To sum up - always make sure your feature branches are based on the current master to ensure that the code will work after you merge it. </p>        </div>
+    </div>
+    <div class="col-md-3 text-center post-sidebar">
+        <a href="https://www.tomasfejfar.cz"><img class="img-thumbnail rounded-circle d-none d-md-block"
+                                          src="/assets/images/me.jpg"></a>
+        <dl class="m-1">
+            <dt>Author</dt>
+            <dd><a href="https://www.tomasfejfar.cz">Tomáš Fejfar</a></dd>
+                            <dt>Published on</dt>
+                <dd>2017-09-24</dd>
+                    </dl>
+    </div>
+</div>
+</div> <footer class="footer">
+    <div class="container">
+        <p class="text-center"><a href="#top" class="btn btn-light btn-lg">Zpátky nahoru!</a></p>
+    </div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/jquery-3.2.1.slim.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/popper.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/bootstrap.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="182700b847b95f6705103410-|49" defer=""></script></body>
+</html>

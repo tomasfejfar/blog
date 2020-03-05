@@ -1,0 +1,123 @@
+
+                
+<!doctype html>
+<html lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Blíží se Hacktober Fest 2016. Poradím vám, jak udělat váš první pullrequest.">
+    <title>
+        Jak poslat pullrequest do opensource projektu?
+    </title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/github.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<a id="top"></a>
+<header class="navbar navbar-expand-lg navbar-light bg-warning">
+    <a class="navbar-brand" href="/">Blog - Tomáš Fejfar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    </header>
+<hr class="invisible">
+<div class="container">
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="jumbotron container">
+
+
+            <h1 class="">Jak poslat pullrequest do opensource projektu?</h1>
+                            <p class="lead">Blíží se Hacktober Fest 2016. Poradím vám, jak udělat váš první pullrequest.</p>
+                    </div>
+        <div class="post-body">
+            <p>Zbývá jen pár dní a začne říjen! Měsíc, kdy se zkracují dny a prodlužují noci. Programátoři všeho druhu tak mají víc času si po nocích programovat. A není náhodou, že právě tento měsíc probíhá <a href="https://github.com/blog/2260-hacktoberfest-is-back">#hacktoberfest</a>. <strong>Hacktoberfest</strong> si klade za cíl motivovat vývojáře, aby se podíleli na opensource projektech. Jak? <strong>Stačí se zaregistrovat a poslat nejméně 4 pullrequesty do libovolných opensource projektů a dostanete od GitHubu a DigitalOceanu tričko s logem Hacktoberfestu.</strong> </p>
+<p>Udělat pullrequest není nic složitého. Zvládnete to během pár minut.  </p>
+<p><a href="#jak-na-to" class="btn btn-warning">Chci přeskočit povídání a rovnou udělat pullrequest</a> </p>
+<h2 id="co-je-to-pullrequest"><a href="#co-je-to-pullrequest" class="heading-anchor">Co je to pullrequest?</a></h2>
+<p>Pullrequest je způsob, jak v gitu poslat jinému vývojáři nějaké své změny. V základu vlastně říká: </p>
+<blockquote>
+<p><em>&quot;Podívej, mám tady v repozitáři <strong><a href="http://github.com/ja/projekt">http://github.com/ja/projekt</a></strong> nějaké úpravy. Začal jsem stavět na tvojí práci ve <strong>v1.0.0</strong> a commity přidával do větve <strong>moje-upravy</strong>. Jestli chceš, tak si ty úpravy stáhni a zahrň je do svojí větve.&quot;</em></p>
+</blockquote>
+<p>Vývojáři většinou pod pojmem pullrequest rozumí <a href="https://github.com/symfony/symfony/pull/20061">to, co najdete na GitHubu</a>, ale samotná funkcionalita pullrequestů je <a href="https://git-scm.com/docs/git-request-pull">dostupná i přímo v gitu</a>. </p>
+<h2 id="proc-delat-pullrequesty"><a href="#proc-delat-pullrequesty" class="heading-anchor">Proč dělat pullrequesty?</a></h2>
+<p>Pokud jste autorem opensource projektu, tak máte celkem velkou zodpovědnost. Na jedné straně musíte neustále přidávat nové vlastnosti, aby lidi projekt neopustili, ale na druhé straně musíte všechno udržovat funkční a nic nerozbít. V takové chvíli uvítáte jakoukoli pomoc. Jako uživateli opensource by se nám často hodilo, aby knihovna uměla to nebo ono. Ale nemůžeme chtít po autorovi, aby strávil bezesné noci programováním jen proto, že se nám zachtělo nové featury. A tady přichází ke slovu pullrequesty. Můžeme mu kód připravit a jen mu dát vědět, kde je. Na něm už je jen ho zapracovat a vydat novou verzi. </p>
+<h2 id="na-co-delat-pullrequesty"><a href="#na-co-delat-pullrequesty" class="heading-anchor">Na co dělat pullrequesty?</a></h2>
+<p>Ideálními kandidáty na pullrequest jsou:</p>
+<ul>
+<li>bugfixy</li>
+<li>úpravy v dokumentaci</li>
+<li>nová drobná vylepšení</li>
+<li>přidání CI (Travis, AppVeyor, CodeClimate, atp)</li>
+</ul>
+<h2 id="na-co-pullrequesty-spis-nedelat"><a href="#na-co-pullrequesty-spis-nedelat" class="heading-anchor">Na co pullrequesty spíš nedělat?</a></h2>
+<p>Pullrequesty v podobě, jak jsem je popsal (tedy bez nějaké předchozí domluvy a komunikace s autorem) se nehodí na radikální úpravy jako např.:</p>
+<ul>
+<li>přepsat formátování z mezer na taby</li>
+<li>přeformátovat pole, aby byla co klíč, to řádek</li>
+<li>přepsat část projektu z bashe do javascriptu</li>
+<li>předělat framework na PSR-7</li>
+</ul>
+<p>Ne, že by se takovéto změny nedaly v pullrequestu udělat. Jsou nevhodné spíš proto, že by jim <em>měla předcházet větší diskuse</em>. To, jestli váš pullrequest autor přijme, je jen na něm. A byla by škoda nechat tolik práce na něčem, co se následně nepoužije. U větších věcí bývá lepší <a href="https://github.com/sensiolabs/SensioDistributionBundle/issues/223">nejprve úpravu navrhnout v rámci issue</a>. </p>
+<p>Už víme o pullrequestech všechno důležité, tak pojďme nějaký udělat. </p>
+<h2 id="jak-na-pullrequest"><a name="jak-na-to"></a>Jak na pullrequest</h2>
+<p>Ať se nám to líbí, nebo ne, <code>opensource == github</code>. Jako první krok je tedy potřeba na GitHubu mít účet. <a href="https://github.com/join?source=header-home">Zaregistrujte se</a> nebo <a href="https://github.com/login">se přihlaste</a>. </p>
+<p>Dále si vyberte, do kterého projektu chcete pullrequest poslat. Abych ukazoval postup na konkrétním případě, vybral jsem si <a href="http://www.tomasvotruba.cz/blog/">blog Tomáše Votruby</a>. Ano, blog. Tomáš ho píše ve statickém generátoru <a href="https://sculpin.io/">Sculpin</a>, takže jsou všechny blogposty jen soubory. Takže tam opravím pár drobností a pošlu pullrequest. Tak tedy směle do toho. </p>
+<h2 id="vidlickujeme-aneb-hardcore-forking-action"><a href="#vidlickujeme-aneb-hardcore-forking-action" class="heading-anchor">Vidličkujeme aneb <em>hardcore forking action</em></a></h2>
+<p>Prvním krokem je si udělat vlastní fork - tedy kopii repozitáře, do které můžete posílat nové commity. Otevřeme si <a href="https://github.com/TomasVotruba/tomasvotruba.cz">repozitář na GitHubu</a> a klikneme na tlačítko <em>Fork</em>. </p>
+<p><img src="/images/posts/hacktober/1-fork.png" alt="Fork" /></p>
+<p>Pokud jste registrovaní v nějakých organizacích, tak ještě musíte vybrat, pod kterým profilem chcete forkovat. Já to udělám pod svým osobním profilem. </p>
+<p><img src="/images/posts/hacktober/2-profile-selection.png" alt="Výběr profilu" /></p>
+<p>Za pár sekund máme fork připravený a můžeme si ho stáhnout pomocí <a href="https://git-scm.com/book/cs/v1/Z%C3%A1klady-pr%C3%A1ce-se-syst%C3%A9mem-Git-Pr%C3%A1ce-se-vzd%C3%A1len%C3%BDmi-repozit%C3%A1%C5%99i"><code>git clone</code></a> do počítače. </p>
+<h2 id="pripravujeme-kod"><a href="#pripravujeme-kod" class="heading-anchor">Připravujeme kód</a></h2>
+<p>Při dělání pullrequestu je dobré myslet na to, že autor bude muset kód pochopit. Bude tedy fajn, pokud si dáte záležet na <strong>správném pojmenování</strong> (a to se týká všeho - větve v gitu, proměnných, commitů, ...). Stejně tak se snažte <strong>dodržovat konvence zavedené v projektu</strong>, ať s tím má autor co nejméně práce. Pokud má projekt testy, tak je spusťte a zkontrolujte, pro novou funkcionalitu je přidejte.</p>
+<p>Já jsem si udělal branch <code>korektura-opensource-2</code>. A commit jsem pojmenoval <code>Improved wording  of "How to write open-source 2"</code>. Mělo by z toho být jasné, co jsem upravil i bez koukání do kódu. Pokud je úprava složitější, tak se vyplatí se v commit message rozepsat, jako to udělal <a href="https://github.com/sensiolabs/SensioDistributionBundle/pull/244/commits/4118cbbb5be29772d0fe828be1ad3520080ee67f">Martin, když opravoval Windows bug v Symfony</a>.</p>
+<h2 id="konecne-pullrequest"><a href="#konecne-pullrequest" class="heading-anchor">Konečně pullrequest</a></h2>
+<p>První věc, kterou musíte udělat, je pushnout svojí branch na GitHub. </p>
+<p><img src="/images/posts/hacktober/4-commit-ready.png" alt="Připraveno na GitHubu" /></p>
+<p>Pokud vytváříte pullrequest hned po tom, co jste pushnuli, tak se vám ve vašem forku objeví rovnou tlačítko na pullrequest. </p>
+<p><img src="/images/posts/hacktober/8-pr-step1.png" alt="Tlačítko na pullrequest" /></p>
+<p><a href="#pr-ready" class="btn btn-warning">Tlačítko se mi objevilo, přeskočit ruční vytváření</a></p>
+<p>Pokud se vám tlačítko neobjevilo, tak si otevřete původní (!) projekt na GitHubu, tedy ne svůj fork! A přejděte na záložku <em>Pull Requests</em> a tam je tlačítko <em>New Pull Request</em>. </p>
+<p><img src="/images/posts/hacktober/5-pr-step1.png" alt="Pullrequest" /> </p>
+<p>Objeví se stránka, na které zdánlivě nejde nic udělat a je třeba přepnout <em>compare across forks</em>. </p>
+<p><img src="/images/posts/hacktober/6-pr-step2.png" alt="Přepnutí na porovnání forků" /></p>
+<p>A zde již můžete vybrat váš fork. </p>
+<p><img src="/images/posts/hacktober/7-pr-step3.png" alt="Výběr forku" /></p>
+<p>A také vaši branch. </p>
+<p><img src="/images/posts/hacktober/9-pr-step4.png" alt="Výběr branche" /></p>
+<p>Potom se hned objeví zelené tlačítko <em>Create pull request</em>. Až ho stisknete, objeví se formulář na zadání pullrequestu. </p>
+<p><img src="/images/posts/hacktober/11-pr-step5.png" alt="Formulár na PR" /></p>
+<p><a name="pr-ready"></a>Název pullrequestu se automaticky předvyplní z commitu. Stejně ale raději <strong>název a popis zkontrolujte a případně upravte tak, aby dával smysl</strong>.  Zkontrolujte si také, jestli sedí názvy branchí z kterých a do kterých chcete pullrequest udělat. A nezapomeňte zkontrolovat, jestli <strong>jsou v přehledu pouze commity, které tam očekáváte</strong>. Pokud je všechno v pořádku, <a href="https://github.com/TomasVotruba/tomasvotruba.cz/pull/29">můžete PR vytvořit</a>. </p>
+<p><img src="/images/posts/hacktober/12-pr-step6.png" alt="Pullrequest připraven" /></p>
+<p>A pak nezbývá než čekat a případně reagovat na dotazy autora, které k pullrequestu může mít. Speciálně pokud se jedná o novou feature nebo složitý problém. S Tomášem jsme ještě některé části doladili a já jsem přidal další commit. Teď už je mnou upravená verze článku přímo na webu. </p>
+<p><img src="/images/posts/hacktober/13-pr-finished.png" alt="Pullrequest mergnut" /></p>
+<p>Jestli jste s vaším pullrequestem dospěli až sem, tak na sebe můžete být pyšní! Přispěli jste svoji troškou do celosvětového opensource mlýna. A i když se vám třeba nezadaří a autor váš pullrequest nepřijme, tak nevěšte hlavu. Neznamená to, že to byl špatný nápad nebo že posílání pullrequestů nemá cenu. Jen jste možná udělali moc radikální změnu bez předchozí domluvy nebo má autor prostě jiný názor. <a href="https://github.com/phingofficial/phing/pull/227">Nenechte se odradit</a> a <a href="https://github.com/saltstack-formulas/mysql-formula/pull/122">zkuste udělat jiný</a> :)</p>
+<p>Zapomněl jsem na něco zásadního? Mám tu překlep? Můžete mi <a href="https://github.com/tomasfejfar/blog">poslat pullrequest</a>. Případně dejte vědět v komentářích.  </p>        </div>
+    </div>
+    <div class="col-md-3 text-center post-sidebar">
+        <a href="https://www.tomasfejfar.cz"><img class="img-thumbnail rounded-circle d-none d-md-block"
+                                          src="/assets/images/me.jpg"></a>
+        <dl class="m-1">
+            <dt>Author</dt>
+            <dd><a href="https://www.tomasfejfar.cz">Tomáš Fejfar</a></dd>
+                            <dt>Published on</dt>
+                <dd>2016-09-28</dd>
+                    </dl>
+    </div>
+</div>
+</div> <footer class="footer">
+    <div class="container">
+        <p class="text-center"><a href="#top" class="btn btn-light btn-lg">Zpátky nahoru!</a></p>
+    </div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/jquery-3.2.1.slim.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/popper.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/bootstrap.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="182700b847b95f6705103410-|49" defer=""></script></body>
+</html>

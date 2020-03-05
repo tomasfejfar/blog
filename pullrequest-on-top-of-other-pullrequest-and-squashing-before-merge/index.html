@@ -1,0 +1,84 @@
+
+    
+<!doctype html>
+<html lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Organizuji školení gitu, školení PhpStormu a konzultace efektivního vývoje v týmu. Zabývám se také zakázkovým vývojem v PHP. Můžu pracovat jak samostatně, tak v týmu dalších freelancerů nebo jako součást vašeho interního týmu.">
+    <title>
+        Pullrequest on top of other pullrequest and squashing before merge
+    </title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/github.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<a id="top"></a>
+<header class="navbar navbar-expand-lg navbar-light bg-warning">
+    <a class="navbar-brand" href="/">Blog - Tomáš Fejfar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    </header>
+<hr class="invisible">
+<div class="container">
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="jumbotron container">
+
+
+            <h1 class="">Pullrequest on top of other pullrequest and squashing before merge</h1>
+                    </div>
+        <div class="post-body">
+            <p>We use pull-requests for development. We do small commits, that allow us to do better review per-commit - usually you add new commit for each code-review issue to allow the reviewer to check that it's fixed. Just before merging the PR we squash all the commits to keep the history clean and tidy. And sometimes it happens that there is a pullrequest (usually refactoring) that is caused by changes required by some other PR. So you develop small PR for the refactoring and on top of it you work on your  feature branch. You happily rebase you working branch on top of the work in PR. Your history may look like this:</p>
+<pre><code>* 41ae4fd (feature) Feature 2
+* 2e8c29d Feature 1
+* 1244157 (HEAD, pr/small) Small PR 3
+* 58da58e Small PR 2
+* 1dd6fb3 (orphan) init</code></pre>
+<p>You're happy with the work so far, but alas, when the PR is merged and squashed you can't rebase now. Ton of conflicts, empty commits warnings, you have no idea which side of the diff is <em>mine</em> and which is <em>theirs. </em>Awful!</p>
+<pre><code>* 47a5eca (HEAD, pr/small) Finished PR
+| * 41ae4fd (feature) Feature 2
+| * 2e8c29d Feature 1
+| * 1244157 Small PR 3
+| * 58da58e Small PR 2
+|/
+* 1dd6fb3 (orphan) init</code></pre>
+<p>That's because your <strong>feature branch</strong> now has all the changes from the <strong>small PR</strong>, but in small commits. Git can't really tell that all the small commits are the same as the one big commit that is now merged. So it blows up in your face. But worry not, there is a simple fix. If you know which commits come from the small PR, you can use <code>git rebase pr/small -i</code> to interactivelly rebase and remove the offending commits.</p>
+<pre><code>[REMOVED] pick 58da58e Small PR 2
+[REMOVED] pick 1244157 Small PR 3
+pick 2e8c29d Feature 1
+pick 41ae4fd Feature 2</code></pre>
+<p>You can safely remove them <strong>because you know that changes in those commits are part of the one big commit you're rebasing onto.</strong> And voila! The result:</p>
+<pre><code>* 557dc4d (HEAD, feature) Feature 2
+* dd46b19 Feature 1
+* 47a5eca (pr/small) Finished PR
+* 1dd6fb3 (orphan) init</code></pre>
+<p>There are some edge cases that you need to keep in mind. Like when someone else made changes to the PR before squashing - so <em>the squashed commit is not the same as the &quot;sum&quot; of the small commits you have</em>, but in my case this has never been a problem. Let me know how you handle such situations.</p>        </div>
+    </div>
+    <div class="col-md-3 text-center post-sidebar">
+        <a href="https://www.tomasfejfar.cz"><img class="img-thumbnail rounded-circle d-none d-md-block"
+                                          src="/assets/images/me.jpg"></a>
+        <dl class="m-1">
+            <dt>Author</dt>
+            <dd><a href="https://www.tomasfejfar.cz">Tomáš Fejfar</a></dd>
+                            <dt>Published on</dt>
+                <dd>2015-07-03</dd>
+                    </dl>
+    </div>
+</div>
+</div> <footer class="footer">
+    <div class="container">
+        <p class="text-center"><a href="#top" class="btn btn-light btn-lg">Zpátky nahoru!</a></p>
+    </div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/jquery-3.2.1.slim.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/popper.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/bootstrap.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="182700b847b95f6705103410-|49" defer=""></script></body>
+</html>

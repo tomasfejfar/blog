@@ -1,0 +1,119 @@
+
+                
+<!doctype html>
+<html lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Most people I know are using PR-based development and some companies even make this a hard requirement for legal reasons, so that every piece of code is seen at least by two people. You usually create a branch, push it to origin and make a PR against master. But what to do if you forgot to do this in a new repo and now you have a bunch of commits already in master? And how to prevent it in the future?">
+    <title>
+        How to reset master to empty commit
+    </title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/github.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<a id="top"></a>
+<header class="navbar navbar-expand-lg navbar-light bg-warning">
+    <a class="navbar-brand" href="/">Blog - Tomáš Fejfar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    </header>
+<hr class="invisible">
+<div class="container">
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="jumbotron container">
+
+
+            <h1 class="">How to reset master to empty commit</h1>
+                            <p class="lead">Most people I know are using PR-based development and some companies even make this a hard requirement for legal reasons, so that every piece of code is seen at least by two people. You usually create a branch, push it to origin and make a PR against master. But what to do if you forgot to do this in a new repo and now you have a bunch of commits already in master? And how to prevent it in the future?</p>
+                    </div>
+        <div class="post-body">
+            <h3 id="tl-dr"><a href="#tl-dr" class="heading-anchor">TL;DR</a></h3>
+<blockquote>
+<p>Add an alias <code>start = !git init &amp;&amp; git commit --allow-empty -m \"Initial commit\"</code> and use it to create an empty repository. </p>
+<p>To fix the issue, run the following commands</p>
+<ul>
+<li><code>git checkout -b my-feature-1 master</code></li>
+<li><code>git branch -D master</code></li>
+<li><code>git checkout --orphan master</code></li>
+<li><code>git reset --hard</code></li>
+<li><code>git commit --allow-empty -m "Initial commit"</code></li>
+<li><code>git push origin master:master --force-with-lease</code></li>
+<li><code>git checkout my-feature-1</code></li>
+<li><code>git rebase origin/master</code></li>
+<li><code>git push origin my-feature-1:my-feature-1 --force-with-lease</code></li>
+</ul>
+<p>Continue reading if you want to know why.</p>
+<p>If you want to understand little bit more about git internals, there is also a <a href="#under-the-hood-method">method using <em>plumbing</em> commands</a>. </p>
+</blockquote>
+<h2 id="how-do-i-fix-this-mess"><a href="#how-do-i-fix-this-mess" class="heading-anchor">How do I fix this mess?</a></h2>
+<p>What you need to do is make master empty again without loosing your precious code.  </p>
+<p>First of all check that you <strong>have everything commited</strong> and your <strong>working copy is clean</strong>. You can stash everything (also untracked) using <code>git stash -u</code>. </p>
+<p><strong>Create a backup branch</strong>, that will hold your code so that it does not get lost, when you reset master.</p>
+<p><code>git checkout -b my-feature-1 master</code></p>
+<p>Now you <strong>delete master</strong> (!). Don't worry, we'll recreate it in a minute. </p>
+<p><code>git branch -D master</code></p>
+<p>You will <strong>create new <code>master</code></strong> out of thin air. The <code>--orphan</code> flag will do that for you. Orphan branch is not based off of anything. </p>
+<p><code>git checkout --orphan master</code></p>
+<p>But now your working copy contains changes from <code>my-feature-1</code> branch. So we need to reset it. </p>
+<p><code>git reset --hard</code></p>
+<p>You can't just <strong>commit empty commit</strong> as git will refuse to do so. So you need to add <code>--allow-empty</code> flag.  </p>
+<p><code>git commit --allow-empty -m "Initial commit"</code> </p>
+<p>Now your <strong>master contains only one empty commit</strong> and you can <strong>push it to the server</strong>. But because the branch changed completely you need to force push. </p>
+<p><code>git push origin master:master --force-with-lease</code></p>
+<p>Notice we did not use a simple <code>--force</code>. When you force with lease, git makes sure that the <strong>remote branch is where it's supposed to be</strong>. In case someone pushed after you last fetched the <code>origin/master</code> the force push will fail. </p>
+<p>Now you're done when it comes to the master branch. But there are still your changes in the <code>my-feature-1</code> branch. If you push it and try to create a PR from it, you will see an error. Something along the lines:</p>
+<blockquote>
+<p><code>master</code> and <code>my-feature-1</code> are completely different trees</p>
+</blockquote>
+<p>To fix this you need to rebase the feature branch on <code>master</code>.  </p>
+<p><code>git checkout my-feature-1</code>
+<code>git rebase origin/master</code>
+<code>git push origin my-feature-1:my-feature-1 --force-with-lease</code></p>
+<h2 id="why-should-i-always-have-empty-commit-on-master"><a href="#why-should-i-always-have-empty-commit-on-master" class="heading-anchor">Why should I always have empty commit on master?</a></h2>
+<p>There are multiple reasons why starting <code>master</code> with an empty commit is a good idea. Apart from being nice and clean, it's <strong>more practical</strong> when you need to rebase any branch based off of it. The commit you rebase onto is not part of the interactive rebase list. So if your first commit was titled <code>Dummy test 999</code>, you're not getting rid of that that easily as <strong>you can't rebase a commit that has no parent</strong>.  </p>
+<p>To prevent the situation altogether there is this handy <a href="https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases">alias</a>. </p>
+<p><code>start = !git init &amp;&amp; git commit --allow-empty -m \"Initial commit\"</code></p>
+<p>When you call <code>git start</code> in a directory, it will init the repository as well as add an empty commit on <code>master</code>.  </p>
+<h2 id="under-the-hood-method"><a href="#under-the-hood-method" class="heading-anchor">Under-the-hood method</a></h2>
+<p>The above method of fixing master is made for mere mortals. It's using mostly the commands you know and love. But with git there is always more then one way to skin the cat. If you feel adventurous, you can try the &quot;under the hood&quot; method. </p>
+<p>First we need to know what an <strong>empty tree</strong> (e.g. empty directory) looks like. For that we'll employ git's <code>hash-object</code>, that returns a hash that git would internally use to represent whatever we pass to it. </p>
+<p><code>git hash-object -t tree /dev/null</code></p>
+<p>Here we're asking git to give us a <strong>hash of a tree that is created from <code>/dev/null</code></strong> (<code>-t tree</code> means object of type <code>tree</code>). </p>
+<p>You'll probably get <code>4b825dc642cb6eb9a060e54bf8d69288fbee4904</code>, unless you're reading this in the future when git changed hashes from SHA1 to SHA256 to avoid collisions.</p>
+<p>Now that you know the hash of the tree, you can easily <strong>create a new commit at that tree</strong>. </p>
+<p><code>git commit-tree -m "inital commit" 4b825dc642cb6eb9a060e54bf8d69288fbee4904</code> </p>
+<p>That will give you a hash of the empty commit. The commit is not part of any branch. You just created it using the <em>plumbing</em> command. But as you may know, branches are just labels assigned to commits. So all you need to do is to <strong>make the <code>master</code> label point to this commit</strong>. In my case the commit hash was <code>a5c0737b</code>, so I used it in the reset command. </p>
+<p><code>git reset --hard a5c0737b</code></p>
+<p>And voila! Done. </p>
+<p>You still need to rebase your feature branch on top of it, though. </p>        </div>
+    </div>
+    <div class="col-md-3 text-center post-sidebar">
+        <a href="https://www.tomasfejfar.cz"><img class="img-thumbnail rounded-circle d-none d-md-block"
+                                          src="/assets/images/me.jpg"></a>
+        <dl class="m-1">
+            <dt>Author</dt>
+            <dd><a href="https://www.tomasfejfar.cz">Tomáš Fejfar</a></dd>
+                            <dt>Published on</dt>
+                <dd>2019-06-21</dd>
+                    </dl>
+    </div>
+</div>
+</div> <footer class="footer">
+    <div class="container">
+        <p class="text-center"><a href="#top" class="btn btn-light btn-lg">Zpátky nahoru!</a></p>
+    </div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/jquery-3.2.1.slim.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/popper.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/bootstrap.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="182700b847b95f6705103410-|49" defer=""></script></body>
+</html>

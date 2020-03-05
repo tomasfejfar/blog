@@ -1,0 +1,94 @@
+
+                
+<!doctype html>
+<html lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Nastavit správně Git na Windows není úplně legrace, ale ukážu vám, jak na to. Na konci budete mít lepší a bezpečnější řešení, které zapadá do Windows ekosystému.">
+    <title>
+        Jak nastavit Git, SSH a bezpečný klíč na Windows
+    </title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/github.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<a id="top"></a>
+<header class="navbar navbar-expand-lg navbar-light bg-warning">
+    <a class="navbar-brand" href="/">Blog - Tomáš Fejfar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    </header>
+<hr class="invisible">
+<div class="container">
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="jumbotron container">
+
+
+            <h1 class="">Jak nastavit Git, SSH a bezpečný klíč na Windows</h1>
+                            <p class="lead">Nastavit správně Git na Windows není úplně legrace, ale ukážu vám, jak na to. Na konci budete mít lepší a bezpečnější řešení, které zapadá do Windows ekosystému.</p>
+                    </div>
+        <div class="post-body">
+            <p>Často vídám, že lidé na Windows používají privátní klíč bez hesla. To je podle mého celkem zásadní chyba. Privátní klíč je jako heslo. Heslo byste si nenapsali do texťáku a neuložili na disk. Nedělejte to ani s privátním klíčem! Myslím, že příčinou je, že na Windows není snadné nastavit autentizačního agenta, který si heslo bezpečně zapamatuje a vy ho pak zadáváte jen jednou při přihlášení. Chápu, že zadávat heslo pokaždé, když klíč použijete, je otrava. Proto si ukážeme, jak klíč nastavit tak, abyste to dělat nemuseli.  </p>
+<p>Začneme tím, že si <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">stáhneme potřebné nástroje</a> - <code>putty</code>, <code>plink</code>, <code>pageant</code> a <code>puttygen</code> (klidně stáhněte celý zip). Oficiální stránka vypadá trochu archaicky, ale nenechte se zastrašit. </p>
+<h3 id="vygenerovani-klice"><a href="#vygenerovani-klice" class="heading-anchor">Vygenerování klíče</a></h3>
+<p>Spusťte si <code>puttygen</code>.</p>
+<p><img src="/images/posts/git-ssh-key/puttygen.png" alt="Image" /></p>
+<p>Po spuštění si tlačítkem <em>Generate</em> vygenerujte klíč. Délka 2048 je pro současné použití dostačující. A měla by vám podle <a href="https://www.keylength.com/en/compare/">keylength.com</a> bezpečně stačit minimálně na následujících deset let. </p>
+<p>Klíč používaný pouze k přihlašování musí být bezpečný jen v okamžiku přihlášení - tedy dnes, zítra a příštích pár let. Samotná komunikace už je šifrovaná symetrickou šifrou (typicky AES) s dočasným klíčem (<a href="https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process">podrobnější vysvětlení</a>). Pokud přenášíte přes SSH třeba zálohu databáze, je riziko rozšifrování zachycené komunikace v horizontu desítek let závislé pouze na použité symetrické šifře, nikoli na vašem privátním klíči.  </p>
+<p><strong>Pokročilé:</strong> Pokud chcete být moderní, vygenerujte si ED25519 (novější a rychlejší eliptická křivka, v <code>putty</code> od <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/changes.html">verze 0.68</a>) a jako fallback k tomu 4096bit RSA. Do agenta je pak načtete oba a když jim dáte stejné heslo, tak se oba odemknou najednou. Podle toho, jestli server podporuje ED25519 pak na server nahrajete jeden nebo druhý veřejný klíč. </p>
+<h4 id="nacteni-putty-klice-ppk"><a href="#nacteni-putty-klice-ppk" class="heading-anchor">Načtení Putty klíče (<code>*.ppk</code>)</a></h4>
+<p>Pokud už máte existující klíč v Putty formátu, můžete ho načíst tlačítkem <em>Load</em>. </p>
+<h4 id="nacteni-openssh-klice-id-rsa-id-dsa"><a href="#nacteni-openssh-klice-id-rsa-id-dsa" class="heading-anchor">Načtení OpenSSH klíče (<code>id_rsa</code> / <code>id_dsa</code>)</a></h4>
+<p>Pokud už máte existující klíč v OpenSSH formátu, můžete ho také načíst. V menu vyberte <em>Conversions → Import key</em>. </p>
+<h3 id="zasifrovani-klice"><a href="#zasifrovani-klice" class="heading-anchor">Zašifrování klíče</a></h3>
+<p>Až budete klíč mít vygenerovaný nebo načtený, tak ho opatřete vhodným komentářem. Já si do komentáře dávám uživatele a stroj (<code>tomasfejfar@x220</code>), abych v budoucnu viděl, kde se mi na tom kterém místě klíč vzal a také jestli ho třeba můžu smazat (třeba když od té doby mám nový notebook). </p>
+<p>Heslo použijte dostatečně silné. Pokud si klíč zálohujete někam mimo PC (Dropbox, Google Drive, One Drive), platí to dvojnásob. Rozhodně to není doporučená praktika, protože klíč by v ideálním případě neměl nikdy opustit vaše PC. Na druhou stranu záleží jak vnímáte rizika - je větší problém, když přijdete o přístup k nějakému serveru kde nikdo jiný přístup nemá nebo relativně málo pravděpodobný unik dat ze zálohovací služby. </p>
+<p>Každopádně platí, že <strong>kdykoli máte podezření, že klíč mohl uniknout, tak si okamžitě vygenerujte nový a vyměňte ho na všech místech</strong>, kde ho používáte. </p>
+<p>Klíče uložte pomocí <em>Save public key</em> (<code>id_rsa.ppk.pub</code>) a <em>Save private key</em> (<code>id_rsa.ppk</code>). Pomocí <em>Conversions → Export OpenSSH key</em> si vyexportujte i OpenSSH formát klíče (<code>id_rsa</code>) a z textového pole si zkopírujte OpenSSH veřejný klíč (<code>id_rsa.pub</code>). Privátní klíč můžete kdykoli znovu načíst tlačítkem <em>Load</em> a kterýkoli z kroků zopakovat.  </p>
+<h3 id="nastaveni-agenta"><a href="#nastaveni-agenta" class="heading-anchor">Nastavení agenta</a></h3>
+<p>Abyste nemuseli při každém pokusu o spojení zadávat heslo na rozšifrování klíče, použijte <code>pageant</code>. Ten běží v systray a udržuje rozšifrovaný klíč bezpečně v paměti. Stačí aplikaci spustit a pomocí <em>Add key</em> si přidat klíč, který se po zadání hesla objeví v seznamu a je možné ho rovnou používat. </p>
+<p>Potíž je, že <code>pageant</code> po restartu klíč zapomene a musíte ho znovu přidat. A to je otrava. Vyřešit to jde snadno. Vytvoříte si zástupce pageantu a do položky <em>Cíl</em> ve Vlastnostech doplníte za cestu k programu ještě cestu ke klíči (případně více klíčům). Tedy např. <code>C:\apps\pageant.exe c:\Users\tomasfejfar\.ssh\id_rsa.ppk</code>. Zástupce si dejte do složky <em>Po spuštění</em> (<em>Start → Spustit → <code>shell:startup</code> → OK</em>). Po přihlášení se <code>pageant</code> spustí a požádá o heslo. A pak až do restartu nebude třeba heslo zadávat. </p>
+<h3 id="nastaveni-ssh-klienta"><a href="#nastaveni-ssh-klienta" class="heading-anchor">Nastavení SSH klienta</a></h3>
+<p>Aby se nový klíč z agenta začal používat pro SSH v rámci gitu je třeba nahradit standardního SSH klienta (typicky <code>ssh.exe</code> z cygwinu/msysgitu) za <code>plink</code>. To provedete nastavením proměnné prostřední (tj. ENV variable) <code>GIT_SSH</code> na cestu k plinku (např. <code>c:\apps\plink.exe</code>). Nastavení najdete v nastavení systému (<code>[Win] + [Pause]</code>), <em>Pokročilé → Proměnné prostředí</em>. Nastavit to můžete buď pro současného uživatele nebo pro všechny uživatele. Mimochodem, podobně existuje proměnná <code>SVN_SSH</code> se stejnou funkcí pro verzování v SVN. </p>
+<p><img src="/images/posts/git-ssh-key/env-var.png" alt="Image" /></p>
+<p>Pro jistotu restartujte. A od té chvíle už by měl <code>git</code> normálně fungovat s <code>plinkem</code>. Pokud vám to z nějakého důvodu nefunguje, tak si můžete jako <em>naprosto nejhorší záložní</em> variantu klíče načíst zpět do <code>puttygen</code> a uložit si je bez hesla. Případně se mi ozvěte a zkusíme přijít na to, v čem může být problém. </p>
+<h3 id="rodina-putty-programu"><a href="#rodina-putty-programu" class="heading-anchor">Rodina Putty programů</a></h3>
+<p><code>plink</code> funguje úplně stejně jako <code>ssh</code>. Jen se jinak jmenuje. Můžete ho tedy úspěšně používat pro připojování ke vzdáleným serverům (<code>plink tomasfejfar@example.com</code>). Stejně jako <code>ssh</code> také podporuje tunelování portů (parametry <code>-L</code> a <code>-R</code>).</p>
+<p>Na běžnou práci na vzdáleném serveru doporučuji však spíš samotné <code>putty</code> (případně <a href="http://kitty.9bis.net/">fork <code>kitty</code></a>, u kterého je velká výhoda, že je rovnou portable). Můžete v něm mít uložené různé servery s různými nastaveními.  </p>
+<p>Skupinu uzavírají ještě <code>pscp</code> a <code>psftp</code>, které fungují, jak již tušíte, stejně jako jejich linuxové protějšky <code>scp</code> a <code>sftp</code>. A můžete pomocí nich přenášet soubory. </p>
+<h3 id="nevyhody"><a href="#nevyhody" class="heading-anchor">Nevýhody</a></h3>
+<p>Klíč a agent v Putty formátu si nerozumí s linuxovým (resp. cygwinovým) <code>ssh.exe</code>. OpenSSH formát klíče vyexportovaný z <code>puttygen</code> fungovat bude, ale při každém spojení bude potřeba heslo. </p>
+<p>Ve valné většině případů lze <code>ssh</code> nahradit pomocí <code>plink</code>. Pokud to pro váš konkrétní případ nejde, tak si můžete buď zprovoznit agenta v cygwinu (což se mi nikdy uspokojivě nepodařilo) případně pro tohle konkrétní použití mít jiný klíč bez hesla. Sice tím trochu pokazíte bezpečnost celého řešení, ale pro jednorázové použití to nemusí být problém. Poslední možností je vyzkoušet <a href="https://github.com/cuviper/ssh-pageant">ssh-pageant</a>. </p>
+<p>Samotné použití agenta je bezpečnější než nešifrovaný klíč na disku. Ale je třeba mít na paměti, že klíče v paměti agenta jsou rozšifrované a jsou vystaveny riziku, že budou odswapovány nebo k nim přistoupí nějaký proces. Potenciální rizika <a href="https://the.earth.li/~sgtatham/putty/0.60/htmldoc/Chapter9.html#pageant-security">přehledně shrnuje dokumentace</a>.  </p>
+<h3 id="kam-dal"><a href="#kam-dal" class="heading-anchor">Kam dál?</a></h3>
+<p>Když byste se chtěli dozvědět něco víc o tom, jak klíče fungují a co se okolo nich děje, tak si můžete přečíst třeba <a href="https://eprint.iacr.org/2015/1018.pdf">A Riddle Wrapped In Enigma</a>. Zajímavé čtení je taky otázka <a href="https://security.stackexchange.com/questions/143442/ssh-keygen-best-practices"><em>ssh-keygen best practices</em></a> na Information Security StackExchange. A pokud by vás třeba zajímalo, proč nepoužívat DSA, tak je zajímavé čtení v <a href="https://security.stackexchange.com/questions/112802/why-openssh-deprecated-dsa-keys">Why OpenSSH deprecated DSA keys</a>. Mohlo by vás také zajímat, že na githubu si můžete zkontrolovat veřejný klíč libovolného uživatele na adrese <a href="https://github.com/tomasfejfar.keys">https://github.com/tomasfejfar.keys</a>. </p>        </div>
+    </div>
+    <div class="col-md-3 text-center post-sidebar">
+        <a href="https://www.tomasfejfar.cz"><img class="img-thumbnail rounded-circle d-none d-md-block"
+                                          src="/assets/images/me.jpg"></a>
+        <dl class="m-1">
+            <dt>Author</dt>
+            <dd><a href="https://www.tomasfejfar.cz">Tomáš Fejfar</a></dd>
+                            <dt>Published on</dt>
+                <dd>2017-04-01</dd>
+                    </dl>
+    </div>
+</div>
+</div> <footer class="footer">
+    <div class="container">
+        <p class="text-center"><a href="#top" class="btn btn-light btn-lg">Zpátky nahoru!</a></p>
+    </div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/jquery-3.2.1.slim.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/popper.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/bootstrap.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="182700b847b95f6705103410-|49" defer=""></script></body>
+</html>

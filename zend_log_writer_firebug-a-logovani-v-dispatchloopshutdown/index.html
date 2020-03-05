@@ -1,0 +1,97 @@
+
+    
+<!doctype html>
+<html lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Organizuji školení gitu, školení PhpStormu a konzultace efektivního vývoje v týmu. Zabývám se také zakázkovým vývojem v PHP. Můžu pracovat jak samostatně, tak v týmu dalších freelancerů nebo jako součást vašeho interního týmu.">
+    <title>
+        Zend_Log_Writer_Firebug a logování v dispatchLoopShutdown()
+    </title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/github.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<a id="top"></a>
+<header class="navbar navbar-expand-lg navbar-light bg-warning">
+    <a class="navbar-brand" href="/">Blog - Tomáš Fejfar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    </header>
+<hr class="invisible">
+<div class="container">
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="jumbotron container">
+
+
+            <h1 class="">Zend_Log_Writer_Firebug a logování v dispatchLoopShutdown()</h1>
+                    </div>
+        <div class="post-body">
+            <p>Pro jeden svůj projekt jsem chtěl logovat data z DB profileru. Udělal jsem si plugin s hookem na dispatchLoopShut­down() a do něj dopsal logovací funkci. Jenže jaké bylo moje překvapení, když to nefungovalo. Zkoumal jsem to dosti dlouho a nemohl jsem najít chybu.
+Nakonec jsem zjistil, že je problém v tom, že tenhle writer k samotnému zápisu používá Wildfire komponentu, která potřebuje k své práci controller plugin a data odesílá v dispatchLoop­Shutdown(). Oprava je poměrně jednoduchá – stačí plugin ručně přidat do Front Controlleru dříve než náš plugin. (Ne, že by to dávalo smysl – ale je to řešení) </p>
+<pre><code class="language-php">&lt;?php
+$channel = Zend_Wildfire_Channel_HttpHeaders::getInstance();
+$controller-&gt;registerPlugin(new USE_Controller_Plugin_Utilities());
+$controller-&gt;registerPlugin($channel);</code></pre>
+<p>Jen pro úplnost doplním kód na logování profileru</p>
+<pre><code class="language-php">&lt;?php
+//setup loggeru / writeru - např. v bootstrapu$writer = new Zend_Log_Writer_Firebug();
+$writer-&gt;setPriorityStyle(8, 'TABLE');
+$logger = new Zend_Log($writer);
+$logger-&gt;addPriority('TABLE', 8);
+//My_Controller_Plugin_ProfillerDump::dispatchLoopShutdown()
+$db = Zend_Db_Table::getDefaultAdapter();
+$profiler = $db-&gt;getProfiler();
+$data = array();
+$i = 1;
+$data[] = array(
+    'ID',
+    'Query',
+    'Time (ms)',
+);
+foreach ($profiler-&gt;getQueryProfiles() as $query) {
+    $time = round(($query-&gt;getElapsedSecs() * 1000), 1);
+    $query = $query-&gt;getQuery();
+    $data[] = array(
+        $i,
+        $query,
+        $time,
+    );
+    $i++;
+}
+$table = array(
+    'Profiller',
+    $data,
+);
+$logger-&gt;table($table);</code></pre>
+<p>Doufám, že jsem vám ušetřil jednu bezesnou noc :) </p>        </div>
+    </div>
+    <div class="col-md-3 text-center post-sidebar">
+        <a href="https://www.tomasfejfar.cz"><img class="img-thumbnail rounded-circle d-none d-md-block"
+                                          src="/assets/images/me.jpg"></a>
+        <dl class="m-1">
+            <dt>Author</dt>
+            <dd><a href="https://www.tomasfejfar.cz">Tomáš Fejfar</a></dd>
+                            <dt>Published on</dt>
+                <dd>2011-05-16</dd>
+                    </dl>
+    </div>
+</div>
+</div> <footer class="footer">
+    <div class="container">
+        <p class="text-center"><a href="#top" class="btn btn-light btn-lg">Zpátky nahoru!</a></p>
+    </div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/jquery-3.2.1.slim.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/popper.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/bootstrap.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="182700b847b95f6705103410-|49" defer=""></script></body>
+</html>

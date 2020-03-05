@@ -1,0 +1,121 @@
+
+                
+<!doctype html>
+<html lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Jak se mi dařilo a na jaké problémy jsem narazil při statickém generování tohoto blogu v Jekyllu? Dozvíte se to uvnitř!">
+    <title>
+        Přemigroval jsem blog na Jekyll
+    </title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/github.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<a id="top"></a>
+<header class="navbar navbar-expand-lg navbar-light bg-warning">
+    <a class="navbar-brand" href="/">Blog - Tomáš Fejfar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    </header>
+<hr class="invisible">
+<div class="container">
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="jumbotron container">
+
+
+            <h1 class="">Přemigroval jsem blog na Jekyll</h1>
+                            <p class="lead">Jak se mi dařilo a na jaké problémy jsem narazil při statickém generování tohoto blogu v Jekyllu? Dozvíte se to uvnitř!</p>
+                    </div>
+        <div class="post-body">
+            <p>Blog jsem měl vždycky na <a href="http://www.wordpress.org">wordpressu</a>. Ale s tím je tak trochu potíž. Člověk se musí starat o to, jestli blog běží, jestli mu upgrade nerozbil nějaké pluginy, atd. Když se mi teď nějak poškodila instalace, tak jsem se rozhodl, že takhle už ne. Blog mám na prezentování myšlenek, ne na to, abych se o něj staral. A po tom, co mi zavřeli <a href="http://www.posterous.com/">Postero.us</a> jsem poučen, že ani SaaS řešení není <em>to pravé ořechové</em>.  </p>
+<p>Jako logická volba se tedy jeví využít statický generátor stránek. Ty typicky fungují tak, že si v gitu verzujete pár textových souborů a potom z nich pomocí nějakého nástroje vygenerujete kompletní strukturu statických HTML souborů, CSS, JS a obrázků. Možná ještě někdo z vás pamatuje dobu, kdy se takhle (tj. bez PHP, ASP a dalších) stránky psaly (největší znalci budou pamatovat, když se pak objevila novinka - <code>cgi-bin</code> v URL a dynamicky generované stránky).  </p>
+<p>Na poli statických generátorů stránek je toho na výběr hodně. Tolik, že dokonce existuje i <a href="https://www.staticgen.com/">přehled statických generátorů</a>. Já jsem v prvním sledu hned zredukoval kandidáty na <a href="https://jekyllrb.com/">Jekyll</a>, <a href="https://hexo.io/">Hexo</a> a <a href="http://gohugo.io/">Huga</a>. Tři systémy, poměrně kompatibilní a každý z nich na jiné platformě. <strong>Jekyll</strong> je napsaný v Ruby, <strong>Hexo</strong> v node.js a <strong>Hugo</strong> v Go. V praxi se ukázalo, že jsou systémy velmi podobné a do velké míry kompatibilní. Nebudu vás příliš napínat - nakonec jsem zprovoznil blog na Jekyllu. Za hlavní výhody považuji množství pluginů, obří komunitu a v neposlední řadě také to, že je to řešení, které pohání <a href="https://pages.github.com/">GitHub Pages</a>. A tam blog plánuji hostovat. </p>
+<h2 id="jekyll"><a href="#jekyll" class="heading-anchor">Jekyll</a></h2>
+<p>Pro zprovoznění Jekyllu budete chtě-nechtě muset nainstalovat Ruby. Stáhněte si tedy <a href="http://rubyinstaller.org/">Rubyinstaller</a>. A když už na tom webu budete, tak si stáhněte i <em>DevKit</em>, který budete stejně potřebovat. Buildují se s jeho pomocí gemy s nějakým nativním rozšířením.  </p>
+<p>Pokud budete chtít začít co nejrychleji, tak se jako nejrozumnější možnost jeví použít <a href="https://rubygems.org/gems/github-pages/">gh-pages gem</a>. Ve složce, kde chcete začít vytvoříte soubor <code>Gemfile</code> a do něj:</p>
+<pre><code class="language-ruby">source 'https://rubygems.org'
+gem 'github-pages'</code></pre>
+<p><code>Gemfile</code> je něco jako <code>composer.json</code> v PHP světě. Je to prostě seznam závislostí. O jejich instalací se stará <code>bundler</code>. Ten je třeba nainstalovat <code>gem install bundler</code>. Pak ve složce s projektem zavoláte <code>bundle install</code> a za chvíli máte připravené prostředí. Do samotné složky se vám nic nezkopíruje a zůstane v ní jen Gemfile. </p>
+<h3 id="template"><a href="#template" class="heading-anchor">Template</a></h3>
+<p>Pro Jekyll jsou šablony vlastně jen několik souborů a s nimi související <code>_config.yml</code>. Já jsem si vybral template <a href="http://mmistakes.github.io/minimal-mistakes/">minimal mistakes</a>. Stačilo stahnout zazipovanou verzi z githubu, překopírovat do složky a upravit pár věcí v <code>_config.yml</code>. Například přidat do <code>exclude</code> složku <code>.idea</code> (jestli jste četli <a href="https://www.zdrojak.cz/?s=Jak+b%C3%BDt+produktivn%C3%AD+v+PHPStormu&amp;submit=Hledat">můj seriál o PhpStormu na Zdrojáku</a>, tak víte, že v něm píšu všechno - i tenhle blogpost).</p>
+<h3 id="servirovani"><a href="#servirovani" class="heading-anchor">Servírování</a></h3>
+<p>V Jekyllu můžete web buď vygenerovat pomocí <code>bundle exec jekyll build</code> (případně s přepínačem <code>--watch</code> průběžně) nebo si můžete nechat přímo udělat server, na kterém si můžete web prohlédnout, pomocí <code>bundle exec jekyll serve</code>. Co si vyberete, je na vás. Ale bez serveru možná budete muset vyplnit parametr <code>url</code> v <code>_config.yml</code>, protože jinak nebudou sedět absolutní cesty. </p>
+<h2 id="problemy-na-ktere-jsem-narazil"><a href="#problemy-na-ktere-jsem-narazil" class="heading-anchor">Problémy na které jsem narazil</a></h2>
+<p>Zprovoznění rozhodně nebylo bezbolestné. Narazil jsem na různé problémy s kompatibilitou. Navíc ještě 31.1., když jsem dělal většinu práce, podporovaly GitHub Pages jen Jekyll verze 2. A včera přepnuli na Jekyll 3, takže jsem si to zprovoznil celé znovu. Objevil jsem několik bugů<sup id="fnref1:1"><a href="#fn:1" class="footnote-ref">5</a></sup> a komplikací<sup id="fnref1:2"><a href="#fn:2" class="footnote-ref">6</a></sup>. Avšak je třeba říci, že většinu problému bylo možné obratem vyřešit. </p>
+<p>Důležitá věc je, abyste Jekyll vždy spouštěli přes <code>bundle exec jekyll</code> a ne přímo, protože jinak není jisté, že se použije správná verze z <em>bundleru</em> a můžete se pak setkat třeba s takovouto chybou.  </p>
+<pre><code class="language-bash">Configuration file: W:/www/projects/gh-pages/_config.yml
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/jekyll-3.0.2/lib/jekyll/plugin_manager.rb:30:in 'require': cannot load such file -- jekyll-sitemap (LoadError)
+        from C:/Ruby22/lib/ruby/gems/2.2.0/gems/jekyll-3.0.2/lib/jekyll/plugin_manager.rb:30:in 'block in require_gems'
+        ...</code></pre>
+<p>Pokud ho spustíte skrz bundler <code>bundle exec jekyll serve</code>, tak to v pohodě projde. Skrz bundler to používá ty dependency specifikované v <code>Gemfile</code>. Jinak to může použít libovolnou, zrovna globálně nainstalovanou verzi.  </p>
+<h2 id="livereload"><a href="#livereload" class="heading-anchor">Livereload</a></h2>
+<p>Výhodou nejrozšířenějšího řešení je, že najdete návody na prakticky jakýkoli scénář. Napadlo mě, že by bylo hezké mít udělaný livereload. Build trvá mezi 0.5 až 2s a tak se často stane, že musím panel obnovit 2x, protože to stihnu dřív než se to dokončí. Nastavení je úplně jednoduché a nutno podotknout, že by fungovalo i na jakýkoli jiný projekt (nejen Jekyll). Do <code>Gemfile</code> přidejte</p>
+<pre><code class="language-ruby">gem 'guard'
+gem 'guard-jekyll'
+gem 'guard-livereload'</code></pre>
+<p>Ve složce s projektem vytvořte <code>Guardfile</code></p>
+<pre><code class="language-ruby">guard 'jekyll' do
+  # watch anything but '_site' folder
+  watch(%r(^(?!_site).*))
+end
+
+guard 'livereload' do
+  # watch '_site' folder
+  watch(%r(_site/.+))
+end</code></pre>
+<p>Mimochodem - na internetu najdete návody, které používají <code>ignore /_site/</code>. Ve výsledku se mi to však minimálně na Windows nepodařilo spolehlivě zprovoznit. Výše zmíněný kód mi naopak funguje naprosto spolehlivě.</p>
+<p>Do prohlížeče si nainstalujte <a href="http://livereload.com/extensions/">livereload extension</a> a spusťte <code>bundle exec guard</code>. Pro livereload je podle mého názoru lepší oddělit zobrazování souborů od generování. Já jsem na to využil integrovaný PHP server <code>php -S localhost:8080</code> a web tedy lokálně prohlížím na <a href="http://localhost:8080/">http://localhost:8080/</a>.</p>
+<h2 id="zprovozneni-github-pages"><a href="#zprovozneni-github-pages" class="heading-anchor">Zprovoznění GitHub Pages</a></h2>
+<p>Posledním krokem je nahrání na GitHub Pages. Založíte si repository s názvem subdomény, pod kterou chcete blog provozovat. V mém případě <a href="https://github.com/tomasfejfar/blog">tomasfejfar/blog</a> a pushnete do branche <code>gh-pages</code>. <strong>Necommitujte vygenerovanou složku <code>_site</code>!</strong> To udělají GitHub Pages za vás. Ideálně si ji přidejte do <code>.gitignore</code>. </p>
+<p>Pushnutím se vám vytvoří url <code>username.github.io/repository-name</code>. Pokud chcete provozovat doménu třetího řádu jako to mám já, musíte vytvořit soubor <code>CNAME</code><sup id="fnref1:4"><a href="#fn:4" class="footnote-ref">7</a></sup> a do něj dát název subdomény. Pak zbývá jen nasměrovat DNS. U mě například takto: </p>
+<pre><code>blog.tomasfejfar.cz.                    CNAME   tomasfejfar.github.io.</code></pre>
+<p>A je hotovo. Pokud vám něco nefunguje, tak se podívejte do dokumentace<sup id="fnref1:3"><a href="#fn:3" class="footnote-ref">8</a></sup> nebo napište v komentářích. </p>
+<p>Jen pozor na to, že GitHub nepovoluje žádné speciální pluginy, kromě těch, které se vám nainstalovaly s bundlem. U šablon se tedy dívejte, jestli jsou kompatibilní s GitHub Pages. </p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn:1">
+&lt;p&gt;&lt;a href="https://github.com/jekyll/jekyll/issues/4432"&gt;Unclosed rouge highlighting #4432&lt;/a&gt;&amp;#160;&lt;a href="#fnref1:1" rev="footnote" class="footnote-backref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+</li>
+<li id="fn:2">
+&lt;p&gt;&lt;a href="https://github.com/poole/poole/issues/99"&gt;Compability with Jekyll 3? #99&lt;/a&gt;&amp;#160;&lt;a href="#fnref1:2" rev="footnote" class="footnote-backref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+</li>
+<li id="fn:4">
+&lt;p&gt;&lt;a href="https://github.com/tomasfejfar/blog/blob/gh-pages/CNAME"&gt;CNAME&lt;/a&gt;&amp;#160;&lt;a href="#fnref1:4" rev="footnote" class="footnote-backref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+</li>
+<li id="fn:3">
+&lt;p&gt;&lt;a href="https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/"&gt;Setting up a custom domain with GitHub Pages&lt;/a&gt;&amp;#160;&lt;a href="#fnref1:3" rev="footnote" class="footnote-backref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+</li>
+</ol>
+</div>        </div>
+    </div>
+    <div class="col-md-3 text-center post-sidebar">
+        <a href="https://www.tomasfejfar.cz"><img class="img-thumbnail rounded-circle d-none d-md-block"
+                                          src="/assets/images/me.jpg"></a>
+        <dl class="m-1">
+            <dt>Author</dt>
+            <dd><a href="https://www.tomasfejfar.cz">Tomáš Fejfar</a></dd>
+                            <dt>Published on</dt>
+                <dd>2016-01-31</dd>
+                    </dl>
+    </div>
+</div>
+</div> <footer class="footer">
+    <div class="container">
+        <p class="text-center"><a href="#top" class="btn btn-light btn-lg">Zpátky nahoru!</a></p>
+    </div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/jquery-3.2.1.slim.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/popper.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="js/bootstrap.min.js?v=1" type="182700b847b95f6705103410-text/javascript"></script>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="182700b847b95f6705103410-|49" defer=""></script></body>
+</html>
